@@ -736,6 +736,230 @@ font-weight: bold;
 
 
 </script>
+        <script>$(document).ready(function(){
+    if (typeof $('[data-toggle="tooltip"]').tooltip === 'function') {
+        $('[data-toggle="tooltip"]').tooltip();
+    }
+    if ($('[data-toggle="popover"]').popover === 'function') {
+        $('[data-toggle="popover"]').popover();
+    }
+});
+</script>
+        <style type="text/css">
+.lightable-minimal {
+border-collapse: separate;
+border-spacing: 16px 1px;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-minimal td {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal th {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal thead tr:last-child th {
+border-bottom: 2px solid #00000050;
+empty-cells: hide;
+}
+.lightable-minimal tbody tr:first-child td {
+padding-top: 0.5em;
+}
+.lightable-minimal.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-minimal.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic {
+border-top: 0.16em solid #111111;
+border-bottom: 0.16em solid #111111;
+width: 100%;
+margin-bottom: 10px;
+margin: 10px 5px;
+}
+.lightable-classic tfoot tr td {
+border: 0;
+}
+.lightable-classic tfoot tr:first-child td {
+border-top: 0.14em solid #111111;
+}
+.lightable-classic caption {
+color: #222222;
+}
+.lightable-classic td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic thead tr:last-child th {
+border-bottom: 0.10em solid #111111;
+}
+.lightable-classic.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic-2 {
+border-top: 3px double #111111;
+border-bottom: 3px double #111111;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-classic-2 tfoot tr td {
+border: 0;
+}
+.lightable-classic-2 tfoot tr:first-child td {
+border-top: 3px double #111111;
+}
+.lightable-classic-2 caption {
+color: #222222;
+}
+.lightable-classic-2 td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic-2 th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic-2 tbody tr:last-child td {
+border-bottom: 3px double #111111;
+}
+.lightable-classic-2 thead tr:last-child th {
+border-bottom: 1px solid #111111;
+}
+.lightable-classic-2.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic-2.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #EEE;
+border-collapse: collapse;
+margin-bottom: 10px;
+}
+.lightable-material tfoot tr td {
+border: 0;
+}
+.lightable-material tfoot tr:first-child td {
+border-top: 1px solid #EEE;
+}
+.lightable-material th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+}
+.lightable-material td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+border-top: 1px solid #eeeeee;
+}
+.lightable-material.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #ddd;
+}
+.lightable-material-dark {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #FFFFFF12;
+border-collapse: collapse;
+margin-bottom: 10px;
+background-color: #363640;
+}
+.lightable-material-dark tfoot tr td {
+border: 0;
+}
+.lightable-material-dark tfoot tr:first-child td {
+border-top: 1px solid #FFFFFF12;
+}
+.lightable-material-dark th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF60;
+}
+.lightable-material-dark td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF;
+border-top: 1px solid #FFFFFF12;
+}
+.lightable-material-dark.lightable-hover tbody tr:hover {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody tr:nth-child(even) {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material-dark.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #FFFFFF12;
+}
+.lightable-paper {
+width: 100%;
+margin-bottom: 10px;
+color: #444;
+}
+.lightable-paper tfoot tr td {
+border: 0;
+}
+.lightable-paper tfoot tr:first-child td {
+border-top: 1px solid #00000020;
+}
+.lightable-paper thead tr:last-child th {
+color: #666;
+vertical-align: bottom;
+border-bottom: 1px solid #00000020;
+line-height: 1.15em;
+padding: 10px 5px;
+}
+.lightable-paper td {
+vertical-align: middle;
+border-bottom: 1px solid #00000010;
+line-height: 1.15em;
+padding: 7px 5px;
+}
+.lightable-paper.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-paper.lightable-striped tbody tr:nth-child(even) {
+background-color: #00000008;
+}
+.lightable-paper.lightable-striped tbody td {
+border: 0;
+}
+</style>
     
     
         <style type="text/css">code{white-space: pre;}</style>
@@ -905,7 +1129,7 @@ font-weight: bold;
 
    
       <!-- html_docco authors -->
-         <h4 class="date"><em>最終更新日:2022年 10月 30日</em></h4>
+         <h4 class="date"><em>最終更新日:2022年 10月 31日</em></h4>
          
       <div id="toc">
      
@@ -916,11 +1140,11 @@ font-weight: bold;
 <div id="パッケージの読み込み" class="section level1">
 <h1>パッケージの読み込み</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)<span class="sc">:</span><span class="fu">library</span>(pacman)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(car,ggthemes,ordinal,plm,skimr,stargazer,tidyverse)</span></code></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(car,ggthemes,gt,modelsummary,ordinal,plm,skimr,stargazer,tidyverse)</span></code></pre></div>
 <div id="バージョン" class="section level2">
 <h2>バージョン</h2>
-<p>R version 4.2.1 (2022-06-23 ucrt)<br />
-pacman: 0.5.1<br />
+<p>R version 4.2.1 (2022-06-23 ucrt)</p>
+<p>pacman: 0.5.1<br />
 car: 3.1.1<br />
 ggthemes: 4.2.4<br />
 ordinal: 2019.12.10<br />
@@ -1612,7 +1836,7 @@ tidyverse: 1.3.2</p>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>         ,PMED4,PFED4 <span class="co">#学歴ラベルの2701 参照:7,8,99削除する</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>         ,w1BCQ14_5_1,w1BCQ14_5_2,w2BCQ19_5_1,w2BCQ19_5_2<span class="co">#社会のニュース_5_1父,_5_2母</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>         ,w3BCQ16_5_1,w3BCQ16_5_2,w4BCQ13_5_1,w4BCQ13_5_2<span class="co">#1よく話す,4全く話さない,99無回答</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>         ,w1BCQ21,,w2BCQ15,w3BCQ13,w4BCQ21<span class="co">#文理　1はっきり文系,5はっきり理系,6よくわからないLorS</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>         ,w1BCQ21,w2BCQ15,w3BCQ13,w4BCQ21<span class="co">#文理　1はっきり文系,5はっきり理系,6よくわからないLorS</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>         ,w1BCQ18,w2BCQ11,w3BCQ9,w4BCQ17<span class="co">#「勉強」がどれくらい好きか　1とても好き,4まったく好きではない,99不明like_stu</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>         ,w1BCQ3_9,w2BCQ3_9,w3BCQ3_9,w4BCQ3_9<span class="co">#新聞を何分読むか 11695参照 99削除</span></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>         ,w1BCQ23_17,w2BCQ24_20,w3BCQ26_15,w4BCQ25_19<span class="co">#社会の出来事やニュースに関心が強い 0が強い 398参照 99削除</span></span>
@@ -1666,48 +1890,186 @@ tidyverse: 1.3.2</p>
 <h2>2015年の分析</h2>
 <div id="母の単回帰重回帰交差項" class="section level3">
 <h3>母の単回帰(+重回帰+交差項)</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>edu2015 <span class="ot">&lt;-</span><span class="fu">clm</span>(social_interest <span class="sc">~</span> PMED4,<span class="at">data =</span> df_2015)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>news2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest <span class="sc">~</span> news_M,<span class="at">data =</span> df_2015)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>tousei2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest <span class="sc">~</span> PMED4<span class="sc">+</span>news_M,<span class="at">data =</span>df_2015)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>kousa2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest <span class="sc">~</span> PMED4<span class="sc">*</span>news_M,<span class="at">data =</span> df_2015)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(edu2015,news2015,tousei2015,kousa2015,<span class="at">type =</span> <span class="st">&#39;text&#39;</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.caption =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">df=</span><span class="cn">FALSE</span>,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">keep.stat =</span> <span class="fu">c</span>(<span class="st">&quot;n&quot;</span>, <span class="st">&quot;adj.rsq&quot;</span>, <span class="st">&quot;f&quot;</span>), </span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.labels=</span><span class="fu">c</span>(<span class="st">&quot;社会関心&quot;</span>),</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">&quot;母学歴&quot;</span>, <span class="st">&quot;ニュース会話（母）&quot;</span>,<span class="st">&quot;統制&quot;</span>,<span class="st">&quot;交差項&quot;</span>))</span></code></pre></div>
-<pre><code>## 
-## =================================================
-##                              社会関心                
-##                母学歴    ニュース会話（母）    統制      交差項   
-##                (1)       (2)      (3)      (4)   
-## -------------------------------------------------
-## PMED4        0.144***           0.109*** 0.110***
-##              (0.021)            (0.022)  (0.022) 
-##                                                  
-## news_M                0.932***  0.929*** 0.928***
-##                        (0.024)  (0.025)  (0.025) 
-##                                                  
-## PMED4:news_M                              -0.036 
-##                                          (0.022) 
-##                                                  
-## -------------------------------------------------
-## Observations  7,541     7,864    7,454    7,454  
-## =================================================
-## Note:                 *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mother_reg<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;母学歴&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(social_interest <span class="sc">~</span> PMED4,<span class="at">data =</span> df_2015)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;ニュース会話量&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(social_interest <span class="sc">~</span> news_M,<span class="at">data =</span> df_2015)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;統制&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(social_interest <span class="sc">~</span> PMED4<span class="sc">+</span>news_M,<span class="at">data =</span>df_2015)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;交差&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(social_interest <span class="sc">~</span> PMED4<span class="sc">*</span>news_M,<span class="at">data =</span>df_2015)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(mother_reg,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="cn">TRUE</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_omit =</span> <span class="st">&#39;1|2|3&#39;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表1:母の単回帰(+重回帰+交差項)&#39;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
+<caption>
+表1:母の単回帰(+重回帰+交差項)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+母学歴
+</th>
+<th style="text-align:center;">
+ニュース会話量
+</th>
+<th style="text-align:center;">
+統制
+</th>
+<th style="text-align:center;">
+交差
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+PMED4
+</td>
+<td style="text-align:center;">
+0.144***
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+0.109***
+</td>
+<td style="text-align:center;">
+0.110***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.021)
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+(0.022)
+</td>
+<td style="text-align:center;">
+(0.022)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+news_M
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+0.932***
+</td>
+<td style="text-align:center;">
+0.929***
+</td>
+<td style="text-align:center;">
+0.928***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+(0.024)
+</td>
+<td style="text-align:center;">
+(0.025)
+</td>
+<td style="text-align:center;">
+(0.025)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PMED4 × news_M
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+-0.036
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(0.022)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+7541
+</td>
+<td style="text-align:center;">
+7864
+</td>
+<td style="text-align:center;">
+7454
+</td>
+<td style="text-align:center;">
+7454
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Nagelkerke
+</td>
+<td style="text-align:center;">
+0.15
+</td>
+<td style="text-align:center;">
+0.24
+</td>
+<td style="text-align:center;">
+0.35
+</td>
+<td style="text-align:center;">
+0.35
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt;
+0.001
+</td>
+</tr>
+</tfoot>
+</table>
 </div>
 <div id="父の単回帰重回帰交差項" class="section level3">
 <h3>父の単回帰+重回帰+交差項</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>edu2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest <span class="sc">~</span> PFED4,<span class="at">data =</span> df_2015)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>news2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest <span class="sc">~</span> news_F,<span class="at">data =</span> df_2015)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>tousei2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest <span class="sc">~</span> PFED4<span class="sc">+</span>news_F,<span class="at">data =</span>df_2015)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>kousa2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest <span class="sc">~</span> PFED4<span class="sc">*</span>news_F,<span class="at">data =</span> df_2015)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(edu2015,news2015,tousei2015,kousa2015,<span class="at">type =</span> <span class="st">&#39;text&#39;</span>,</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.caption =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">df=</span><span class="cn">FALSE</span>,</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">keep.stat =</span> <span class="fu">c</span>(<span class="st">&quot;n&quot;</span>, <span class="st">&quot;adj.rsq&quot;</span>, <span class="st">&quot;f&quot;</span>), </span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.labels=</span><span class="fu">c</span>(<span class="st">&quot;社会関心&quot;</span>),</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">&quot;父学歴&quot;</span>, <span class="st">&quot;ニュース会話（父）&quot;</span>,<span class="st">&quot;統制&quot;</span>,<span class="st">&quot;交差項&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>edu2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest <span class="sc">~</span> PFED4,<span class="at">data =</span> df_2015)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>news2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest <span class="sc">~</span> news_F,<span class="at">data =</span> df_2015)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>tousei2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest <span class="sc">~</span> PFED4<span class="sc">+</span>news_F,<span class="at">data =</span>df_2015)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>kousa2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest <span class="sc">~</span> PFED4<span class="sc">*</span>news_F,<span class="at">data =</span> df_2015)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(edu2015,news2015,tousei2015,kousa2015,<span class="at">type =</span> <span class="st">&#39;text&#39;</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.caption =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">df=</span><span class="cn">FALSE</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">keep.stat =</span> <span class="fu">c</span>(<span class="st">&quot;n&quot;</span>, <span class="st">&quot;adj.rsq&quot;</span>, <span class="st">&quot;f&quot;</span>), </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.labels=</span><span class="fu">c</span>(<span class="st">&quot;社会関心&quot;</span>),</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">&quot;父学歴&quot;</span>, <span class="st">&quot;ニュース会話（父）&quot;</span>,<span class="st">&quot;統制&quot;</span>,<span class="st">&quot;交差項&quot;</span>))</span></code></pre></div>
 <pre><code>## 
 ## =================================================
 ##                              社会関心                
@@ -1730,9 +2092,9 @@ tidyverse: 1.3.2</p>
 </div>
 <div id="父母の重回帰交差項" class="section level3">
 <h3>父母の重回帰+交差項</h3>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>reg1_2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest<span class="sc">~</span>PMED4<span class="sc">+</span>news_M<span class="sc">+</span>PFED4<span class="sc">+</span>news_F<span class="sc">+</span>LorS<span class="sc">+</span>like_stu,<span class="at">data =</span> df_2015) </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>reg2_2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest<span class="sc">~</span>PMED4<span class="sc">*</span>news_M<span class="sc">+</span>PFED4<span class="sc">+</span>news_F<span class="sc">+</span>LorS<span class="sc">+</span>like_stu,<span class="at">data =</span> df_2015) </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(reg1_2015,reg2_2015,<span class="at">type =</span> <span class="st">&#39;text&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>reg1_2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest<span class="sc">~</span>PMED4<span class="sc">+</span>news_M<span class="sc">+</span>PFED4<span class="sc">+</span>news_F<span class="sc">+</span>LorS<span class="sc">+</span>like_stu,<span class="at">data =</span> df_2015) </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>reg2_2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest<span class="sc">~</span>PMED4<span class="sc">*</span>news_M<span class="sc">+</span>PFED4<span class="sc">+</span>news_F<span class="sc">+</span>LorS<span class="sc">+</span>like_stu,<span class="at">data =</span> df_2015) </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(reg1_2015,reg2_2015,<span class="at">type =</span> <span class="st">&#39;text&#39;</span>)</span></code></pre></div>
 <pre><code>## 
 ## ===========================================
 ##                    Dependent variable:     
@@ -1768,7 +2130,7 @@ tidyverse: 1.3.2</p>
 ## Note:           *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
 <div id="父母重回帰分析の多重共線性確認" class="section level4">
 <h4>父母重回帰分析の多重共線性確認</h4>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(reg1_2015) <span class="co">#carパッケージより</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(reg1_2015) <span class="co">#carパッケージより</span></span></code></pre></div>
 <pre><code>##              GVIF Df GVIF^(1/(2*Df))
 ## PMED4    84.60302  0             Inf
 ## news_M   84.60302  0             Inf
@@ -1784,23 +2146,23 @@ Inf )&lt; <strong><em>10</em></strong>なのでOK</p>
 </div>
 <div id="固定効果モデルwithinを用いた回帰-父母" class="section level2">
 <h2>固定効果モデル（within）を用いた回帰 父母</h2>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df.naomit <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">make.pbalanced</span>(<span class="at">balance.type =</span> <span class="st">&quot;shared.individuals&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>)) </span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>pdf <span class="ot">&lt;-</span> <span class="fu">pdata.frame</span>(df.naomit, <span class="at">index =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>fe1 <span class="ot">&lt;-</span> <span class="fu">plm</span>(social_interest<span class="sc">~</span>PMED4<span class="sc">+</span>news_M<span class="sc">+</span>PFED4<span class="sc">+</span>news_F<span class="sc">+</span>LorS<span class="sc">+</span>like_stu </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">data =</span> pdf, <span class="at">effect =</span><span class="st">&quot;individual&quot;</span>, </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">model =</span> <span class="st">&quot;within&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>fe2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(social_interest<span class="sc">~</span>PMED4<span class="sc">*</span>news_M<span class="sc">+</span>PFED4<span class="sc">*</span>news_F<span class="sc">+</span>LorS<span class="sc">+</span>like_stu </span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">data =</span> pdf, <span class="at">effect =</span><span class="st">&quot;individual&quot;</span>, </span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">model =</span> <span class="st">&quot;within&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(fe1,fe2,<span class="at">type =</span> <span class="st">&#39;text&#39;</span>,</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.caption =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">df=</span><span class="cn">FALSE</span>,</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">keep.stat =</span> <span class="fu">c</span>(<span class="st">&quot;n&quot;</span>, <span class="st">&quot;adj.rsq&quot;</span>, <span class="st">&quot;f&quot;</span>), </span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.labels=</span><span class="fu">c</span>(<span class="st">&quot;社会関心&quot;</span>),</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">&quot;統制&quot;</span>,<span class="st">&quot;交差項&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df.naomit <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">make.pbalanced</span>(<span class="at">balance.type =</span> <span class="st">&quot;shared.individuals&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>)) </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>pdf <span class="ot">&lt;-</span> <span class="fu">pdata.frame</span>(df.naomit, <span class="at">index =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fe1 <span class="ot">&lt;-</span> <span class="fu">plm</span>(social_interest<span class="sc">~</span>PMED4<span class="sc">+</span>news_M<span class="sc">+</span>PFED4<span class="sc">+</span>news_F<span class="sc">+</span>LorS<span class="sc">+</span>like_stu </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">data =</span> pdf, <span class="at">effect =</span><span class="st">&quot;individual&quot;</span>, </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">model =</span> <span class="st">&quot;within&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>fe2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(social_interest<span class="sc">~</span>PMED4<span class="sc">*</span>news_M<span class="sc">+</span>PFED4<span class="sc">*</span>news_F<span class="sc">+</span>LorS<span class="sc">+</span>like_stu </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">data =</span> pdf, <span class="at">effect =</span><span class="st">&quot;individual&quot;</span>, </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">model =</span> <span class="st">&quot;within&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(fe1,fe2,<span class="at">type =</span> <span class="st">&#39;text&#39;</span>,</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.caption =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">df=</span><span class="cn">FALSE</span>,</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">keep.stat =</span> <span class="fu">c</span>(<span class="st">&quot;n&quot;</span>, <span class="st">&quot;adj.rsq&quot;</span>, <span class="st">&quot;f&quot;</span>), </span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.labels=</span><span class="fu">c</span>(<span class="st">&quot;社会関心&quot;</span>),</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">&quot;統制&quot;</span>,<span class="st">&quot;交差項&quot;</span>))</span></code></pre></div>
 <pre><code>## 
 ## =========================================
 ##                          社会関心            
@@ -1837,6 +2199,146 @@ Inf )&lt; <strong><em>10</em></strong>なのでOK</p>
 ## F Statistic    325.036***    244.078***  
 ## =========================================
 ## Note:         *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(tousei2015,<span class="at">output =</span> <span class="st">&#39;html&#39;</span> ,<span class="at">title =</span> <span class="st">&quot;表１：mtcarsの結果&quot;</span>,          <span class="co"># タイトル</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">notes =</span> <span class="fu">list</span>(<span class="st">&#39;メモ1. 南無妙法蓮華経&#39;</span>, <span class="co"># メモ</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&#39;メモ２. アーメン&#39;</span>))</span></code></pre></div>
+<table style="NAborder-bottom: 0;border-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
+<caption>
+表１：mtcarsの結果
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Model 1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1|2
+</td>
+<td style="text-align:center;">
+-2.092
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.038)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2|3
+</td>
+<td style="text-align:center;">
+0.340
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.026)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3|4
+</td>
+<td style="text-align:center;">
+2.303
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.041)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PFED4
+</td>
+<td style="text-align:center;">
+0.042
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.023)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+news_F
+</td>
+<td style="text-align:center;">
+0.909
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(0.026)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+6893
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AIC
+</td>
+<td style="text-align:center;">
+15855.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BIC
+</td>
+<td style="text-align:center;">
+15889.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RMSE
+</td>
+<td style="text-align:center;">
+2.24
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<sup></sup> メモ1. 南無妙法蓮華経
+</td>
+</tr>
+</tfoot>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<sup></sup> メモ２. アーメン
+</td>
+</tr>
+</tfoot>
+</table>
 </div>
 </div>
 </div>
