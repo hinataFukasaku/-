@@ -1129,7 +1129,7 @@ border: 0;
 
    
       <!-- html_docco authors -->
-         <h4 class="date"><em>最終更新日:2022年 11月 02日</em></h4>
+         <h4 class="date"><em>最終更新日:2022年 11月 05日</em></h4>
          
       <div id="toc">
      
@@ -1886,27 +1886,47 @@ tidyverse: 1.3.2</p>
 </div>
 <div id="年ファイルの再作成" class="section level1">
 <h1>2015年ファイルの再作成</h1>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_2015<span class="ot">&lt;-</span>df <span class="sc">%&gt;%</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2015</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_2015<span class="sc">$</span>social_interest<span class="ot">&lt;-</span><span class="fu">as.factor</span>(df_2015<span class="sc">$</span>social_interest)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;df_1102use.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>w1BCQ23_17<span class="ot">&lt;-</span><span class="fu">as.factor</span>(df<span class="sc">$</span>w1BCQ23_17)</span></code></pre></div>
+</div>
+<div id="標準化の実施-1" class="section level1">
+<h1>標準化の実施</h1>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>scaler<span class="ot">&lt;-</span> <span class="cf">function</span>(a){</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  ue<span class="ot">&lt;-</span>a<span class="sc">-</span><span class="fu">mean</span>(a,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  sita<span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(a,<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  ans<span class="ot">&lt;-</span>(ue<span class="sc">/</span>sita)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ans)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>PMED4<span class="ot">&lt;-</span><span class="fu">scale</span>(df<span class="sc">$</span>PMED4)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>w1BCQ14_5_2<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>w1BCQ14_5_2)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>PFED4<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>PFED4)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>w1BCQ14_5_1<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>w1BCQ14_5_1)</span></code></pre></div>
 <div id="年の分析" class="section level2">
 <h2>2015年の分析</h2>
+<div id="初期設定" class="section level3">
+<h3>初期設定</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>all_nam <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;PMED4&quot;</span> <span class="ot">=</span> <span class="st">&quot;母学歴&quot;</span>, <span class="st">&quot;(Intercept)&quot;</span> <span class="ot">=</span> <span class="st">&quot;Constant&quot;</span>,<span class="st">&quot;w1BCQ14_5_2&quot;</span> <span class="ot">=</span> <span class="st">&quot;ニュース会話量（母）&quot;</span>, <span class="st">&quot;PFED4&quot;</span> <span class="ot">=</span> <span class="st">&quot;父学歴&quot;</span>,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;w1BCQ14_5_1&quot;</span> <span class="ot">=</span> <span class="st">&quot;ニュース会話量（父）&quot;</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;pc1&quot;</span> <span class="ot">=</span> <span class="st">&quot;子どものメディア接触&quot;</span>, <span class="st">&quot;pc2&quot;</span> <span class="ot">=</span> <span class="st">&quot;子どもの学力・学習意欲&quot;</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;pc3&quot;</span> <span class="ot">=</span> <span class="st">&quot;教育環境&quot;</span>,<span class="st">&quot;pc4&quot;</span> <span class="ot">=</span> <span class="st">&quot;友達付き合い&quot;</span>)</span></code></pre></div>
+</div>
 <div id="母の単回帰重回帰交差項" class="section level3">
 <h3>母の単回帰(+重回帰+交差項)</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mother_reg<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;母学歴&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(social_interest <span class="sc">~</span> PMED4,<span class="at">data =</span> df_2015)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;ニュース会話量&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(social_interest <span class="sc">~</span> news_M,<span class="at">data =</span> df_2015)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;統制&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(social_interest <span class="sc">~</span> PMED4<span class="sc">+</span>news_M,<span class="at">data =</span>df_2015)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;交差&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(social_interest <span class="sc">~</span> PMED4<span class="sc">*</span>news_M,<span class="at">data =</span>df_2015)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(mother_reg,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="cn">TRUE</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_omit =</span> <span class="st">&#39;1|2|3&#39;</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表1:母の単回帰(+重回帰+交差項)&#39;</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mother_reg<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;母学歴&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4,<span class="at">data =</span> df)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;ニュース会話量&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>w1BCQ14_5_2,<span class="at">data =</span> df)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;統制&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">+</span>w1BCQ14_5_2,<span class="at">data =</span> df)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;交差&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">*</span>w1BCQ14_5_2,<span class="at">data =</span> df)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(mother_reg,<span class="at">output =</span> <span class="st">&#39;html&#39;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="cn">TRUE</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表1:両親の単回帰(+重回帰+交差項)&#39;</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-表1:母の単回帰(+重回帰+交差項)
+表1:両親の単回帰(+重回帰+交差項)
 </caption>
 <thead>
 <tr>
@@ -1929,78 +1949,49 @@ tidyverse: 1.3.2</p>
 <tbody>
 <tr>
 <td style="text-align:left;">
-PMED4
+母学歴
 </td>
 <td style="text-align:center;">
-0.144***
+0.168***
 </td>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-0.109***
+0.120**
 </td>
 <td style="text-align:center;">
-0.110***
+0.121**
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-(0.021)
+(0.045)
 </td>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-(0.022)
+(0.046)
 </td>
 <td style="text-align:center;">
-(0.022)
+(0.046)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-news_M
+ニュース会話量（母）
 </td>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-0.932***
+0.992***
 </td>
 <td style="text-align:center;">
-0.929***
+0.985***
 </td>
 <td style="text-align:center;">
-0.928***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(0.024)
-</td>
-<td style="text-align:center;">
-(0.025)
-</td>
-<td style="text-align:center;">
-(0.025)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-PMED4 × news_M
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
--0.036
+0.985***
 </td>
 </tr>
 <tr>
@@ -2009,11 +2000,13 @@ PMED4 × news_M
 <td style="text-align:center;box-shadow: 0px 1px">
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
+(0.053)
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
+(0.053)
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
-(0.022)
+(0.053)
 </td>
 </tr>
 <tr>
@@ -2021,16 +2014,16 @@ PMED4 × news_M
 Num.Obs.
 </td>
 <td style="text-align:center;">
-7541
+1666
 </td>
 <td style="text-align:center;">
-7864
+1666
 </td>
 <td style="text-align:center;">
-7454
+1666
 </td>
 <td style="text-align:center;">
-7454
+1666
 </td>
 </tr>
 <tr>
@@ -2038,16 +2031,16 @@ Num.Obs.
 R2 Nagelkerke
 </td>
 <td style="text-align:center;">
-0.15
+0.009
 </td>
 <td style="text-align:center;">
-0.24
+0.23
 </td>
 <td style="text-align:center;">
-0.35
+0.23
 </td>
 <td style="text-align:center;">
-0.35
+0.23
 </td>
 </tr>
 </tbody>
@@ -2063,87 +2056,321 @@ R2 Nagelkerke
 </div>
 <div id="父の単回帰重回帰交差項" class="section level3">
 <h3>父の単回帰+重回帰+交差項</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>edu2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest <span class="sc">~</span> PFED4,<span class="at">data =</span> df_2015)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>news2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest <span class="sc">~</span> news_F,<span class="at">data =</span> df_2015)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>tousei2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest <span class="sc">~</span> PFED4<span class="sc">+</span>news_F,<span class="at">data =</span>df_2015)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>kousa2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest <span class="sc">~</span> PFED4<span class="sc">*</span>news_F,<span class="at">data =</span> df_2015)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(edu2015,news2015,tousei2015,kousa2015,<span class="at">type =</span> <span class="st">&#39;text&#39;</span>,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.caption =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">df=</span><span class="cn">FALSE</span>,</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">keep.stat =</span> <span class="fu">c</span>(<span class="st">&quot;n&quot;</span>, <span class="st">&quot;adj.rsq&quot;</span>, <span class="st">&quot;f&quot;</span>), </span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.labels=</span><span class="fu">c</span>(<span class="st">&quot;社会関心&quot;</span>),</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">&quot;父学歴&quot;</span>, <span class="st">&quot;ニュース会話（父）&quot;</span>,<span class="st">&quot;統制&quot;</span>,<span class="st">&quot;交差項&quot;</span>))</span></code></pre></div>
-<pre><code>## 
-## =================================================
-##                              社会関心                
-##                父学歴    ニュース会話（父）    統制      交差項   
-##                (1)       (2)      (3)      (4)   
-## -------------------------------------------------
-## PFED4        0.109***            0.042*   0.042* 
-##              (0.022)            (0.023)  (0.023) 
-##                                                  
-## news_F                0.883***  0.909*** 0.909***
-##                        (0.024)  (0.026)  (0.026) 
-##                                                  
-## PFED4:news_F                              0.018  
-##                                          (0.023) 
-##                                                  
-## -------------------------------------------------
-## Observations  6,944     7,557    6,893    6,893  
-## =================================================
-## Note:                 *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>father_reg<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>father_reg[[<span class="st">&#39;父学歴&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4,<span class="at">data =</span> df)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>father_reg[[<span class="st">&#39;ニュース会話量&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>w1BCQ14_5_1,<span class="at">data =</span> df)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>father_reg[[<span class="st">&#39;統制&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">+</span>w1BCQ14_5_1,<span class="at">data =</span> df)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>father_reg[[<span class="st">&#39;交差&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">*</span>w1BCQ14_5_1,<span class="at">data =</span> df)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(father_reg,<span class="at">output =</span> <span class="st">&#39;html&#39;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="cn">TRUE</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表1:両親の単回帰(+重回帰+交差項)&#39;</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
+<caption>
+表1:両親の単回帰(+重回帰+交差項)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+父学歴
+</th>
+<th style="text-align:center;">
+ニュース会話量
+</th>
+<th style="text-align:center;">
+統制
+</th>
+<th style="text-align:center;">
+交差
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+父学歴
+</td>
+<td style="text-align:center;">
+0.119**
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+0.056
+</td>
+<td style="text-align:center;">
+0.056
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.045)
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+(0.046)
+</td>
+<td style="text-align:center;">
+(0.046)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ニュース会話量（父）
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+0.964***
+</td>
+<td style="text-align:center;">
+0.959***
+</td>
+<td style="text-align:center;">
+0.958***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(0.052)
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(0.052)
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(0.052)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+1666
+</td>
+<td style="text-align:center;">
+1666
+</td>
+<td style="text-align:center;">
+1666
+</td>
+<td style="text-align:center;">
+1666
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Nagelkerke
+</td>
+<td style="text-align:center;">
+0.005
+</td>
+<td style="text-align:center;">
+0.22
+</td>
+<td style="text-align:center;">
+0.22
+</td>
+<td style="text-align:center;">
+0.22
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt;
+0.001
+</td>
+</tr>
+</tfoot>
+</table>
 </div>
 <div id="父母の重回帰交差項" class="section level3">
 <h3>父母の重回帰+交差項</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>reg1_2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest<span class="sc">~</span>PMED4<span class="sc">+</span>news_M<span class="sc">+</span>PFED4<span class="sc">+</span>news_F<span class="sc">+</span>LorS<span class="sc">+</span>like_stu,<span class="at">data =</span> df_2015) </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>reg2_2015 <span class="ot">&lt;-</span> <span class="fu">clm</span>(social_interest<span class="sc">~</span>PMED4<span class="sc">*</span>news_M<span class="sc">+</span>PFED4<span class="sc">+</span>news_F<span class="sc">+</span>LorS<span class="sc">+</span>like_stu,<span class="at">data =</span> df_2015) </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(reg1_2015,reg2_2015,<span class="at">type =</span> <span class="st">&#39;text&#39;</span>)</span></code></pre></div>
-<pre><code>## 
-## ===========================================
-##                    Dependent variable:     
-##                ----------------------------
-##                      social_interest       
-##                     (1)            (2)     
-## -------------------------------------------
-## PMED4             0.089***      0.089***   
-##                   (0.028)        (0.028)   
-##                                            
-## news_M            0.598***      0.599***   
-##                   (0.031)        (0.031)   
-##                                            
-## PFED4              -0.012        -0.011    
-##                   (0.028)        (0.028)   
-##                                            
-## news_F            0.566***      0.567***   
-##                   (0.031)        (0.031)   
-##                                            
-## LorS             -0.101***      -0.101***  
-##                   (0.019)        (0.019)   
-##                                            
-## like_stu         -0.395***      -0.395***  
-##                   (0.027)        (0.027)   
-##                                            
-## PMED4:news_M                     -0.040    
-##                                  (0.026)   
-##                                            
-## -------------------------------------------
-## Observations       5,941          5,941    
-## Log Likelihood   -6,487.706    -6,486.512  
-## ===========================================
-## Note:           *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>parents_reg<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>parents_reg[[<span class="st">&#39;全部&#39;</span>]]<span class="ot">&lt;-</span> reg<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">*</span>w1BCQ14_5_2 <span class="sc">+</span>PFED4<span class="sc">*</span>w1BCQ14_5_1 <span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3,<span class="at">data =</span> df) </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(parents_reg,<span class="at">output =</span> <span class="st">&#39;html&#39;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="cn">TRUE</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表1:両親の単回帰(+重回帰+交差項)&#39;</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
+<caption>
+表1:両親の単回帰(+重回帰+交差項)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+全部
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+母学歴
+</td>
+<td style="text-align:center;">
+0.040
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.052)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ニュース会話量（母）
+</td>
+<td style="text-align:center;">
+0.684***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.060)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+父学歴
+</td>
+<td style="text-align:center;">
+-0.045
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.052)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ニュース会話量（父）
+</td>
+<td style="text-align:center;">
+0.533***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.060)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+子どものメディア接触
+</td>
+<td style="text-align:center;">
+-0.332***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.046)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+子どもの学力・学習意欲
+</td>
+<td style="text-align:center;">
+-0.310***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.043)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+教育環境
+</td>
+<td style="text-align:center;">
+0.037
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(0.034)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+1666
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Nagelkerke
+</td>
+<td style="text-align:center;">
+0.35
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt;
+0.001
+</td>
+</tr>
+</tfoot>
+</table>
 <div id="父母重回帰分析の多重共線性確認" class="section level4">
 <h4>父母重回帰分析の多重共線性確認</h4>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(reg1_2015) <span class="co">#carパッケージより</span></span></code></pre></div>
-<pre><code>##              GVIF Df GVIF^(1/(2*Df))
-## PMED4    84.60302  0             Inf
-## news_M   84.60302  0             Inf
-## PFED4    84.60302  0             Inf
-## news_F   84.60302  0             Inf
-## LorS     84.60302  0             Inf
-## like_stu 84.60302  0             Inf</code></pre>
-<p>(84.60302, 84.60302, 84.60302, 84.60302, 84.60302, 84.60302, 0.00000,
-0.00000, 0.00000, 0.00000, 0.00000, 0.00000, Inf, Inf, Inf, Inf, Inf,
-Inf )&lt; <strong><em>10</em></strong>なのでOK</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(reg) <span class="co">#carパッケージより</span></span></code></pre></div>
+<pre><code>##                      GVIF Df GVIF^(1/(2*Df))
+## PMED4             2.97275  0             Inf
+## w1BCQ14_5_2       2.97275  0             Inf
+## PFED4             2.97275  0             Inf
+## w1BCQ14_5_1       2.97275  0             Inf
+## pc1               2.97275  0             Inf
+## pc2               2.97275  0             Inf
+## pc3               2.97275  0             Inf
+## PMED4:w1BCQ14_5_2 2.97275  0             Inf
+## PFED4:w1BCQ14_5_1 2.97275  0             Inf</code></pre>
+<p>(2.97275, 2.97275, 2.97275, 2.97275, 2.97275, 2.97275, 2.97275,
+2.97275, 2.97275, 0.00000, 0.00000, 0.00000, 0.00000, 0.00000, 0.00000,
+0.00000, 0.00000, 0.00000, Inf, Inf, Inf, Inf, Inf, Inf, Inf, Inf, Inf
+)&lt; <strong><em>10</em></strong>なのでOK</p>
 </div>
 </div>
 </div>
@@ -2166,42 +2393,6 @@ Inf )&lt; <strong><em>10</em></strong>なのでOK</p>
 <span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">keep.stat =</span> <span class="fu">c</span>(<span class="st">&quot;n&quot;</span>, <span class="st">&quot;adj.rsq&quot;</span>, <span class="st">&quot;f&quot;</span>), </span>
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.labels=</span><span class="fu">c</span>(<span class="st">&quot;社会関心&quot;</span>),</span>
 <span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">&quot;統制&quot;</span>,<span class="st">&quot;交差項&quot;</span>))</span></code></pre></div>
-<pre><code>## 
-## =========================================
-##                          社会関心            
-##                    統制            交差項     
-##                   (1)            (2)     
-## -----------------------------------------
-## PMED4           0.036***      0.036***   
-##                 (0.011)        (0.011)   
-##                                          
-## news_M          0.226***      0.226***   
-##                 (0.012)        (0.012)   
-##                                          
-## PFED4            -0.007        -0.006    
-##                 (0.011)        (0.011)   
-##                                          
-## news_F          0.215***      0.215***   
-##                 (0.012)        (0.012)   
-##                                          
-## LorS           -0.042***      -0.042***  
-##                 (0.008)        (0.008)   
-##                                          
-## like_stu       -0.147***      -0.146***  
-##                 (0.010)        (0.010)   
-##                                          
-## PMED4:news_M                   -0.013    
-##                                (0.010)   
-##                                          
-## PFED4:news_F                    0.012    
-##                                (0.010)   
-##                                          
-## -----------------------------------------
-## Observations     5,533          5,533    
-## Adjusted R2      0.260          0.260    
-## F Statistic    325.036***    244.078***  
-## =========================================
-## Note:         *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
 </div>
 </div>
 </div>
