@@ -1886,7 +1886,7 @@ tidyverse: 1.3.2</p>
 </div>
 <div id="年ファイルの再作成" class="section level1">
 <h1>2015年ファイルの再作成</h1>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;df_1102use.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;df_1105use.csv&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>w1BCQ23_17<span class="ot">&lt;-</span><span class="fu">as.factor</span>(df<span class="sc">$</span>w1BCQ23_17)</span></code></pre></div>
 </div>
 <div id="標準化の実施-1" class="section level1">
@@ -1908,7 +1908,8 @@ tidyverse: 1.3.2</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>all_nam <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;PMED4&quot;</span> <span class="ot">=</span> <span class="st">&quot;母学歴&quot;</span>, <span class="st">&quot;(Intercept)&quot;</span> <span class="ot">=</span> <span class="st">&quot;Constant&quot;</span>,<span class="st">&quot;w1BCQ14_5_2&quot;</span> <span class="ot">=</span> <span class="st">&quot;ニュース会話量（母）&quot;</span>, <span class="st">&quot;PFED4&quot;</span> <span class="ot">=</span> <span class="st">&quot;父学歴&quot;</span>,</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;w1BCQ14_5_1&quot;</span> <span class="ot">=</span> <span class="st">&quot;ニュース会話量（父）&quot;</span>,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;pc1&quot;</span> <span class="ot">=</span> <span class="st">&quot;子どものメディア接触&quot;</span>, <span class="st">&quot;pc2&quot;</span> <span class="ot">=</span> <span class="st">&quot;子どもの学力・学習意欲&quot;</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;pc3&quot;</span> <span class="ot">=</span> <span class="st">&quot;教育環境&quot;</span>,<span class="st">&quot;pc4&quot;</span> <span class="ot">=</span> <span class="st">&quot;友達付き合い&quot;</span>)</span></code></pre></div>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;pc3&quot;</span> <span class="ot">=</span> <span class="st">&quot;教育環境&quot;</span>,<span class="st">&quot;pc4&quot;</span> <span class="ot">=</span> <span class="st">&quot;友達付き合い&quot;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>            )</span></code></pre></div>
 </div>
 <div id="母の単回帰重回帰交差項" class="section level3">
 <h3>母の単回帰+重回帰+交差項</h3>
@@ -2038,7 +2039,7 @@ tidyverse: 1.3.2</p>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
--0.360***
+0.360***
 </td>
 </tr>
 <tr>
@@ -2069,7 +2070,7 @@ tidyverse: 1.3.2</p>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
--0.355***
+0.355***
 </td>
 </tr>
 <tr>
@@ -2207,17 +2208,17 @@ R2 Nagelkerke
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>father_reg[[<span class="st">&#39;ニュース会話量&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>w1BCQ14_5_1,<span class="at">data =</span> df)</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>father_reg[[<span class="st">&#39;統制&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">+</span>w1BCQ14_5_1,<span class="at">data =</span> df)</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>father_reg[[<span class="st">&#39;交差&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">*</span>w1BCQ14_5_1,<span class="at">data =</span> df)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;全部統制&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">*</span>w1BCQ14_5_1<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>pc4,<span class="at">data =</span> df)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>father_reg[[<span class="st">&#39;全部統制&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">*</span>w1BCQ14_5_1<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>pc4,<span class="at">data =</span> df)</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(father_reg,<span class="at">output =</span> <span class="st">&#39;html&#39;</span></span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="cn">TRUE</span></span>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表1:父の単回帰+重回帰+交差項&#39;</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表2:父の単回帰+重回帰+交差項&#39;</span></span>
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-表1:父の単回帰+重回帰+交差項
+表2:父の単回帰+重回帰+交差項
 </caption>
 <thead>
 <tr>
@@ -2234,6 +2235,9 @@ R2 Nagelkerke
 </th>
 <th style="text-align:center;">
 交差
+</th>
+<th style="text-align:center;">
+全部統制
 </th>
 </tr>
 </thead>
@@ -2253,6 +2257,9 @@ R2 Nagelkerke
 <td style="text-align:center;">
 0.056
 </td>
+<td style="text-align:center;">
+-0.034
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -2267,6 +2274,9 @@ R2 Nagelkerke
 </td>
 <td style="text-align:center;">
 (0.046)
+</td>
+<td style="text-align:center;">
+(0.047)
 </td>
 </tr>
 <tr>
@@ -2284,6 +2294,136 @@ R2 Nagelkerke
 <td style="text-align:center;">
 0.958***
 </td>
+<td style="text-align:center;">
+0.861***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+(0.052)
+</td>
+<td style="text-align:center;">
+(0.052)
+</td>
+<td style="text-align:center;">
+(0.052)
+</td>
+<td style="text-align:center;">
+(0.053)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+子どものメディア接触
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+0.303***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+(0.045)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+子どもの学力・学習意欲
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+0.327***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+(0.042)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+教育環境
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+0.049
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+(0.034)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+友達付き合い
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+-0.031
+</td>
 </tr>
 <tr>
 <td style="text-align:left;box-shadow: 0px 1px">
@@ -2291,18 +2431,21 @@ R2 Nagelkerke
 <td style="text-align:center;box-shadow: 0px 1px">
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
-(0.052)
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
-(0.052)
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
-(0.052)
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(0.046)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 Num.Obs.
+</td>
+<td style="text-align:center;">
+1666
 </td>
 <td style="text-align:center;">
 1666
@@ -2333,6 +2476,9 @@ R2 Nagelkerke
 <td style="text-align:center;">
 0.22
 </td>
+<td style="text-align:center;">
+0.28
+</td>
 </tr>
 </tbody>
 <tfoot>
@@ -2348,17 +2494,17 @@ R2 Nagelkerke
 <div id="父母の重回帰交差項" class="section level3">
 <h3>父母の重回帰+交差項</h3>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>parents_reg<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>parents_reg[[<span class="st">&#39;全部&#39;</span>]]<span class="ot">&lt;-</span> reg<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">*</span>w1BCQ14_5_2 <span class="sc">+</span>PFED4<span class="sc">*</span>w1BCQ14_5_1 <span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>pc4,<span class="at">data =</span> df) </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>parents_reg[[<span class="st">&#39;全部&#39;</span>]]<span class="ot">&lt;-</span> reg<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">*</span>w1BCQ14_5_2 <span class="sc">+</span>PFED4<span class="sc">*</span>w1BCQ14_5_1<span class="sc">+</span>pc1<span class="sc">+</span>pc2 <span class="sc">+</span>pc3<span class="sc">+</span>pc4,<span class="at">data =</span> df) </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(parents_reg,<span class="at">output =</span> <span class="st">&#39;html&#39;</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="cn">TRUE</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表1:両親の単回帰(+重回帰+交差項)&#39;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表3:両親の単回帰+重回帰+交差項&#39;</span></span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-表1:両親の単回帰(+重回帰+交差項)
+表3:両親の単回帰+重回帰+交差項
 </caption>
 <thead>
 <tr>
@@ -2435,7 +2581,7 @@ R2 Nagelkerke
 子どものメディア接触
 </td>
 <td style="text-align:center;">
--0.330***
+0.330***
 </td>
 </tr>
 <tr>
@@ -2450,7 +2596,7 @@ R2 Nagelkerke
 子どもの学力・学習意欲
 </td>
 <td style="text-align:center;">
--0.310***
+0.310***
 </td>
 </tr>
 <tr>
