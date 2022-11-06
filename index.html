@@ -1129,7 +1129,7 @@ border: 0;
 
    
       <!-- html_docco authors -->
-         <h4 class="date"><em>最終更新日:2022年 11月 05日</em></h4>
+         <h4 class="date"><em>最終更新日:2022年 11月 06日</em></h4>
          
       <div id="toc">
      
@@ -1160,9 +1160,14 @@ tidyverse: 1.3.2</p>
 <h1>ファイルの読み込み</h1>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#df_1363&lt;-read_csv(&quot;1363.csv&quot;)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#df_1368&lt;-read_csv(&quot;1368.csv&quot;)</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df_raw<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data_use1015.csv&quot;</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df_2015<span class="ot">&lt;-</span>df_raw <span class="sc">%&gt;%</span> </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2015</span>)</span></code></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df_raw<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;df_1106use.csv&quot;</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a> df_raw <span class="ot">&lt;-</span> df_raw <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">rename</span>(<span class="at">news_F =</span> w1BCQ14_5_1,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">news_M =</span> w1BCQ14_5_2)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>df_2015<span class="ot">&lt;-</span>df_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2015</span>)</span></code></pre></div>
 <div id="基礎統計量" class="section level2">
 <h2>基礎統計量</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(df_2015)</span></code></pre></div>
@@ -1175,11 +1180,11 @@ tidyverse: 1.3.2</p>
 </tr>
 <tr class="even">
 <td align="left">Number of rows</td>
-<td align="left">23625</td>
+<td align="left">5193</td>
 </tr>
 <tr class="odd">
 <td align="left">Number of columns</td>
-<td align="left">20</td>
+<td align="left">33</td>
 </tr>
 <tr class="even">
 <td align="left">_______________________</td>
@@ -1191,7 +1196,7 @@ tidyverse: 1.3.2</p>
 </tr>
 <tr class="even">
 <td align="left">numeric</td>
-<td align="left">20</td>
+<td align="left">33</td>
 </tr>
 <tr class="odd">
 <td align="left">________________________</td>
@@ -1204,19 +1209,19 @@ tidyverse: 1.3.2</p>
 </tbody>
 </table>
 <p><strong>Variable type: numeric</strong></p>
-<table style="width:100%;">
+<table>
 <colgroup>
-<col width="24%" />
-<col width="10%" />
-<col width="14%" />
+<col width="13%" />
 <col width="9%" />
+<col width="13%" />
+<col width="8%" />
+<col width="8%" />
+<col width="7%" />
+<col width="7%" />
+<col width="8%" />
+<col width="8%" />
 <col width="8%" />
 <col width="5%" />
-<col width="5%" />
-<col width="6%" />
-<col width="6%" />
-<col width="6%" />
-<col width="6%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1235,264 +1240,433 @@ tidyverse: 1.3.2</p>
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">…1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2597.00</td>
+<td align="right">1499.23</td>
+<td align="right">1.00</td>
+<td align="right">1299.00</td>
+<td align="right">2597.00</td>
+<td align="right">3895.00</td>
+<td align="right">5193.00</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="even">
+<td align="left">…2</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">17813.36</td>
+<td align="right">10011.41</td>
+<td align="right">0.00</td>
+<td align="right">9276.00</td>
+<td align="right">17916.00</td>
+<td align="right">26492.00</td>
+<td align="right">34972.00</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="odd">
 <td align="left">index</td>
 <td align="right">0</td>
-<td align="right">1.00</td>
-<td align="right">11813.00</td>
-<td align="right">6820.09</td>
 <td align="right">1</td>
-<td align="right">5907</td>
-<td align="right">11813</td>
-<td align="right">17719</td>
-<td align="right">23625</td>
+<td align="right">4454.34</td>
+<td align="right">2502.85</td>
+<td align="right">1.00</td>
+<td align="right">2320.00</td>
+<td align="right">4480.00</td>
+<td align="right">6624.00</td>
+<td align="right">8744.00</td>
 <td align="left">▇▇▇▇▇</td>
 </tr>
 <tr class="even">
 <td align="left">w1回答フラグ</td>
 <td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.02</td>
+<td align="right">0.23</td>
 <td align="right">1.00</td>
-<td align="right">2.35</td>
-<td align="right">2.14</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">6</td>
-<td align="left">▇▁▁▁▂</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">5.00</td>
+<td align="left">▇▁▁▁▁</td>
 </tr>
 <tr class="odd">
 <td align="left">w2回答フラグ</td>
 <td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2.21</td>
+<td align="right">1.91</td>
 <td align="right">1.00</td>
-<td align="right">2.41</td>
-<td align="right">2.09</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">6</td>
-<td align="left">▇▁▁▁▂</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">4.00</td>
+<td align="right">6.00</td>
+<td align="left">▇▁▂▁▂</td>
 </tr>
 <tr class="even">
 <td align="left">w3回答フラグ</td>
 <td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3.01</td>
+<td align="right">2.25</td>
 <td align="right">1.00</td>
-<td align="right">2.44</td>
-<td align="right">2.05</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">6</td>
-<td align="left">▇▁▂▁▂</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">6.00</td>
+<td align="right">6.00</td>
+<td align="left">▇▁▂▁▅</td>
 </tr>
 <tr class="odd">
 <td align="left">w4回答フラグ</td>
 <td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3.95</td>
+<td align="right">2.28</td>
 <td align="right">1.00</td>
-<td align="right">2.64</td>
-<td align="right">2.14</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">6</td>
-<td align="left">▇▁▂▁▃</td>
+<td align="right">1.00</td>
+<td align="right">6.00</td>
+<td align="right">6.00</td>
+<td align="right">6.00</td>
+<td align="left">▆▁▂▁▇</td>
 </tr>
 <tr class="even">
 <td align="left">PMED4</td>
-<td align="right">2428</td>
-<td align="right">0.90</td>
-<td align="right">3.63</td>
-<td align="right">1.20</td>
+<td align="right">0</td>
 <td align="right">1</td>
-<td align="right">2</td>
-<td align="right">4</td>
-<td align="right">5</td>
-<td align="right">6</td>
-<td align="left">▇▅▇▇▁</td>
+<td align="right">3.56</td>
+<td align="right">1.20</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">4.00</td>
+<td align="right">5.00</td>
+<td align="right">8.00</td>
+<td align="left">▅▂▇▁▁</td>
 </tr>
 <tr class="odd">
 <td align="left">PFED4</td>
-<td align="right">3734</td>
-<td align="right">0.84</td>
-<td align="right">3.84</td>
-<td align="right">1.48</td>
+<td align="right">0</td>
 <td align="right">1</td>
-<td align="right">2</td>
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">6</td>
-<td align="left">▅▂▁▇▁</td>
+<td align="right">3.84</td>
+<td align="right">1.53</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">5.00</td>
+<td align="right">5.00</td>
+<td align="right">8.00</td>
+<td align="left">▅▂▇▁▁</td>
 </tr>
 <tr class="even">
 <td align="left">w1子ども性別</td>
-<td align="right">154</td>
-<td align="right">0.99</td>
-<td align="right">26.80</td>
-<td align="right">39.35</td>
+<td align="right">0</td>
 <td align="right">1</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">88</td>
-<td align="right">88</td>
-<td align="left">▇▁▁▁▃</td>
+<td align="right">1.73</td>
+<td align="right">4.51</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">88.00</td>
+<td align="left">▇▁▁▁▁</td>
 </tr>
 <tr class="odd">
 <td align="left">w1学年</td>
 <td align="right">0</td>
-<td align="right">1.00</td>
-<td align="right">25.46</td>
-<td align="right">34.75</td>
 <td align="right">1</td>
-<td align="right">4</td>
-<td align="right">8</td>
-<td align="right">12</td>
-<td align="right">88</td>
-<td align="left">▇▁▁▁▂</td>
+<td align="right">9.40</td>
+<td align="right">1.69</td>
+<td align="right">7.00</td>
+<td align="right">8.00</td>
+<td align="right">9.00</td>
+<td align="right">11.00</td>
+<td align="right">12.00</td>
+<td align="left">▇▅▃▃▃</td>
 </tr>
 <tr class="even">
+<td align="left">Pincome15</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">751.50</td>
+<td align="right">350.13</td>
+<td align="right">150.00</td>
+<td align="right">550.00</td>
+<td align="right">700.00</td>
+<td align="right">900.00</td>
+<td align="right">2250.00</td>
+<td align="left">▇▇▂▁▁</td>
+</tr>
+<tr class="odd">
 <td align="left">news_F</td>
-<td align="right">12220</td>
-<td align="right">0.48</td>
-<td align="right">2.19</td>
-<td align="right">0.98</td>
+<td align="right">0</td>
 <td align="right">1</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">4</td>
-<td align="left">▇▇▁▆▂</td>
+<td align="right">2.76</td>
+<td align="right">0.97</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">3.00</td>
+<td align="right">4.00</td>
+<td align="right">4.00</td>
+<td align="left">▂▇▁▇▆</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">news_M</td>
-<td align="right">11814</td>
-<td align="right">0.50</td>
-<td align="right">2.46</td>
-<td align="right">0.98</td>
+<td align="right">0</td>
 <td align="right">1</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">4</td>
-<td align="left">▅▇▁▇▃</td>
-</tr>
-<tr class="even">
-<td align="left">LorS</td>
-<td align="right">12843</td>
-<td align="right">0.46</td>
-<td align="right">3.17</td>
-<td align="right">1.31</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">4</td>
-<td align="right">5</td>
-<td align="left">▃▆▆▇▆</td>
+<td align="right">2.50</td>
+<td align="right">0.94</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">2.00</td>
+<td align="right">3.00</td>
+<td align="right">4.00</td>
+<td align="left">▃▇▁▇▃</td>
 </tr>
 <tr class="odd">
-<td align="left">like_stu</td>
-<td align="right">11948</td>
-<td align="right">0.49</td>
-<td align="right">2.54</td>
-<td align="right">0.83</td>
+<td align="left">w1BCQ23_17</td>
+<td align="right">0</td>
 <td align="right">1</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">4</td>
-<td align="left">▂▇▁▇▂</td>
+<td align="right">2.59</td>
+<td align="right">0.86</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">3.00</td>
+<td align="right">3.00</td>
+<td align="right">4.00</td>
+<td align="left">▂▆▁▇▂</td>
 </tr>
 <tr class="even">
-<td align="left">newspaper</td>
-<td align="right">11749</td>
-<td align="right">0.50</td>
-<td align="right">1.42</td>
-<td align="right">0.88</td>
+<td align="left">w1BCQ3_4</td>
+<td align="right">0</td>
 <td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">10</td>
-<td align="left">▇▁▁▁▁</td>
+<td align="right">4.82</td>
+<td align="right">2.67</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">5.00</td>
+<td align="right">7.00</td>
+<td align="right">10.00</td>
+<td align="left">▆▂▇▅▁</td>
 </tr>
 <tr class="odd">
-<td align="left">social_interest</td>
-<td align="right">11714</td>
-<td align="right">0.50</td>
-<td align="right">2.42</td>
-<td align="right">0.89</td>
+<td align="left">w1BCQ3_5</td>
+<td align="right">0</td>
 <td align="right">1</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">4</td>
-<td align="left">▃▇▁▆▂</td>
-</tr>
-<tr class="even">
-<td align="left">study_teach</td>
-<td align="right">11697</td>
-<td align="right">0.50</td>
-<td align="right">2.38</td>
-<td align="right">1.07</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">4</td>
-<td align="left">▇▇▁▇▅</td>
-</tr>
-<tr class="odd">
-<td align="left">study_teach_howto</td>
-<td align="right">11693</td>
-<td align="right">0.51</td>
+<td align="right">2.79</td>
 <td align="right">2.37</td>
-<td align="right">1.04</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">4</td>
-<td align="left">▆▇▁▇▅</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">5.00</td>
+<td align="right">10.00</td>
+<td align="left">▇▁▃▁▁</td>
 </tr>
 <tr class="even">
-<td align="left">study_teach_interesting</td>
-<td align="right">11711</td>
-<td align="right">0.50</td>
-<td align="right">2.81</td>
-<td align="right">0.95</td>
+<td align="left">w1BCQ3_9</td>
+<td align="right">0</td>
 <td align="right">1</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">4</td>
-<td align="right">4</td>
-<td align="left">▂▅▁▇▆</td>
-</tr>
-<tr class="odd">
-<td align="left">parents_support</td>
-<td align="right">7733</td>
-<td align="right">0.67</td>
-<td align="right">1.94</td>
-<td align="right">1.71</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">9</td>
+<td align="right">1.44</td>
+<td align="right">0.88</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">7.00</td>
 <td align="left">▇▁▁▁▁</td>
 </tr>
+<tr class="odd">
+<td align="left">w1seiseki</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2.01</td>
+<td align="right">0.82</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">3.00</td>
+<td align="right">3.00</td>
+<td align="left">▇▁▇▁▇</td>
+</tr>
 <tr class="even">
+<td align="left">w1BCQ3_14</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">5.11</td>
+<td align="right">1.73</td>
+<td align="right">1.00</td>
+<td align="right">5.00</td>
+<td align="right">5.00</td>
+<td align="right">6.00</td>
+<td align="right">10.00</td>
+<td align="left">▂▂▇▂▁</td>
+</tr>
+<tr class="odd">
+<td align="left">w1BCQ18</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2.66</td>
+<td align="right">0.80</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">3.00</td>
+<td align="right">3.00</td>
+<td align="right">4.00</td>
+<td align="left">▁▇▁▇▃</td>
+</tr>
+<tr class="even">
+<td align="left">w1BCQ4_1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">5.72</td>
+<td align="right">2.98</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">8.00</td>
+<td align="right">8.00</td>
+<td align="right">8.00</td>
+<td align="left">▃▁▁▁▇</td>
+</tr>
+<tr class="odd">
+<td align="left">w1BCQ5_1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">5.79</td>
+<td align="right">2.81</td>
+<td align="right">1.00</td>
+<td align="right">3.00</td>
+<td align="right">8.00</td>
+<td align="right">8.00</td>
+<td align="right">8.00</td>
+<td align="left">▃▁▁▁▇</td>
+</tr>
+<tr class="even">
+<td align="left">w2BPQ11_2</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2.07</td>
+<td align="right">0.72</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">2.00</td>
+<td align="right">3.00</td>
+<td align="right">4.00</td>
+<td align="left">▃▇▁▃▁</td>
+</tr>
+<tr class="odd">
+<td align="left">w1BPQ14_1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4.64</td>
+<td align="right">2.77</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">5.00</td>
+<td align="right">7.00</td>
+<td align="right">10.00</td>
+<td align="left">▇▆▅▆▂</td>
+</tr>
+<tr class="even">
+<td align="left">w1BPQ16</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">43.22</td>
+<td align="right">42.27</td>
+<td align="right">1.00</td>
+<td align="right">4.00</td>
+<td align="right">4.00</td>
+<td align="right">88.00</td>
+<td align="right">88.00</td>
+<td align="left">▇▁▁▁▇</td>
+</tr>
+<tr class="odd">
+<td align="left">w1BCQ3_11</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3.79</td>
+<td align="right">2.94</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">3.00</td>
+<td align="right">6.00</td>
+<td align="right">10.00</td>
+<td align="left">▇▁▅▂▁</td>
+</tr>
+<tr class="even">
+<td align="left">w4BCQ16_2</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.50</td>
+<td align="right">0.66</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">4.00</td>
+<td align="left">▇▅▁▁▁</td>
+</tr>
+<tr class="odd">
 <td align="left">year</td>
 <td align="right">0</td>
-<td align="right">1.00</td>
+<td align="right">1</td>
 <td align="right">2015.00</td>
 <td align="right">0.00</td>
-<td align="right">2015</td>
-<td align="right">2015</td>
-<td align="right">2015</td>
-<td align="right">2015</td>
-<td align="right">2015</td>
+<td align="right">2015.00</td>
+<td align="right">2015.00</td>
+<td align="right">2015.00</td>
+<td align="right">2015.00</td>
+<td align="right">2015.00</td>
 <td align="left">▁▁▇▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">pc1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.00</td>
+<td align="right">1.09</td>
+<td align="right">-4.31</td>
+<td align="right">-0.76</td>
+<td align="right">0.07</td>
+<td align="right">0.95</td>
+<td align="right">1.93</td>
+<td align="left">▁▁▅▇▇</td>
+</tr>
+<tr class="odd">
+<td align="left">pc2</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.00</td>
+<td align="right">1.20</td>
+<td align="right">-3.22</td>
+<td align="right">-0.88</td>
+<td align="right">0.00</td>
+<td align="right">0.86</td>
+<td align="right">2.76</td>
+<td align="left">▁▅▇▆▂</td>
+</tr>
+<tr class="even">
+<td align="left">pc3</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.00</td>
+<td align="right">1.43</td>
+<td align="right">-3.42</td>
+<td align="right">-1.24</td>
+<td align="right">-0.04</td>
+<td align="right">1.30</td>
+<td align="right">2.54</td>
+<td align="left">▂▇▇▇▇</td>
+</tr>
+<tr class="odd">
+<td align="left">pc4</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.00</td>
+<td align="right">1.08</td>
+<td align="right">-3.33</td>
+<td align="right">-0.73</td>
+<td align="right">-0.14</td>
+<td align="right">0.82</td>
+<td align="right">2.02</td>
+<td align="left">▁▅▇▅▆</td>
 </tr>
 </tbody>
 </table>
@@ -1506,11 +1680,11 @@ tidyverse: 1.3.2</p>
 </tr>
 <tr class="even">
 <td align="left">Number of rows</td>
-<td align="left">94500</td>
+<td align="left">5193</td>
 </tr>
 <tr class="odd">
 <td align="left">Number of columns</td>
-<td align="left">20</td>
+<td align="left">33</td>
 </tr>
 <tr class="even">
 <td align="left">_______________________</td>
@@ -1522,7 +1696,7 @@ tidyverse: 1.3.2</p>
 </tr>
 <tr class="even">
 <td align="left">numeric</td>
-<td align="left">20</td>
+<td align="left">33</td>
 </tr>
 <tr class="odd">
 <td align="left">________________________</td>
@@ -1537,16 +1711,16 @@ tidyverse: 1.3.2</p>
 <p><strong>Variable type: numeric</strong></p>
 <table>
 <colgroup>
-<col width="22%" />
+<col width="13%" />
 <col width="9%" />
 <col width="13%" />
 <col width="8%" />
-<col width="7%" />
-<col width="4%" />
+<col width="8%" />
 <col width="7%" />
 <col width="7%" />
 <col width="8%" />
-<col width="5%" />
+<col width="8%" />
+<col width="8%" />
 <col width="5%" />
 </colgroup>
 <thead>
@@ -1566,366 +1740,503 @@ tidyverse: 1.3.2</p>
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">…1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2597.00</td>
+<td align="right">1499.23</td>
+<td align="right">1.00</td>
+<td align="right">1299.00</td>
+<td align="right">2597.00</td>
+<td align="right">3895.00</td>
+<td align="right">5193.00</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="even">
+<td align="left">…2</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">17813.36</td>
+<td align="right">10011.41</td>
+<td align="right">0.00</td>
+<td align="right">9276.00</td>
+<td align="right">17916.00</td>
+<td align="right">26492.00</td>
+<td align="right">34972.00</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="odd">
 <td align="left">index</td>
 <td align="right">0</td>
-<td align="right">1.00</td>
-<td align="right">11813.00</td>
-<td align="right">6819.99</td>
 <td align="right">1</td>
-<td align="right">5907.00</td>
-<td align="right">11813.0</td>
-<td align="right">17719.00</td>
-<td align="right">23625</td>
+<td align="right">4454.34</td>
+<td align="right">2502.85</td>
+<td align="right">1.00</td>
+<td align="right">2320.00</td>
+<td align="right">4480.00</td>
+<td align="right">6624.00</td>
+<td align="right">8744.00</td>
 <td align="left">▇▇▇▇▇</td>
 </tr>
 <tr class="even">
 <td align="left">w1回答フラグ</td>
 <td align="right">0</td>
-<td align="right">1.00</td>
-<td align="right">2.35</td>
-<td align="right">2.14</td>
 <td align="right">1</td>
+<td align="right">1.02</td>
+<td align="right">0.23</td>
 <td align="right">1.00</td>
-<td align="right">1.0</td>
-<td align="right">4.00</td>
-<td align="right">6</td>
-<td align="left">▇▁▁▁▂</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">5.00</td>
+<td align="left">▇▁▁▁▁</td>
 </tr>
 <tr class="odd">
 <td align="left">w2回答フラグ</td>
 <td align="right">0</td>
-<td align="right">1.00</td>
-<td align="right">2.41</td>
-<td align="right">2.09</td>
 <td align="right">1</td>
+<td align="right">2.21</td>
+<td align="right">1.91</td>
 <td align="right">1.00</td>
-<td align="right">1.0</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
 <td align="right">4.00</td>
-<td align="right">6</td>
-<td align="left">▇▁▁▁▂</td>
+<td align="right">6.00</td>
+<td align="left">▇▁▂▁▂</td>
 </tr>
 <tr class="even">
 <td align="left">w3回答フラグ</td>
 <td align="right">0</td>
-<td align="right">1.00</td>
-<td align="right">2.44</td>
-<td align="right">2.05</td>
 <td align="right">1</td>
+<td align="right">3.01</td>
+<td align="right">2.25</td>
 <td align="right">1.00</td>
-<td align="right">1.0</td>
-<td align="right">4.00</td>
-<td align="right">6</td>
-<td align="left">▇▁▂▁▂</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">6.00</td>
+<td align="right">6.00</td>
+<td align="left">▇▁▂▁▅</td>
 </tr>
 <tr class="odd">
 <td align="left">w4回答フラグ</td>
 <td align="right">0</td>
-<td align="right">1.00</td>
-<td align="right">2.64</td>
-<td align="right">2.14</td>
 <td align="right">1</td>
+<td align="right">3.95</td>
+<td align="right">2.28</td>
 <td align="right">1.00</td>
-<td align="right">1.0</td>
-<td align="right">4.00</td>
-<td align="right">6</td>
-<td align="left">▇▁▂▁▃</td>
+<td align="right">1.00</td>
+<td align="right">6.00</td>
+<td align="right">6.00</td>
+<td align="right">6.00</td>
+<td align="left">▆▁▂▁▇</td>
 </tr>
 <tr class="even">
 <td align="left">PMED4</td>
-<td align="right">9712</td>
-<td align="right">0.90</td>
-<td align="right">3.63</td>
-<td align="right">1.20</td>
+<td align="right">0</td>
 <td align="right">1</td>
+<td align="right">3.56</td>
+<td align="right">1.20</td>
+<td align="right">1.00</td>
 <td align="right">2.00</td>
-<td align="right">4.0</td>
+<td align="right">4.00</td>
 <td align="right">5.00</td>
-<td align="right">6</td>
-<td align="left">▇▅▇▇▁</td>
+<td align="right">8.00</td>
+<td align="left">▅▂▇▁▁</td>
 </tr>
 <tr class="odd">
 <td align="left">PFED4</td>
-<td align="right">14936</td>
-<td align="right">0.84</td>
-<td align="right">3.84</td>
-<td align="right">1.48</td>
+<td align="right">0</td>
 <td align="right">1</td>
+<td align="right">3.84</td>
+<td align="right">1.53</td>
+<td align="right">1.00</td>
 <td align="right">2.00</td>
-<td align="right">5.0</td>
 <td align="right">5.00</td>
-<td align="right">6</td>
-<td align="left">▅▂▁▇▁</td>
+<td align="right">5.00</td>
+<td align="right">8.00</td>
+<td align="left">▅▂▇▁▁</td>
 </tr>
 <tr class="even">
 <td align="left">w1子ども性別</td>
-<td align="right">616</td>
-<td align="right">0.99</td>
-<td align="right">26.80</td>
-<td align="right">39.35</td>
+<td align="right">0</td>
 <td align="right">1</td>
+<td align="right">1.73</td>
+<td align="right">4.51</td>
 <td align="right">1.00</td>
-<td align="right">2.0</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
 <td align="right">88.00</td>
-<td align="right">88</td>
-<td align="left">▇▁▁▁▃</td>
+<td align="left">▇▁▁▁▁</td>
 </tr>
 <tr class="odd">
 <td align="left">w1学年</td>
 <td align="right">0</td>
-<td align="right">1.00</td>
-<td align="right">25.46</td>
-<td align="right">34.75</td>
 <td align="right">1</td>
-<td align="right">4.00</td>
-<td align="right">8.0</td>
+<td align="right">9.40</td>
+<td align="right">1.69</td>
+<td align="right">7.00</td>
+<td align="right">8.00</td>
+<td align="right">9.00</td>
+<td align="right">11.00</td>
 <td align="right">12.00</td>
-<td align="right">88</td>
-<td align="left">▇▁▁▁▂</td>
+<td align="left">▇▅▃▃▃</td>
 </tr>
 <tr class="even">
+<td align="left">Pincome15</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">751.50</td>
+<td align="right">350.13</td>
+<td align="right">150.00</td>
+<td align="right">550.00</td>
+<td align="right">700.00</td>
+<td align="right">900.00</td>
+<td align="right">2250.00</td>
+<td align="left">▇▇▂▁▁</td>
+</tr>
+<tr class="odd">
 <td align="left">news_F</td>
-<td align="right">53840</td>
-<td align="right">0.43</td>
-<td align="right">2.22</td>
-<td align="right">0.99</td>
+<td align="right">0</td>
 <td align="right">1</td>
+<td align="right">2.76</td>
+<td align="right">0.97</td>
 <td align="right">1.00</td>
-<td align="right">2.0</td>
+<td align="right">2.00</td>
 <td align="right">3.00</td>
-<td align="right">4</td>
-<td align="left">▇▇▁▆▃</td>
+<td align="right">4.00</td>
+<td align="right">4.00</td>
+<td align="left">▂▇▁▇▆</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">news_M</td>
-<td align="right">52438</td>
-<td align="right">0.45</td>
-<td align="right">2.48</td>
-<td align="right">0.98</td>
+<td align="right">0</td>
 <td align="right">1</td>
+<td align="right">2.50</td>
+<td align="right">0.94</td>
+<td align="right">1.00</td>
 <td align="right">2.00</td>
-<td align="right">2.0</td>
+<td align="right">2.00</td>
 <td align="right">3.00</td>
-<td align="right">4</td>
-<td align="left">▅▇▁▇▅</td>
-</tr>
-<tr class="even">
-<td align="left">LorS</td>
-<td align="right">55667</td>
-<td align="right">0.41</td>
-<td align="right">3.17</td>
-<td align="right">1.30</td>
-<td align="right">1</td>
-<td align="right">2.00</td>
-<td align="right">3.0</td>
 <td align="right">4.00</td>
-<td align="right">5</td>
-<td align="left">▃▆▆▇▆</td>
+<td align="left">▃▇▁▇▃</td>
 </tr>
 <tr class="odd">
-<td align="left">like_stu</td>
-<td align="right">52623</td>
-<td align="right">0.44</td>
-<td align="right">2.54</td>
-<td align="right">0.82</td>
+<td align="left">w1BCQ23_17</td>
+<td align="right">0</td>
 <td align="right">1</td>
+<td align="right">2.59</td>
+<td align="right">0.86</td>
+<td align="right">1.00</td>
 <td align="right">2.00</td>
-<td align="right">2.0</td>
 <td align="right">3.00</td>
-<td align="right">4</td>
-<td align="left">▂▇▁▇▂</td>
+<td align="right">3.00</td>
+<td align="right">4.00</td>
+<td align="left">▂▆▁▇▂</td>
 </tr>
 <tr class="even">
-<td align="left">newspaper</td>
-<td align="right">52179</td>
-<td align="right">0.45</td>
-<td align="right">1.38</td>
-<td align="right">0.87</td>
+<td align="left">w1BCQ3_4</td>
+<td align="right">0</td>
 <td align="right">1</td>
+<td align="right">4.82</td>
+<td align="right">2.67</td>
 <td align="right">1.00</td>
-<td align="right">1.0</td>
-<td align="right">1.00</td>
-<td align="right">10</td>
-<td align="left">▇▁▁▁▁</td>
-</tr>
-<tr class="odd">
-<td align="left">social_interest</td>
-<td align="right">52030</td>
-<td align="right">0.45</td>
-<td align="right">2.42</td>
-<td align="right">0.90</td>
-<td align="right">1</td>
 <td align="right">2.00</td>
-<td align="right">2.0</td>
-<td align="right">3.00</td>
-<td align="right">4</td>
-<td align="left">▃▇▁▆▂</td>
-</tr>
-<tr class="even">
-<td align="left">study_teach</td>
-<td align="right">82572</td>
-<td align="right">0.13</td>
-<td align="right">2.38</td>
-<td align="right">1.07</td>
-<td align="right">1</td>
-<td align="right">1.00</td>
-<td align="right">2.0</td>
-<td align="right">3.00</td>
-<td align="right">4</td>
-<td align="left">▇▇▁▇▅</td>
+<td align="right">5.00</td>
+<td align="right">7.00</td>
+<td align="right">10.00</td>
+<td align="left">▆▂▇▅▁</td>
 </tr>
 <tr class="odd">
-<td align="left">study_teach_howto</td>
-<td align="right">82568</td>
-<td align="right">0.13</td>
+<td align="left">w1BCQ3_5</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2.79</td>
 <td align="right">2.37</td>
-<td align="right">1.04</td>
-<td align="right">1</td>
-<td align="right">2.00</td>
-<td align="right">2.0</td>
-<td align="right">3.00</td>
-<td align="right">4</td>
-<td align="left">▆▇▁▇▅</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">5.00</td>
+<td align="right">10.00</td>
+<td align="left">▇▁▃▁▁</td>
 </tr>
 <tr class="even">
-<td align="left">study_teach_interesting</td>
-<td align="right">82586</td>
-<td align="right">0.13</td>
-<td align="right">2.81</td>
-<td align="right">0.95</td>
+<td align="left">w1BCQ3_9</td>
+<td align="right">0</td>
 <td align="right">1</td>
-<td align="right">2.00</td>
-<td align="right">3.0</td>
-<td align="right">4.00</td>
-<td align="right">4</td>
-<td align="left">▂▅▁▇▆</td>
-</tr>
-<tr class="odd">
-<td align="left">parents_support</td>
-<td align="right">63669</td>
-<td align="right">0.33</td>
-<td align="right">1.96</td>
-<td align="right">1.73</td>
-<td align="right">1</td>
+<td align="right">1.44</td>
+<td align="right">0.88</td>
 <td align="right">1.00</td>
-<td align="right">1.0</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
 <td align="right">2.00</td>
-<td align="right">9</td>
+<td align="right">7.00</td>
 <td align="left">▇▁▁▁▁</td>
 </tr>
+<tr class="odd">
+<td align="left">w1seiseki</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2.01</td>
+<td align="right">0.82</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">3.00</td>
+<td align="right">3.00</td>
+<td align="left">▇▁▇▁▇</td>
+</tr>
 <tr class="even">
+<td align="left">w1BCQ3_14</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">5.11</td>
+<td align="right">1.73</td>
+<td align="right">1.00</td>
+<td align="right">5.00</td>
+<td align="right">5.00</td>
+<td align="right">6.00</td>
+<td align="right">10.00</td>
+<td align="left">▂▂▇▂▁</td>
+</tr>
+<tr class="odd">
+<td align="left">w1BCQ18</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2.66</td>
+<td align="right">0.80</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">3.00</td>
+<td align="right">3.00</td>
+<td align="right">4.00</td>
+<td align="left">▁▇▁▇▃</td>
+</tr>
+<tr class="even">
+<td align="left">w1BCQ4_1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">5.72</td>
+<td align="right">2.98</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">8.00</td>
+<td align="right">8.00</td>
+<td align="right">8.00</td>
+<td align="left">▃▁▁▁▇</td>
+</tr>
+<tr class="odd">
+<td align="left">w1BCQ5_1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">5.79</td>
+<td align="right">2.81</td>
+<td align="right">1.00</td>
+<td align="right">3.00</td>
+<td align="right">8.00</td>
+<td align="right">8.00</td>
+<td align="right">8.00</td>
+<td align="left">▃▁▁▁▇</td>
+</tr>
+<tr class="even">
+<td align="left">w2BPQ11_2</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2.07</td>
+<td align="right">0.72</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">2.00</td>
+<td align="right">3.00</td>
+<td align="right">4.00</td>
+<td align="left">▃▇▁▃▁</td>
+</tr>
+<tr class="odd">
+<td align="left">w1BPQ14_1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4.64</td>
+<td align="right">2.77</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">5.00</td>
+<td align="right">7.00</td>
+<td align="right">10.00</td>
+<td align="left">▇▆▅▆▂</td>
+</tr>
+<tr class="even">
+<td align="left">w1BPQ16</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">43.22</td>
+<td align="right">42.27</td>
+<td align="right">1.00</td>
+<td align="right">4.00</td>
+<td align="right">4.00</td>
+<td align="right">88.00</td>
+<td align="right">88.00</td>
+<td align="left">▇▁▁▁▇</td>
+</tr>
+<tr class="odd">
+<td align="left">w1BCQ3_11</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3.79</td>
+<td align="right">2.94</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">3.00</td>
+<td align="right">6.00</td>
+<td align="right">10.00</td>
+<td align="left">▇▁▅▂▁</td>
+</tr>
+<tr class="even">
+<td align="left">w4BCQ16_2</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.50</td>
+<td align="right">0.66</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">4.00</td>
+<td align="left">▇▅▁▁▁</td>
+</tr>
+<tr class="odd">
 <td align="left">year</td>
 <td align="right">0</td>
-<td align="right">1.00</td>
-<td align="right">2016.50</td>
-<td align="right">1.12</td>
-<td align="right">2015</td>
-<td align="right">2015.75</td>
-<td align="right">2016.5</td>
-<td align="right">2017.25</td>
-<td align="right">2018</td>
-<td align="left">▇▇▁▇▇</td>
+<td align="right">1</td>
+<td align="right">2015.00</td>
+<td align="right">0.00</td>
+<td align="right">2015.00</td>
+<td align="right">2015.00</td>
+<td align="right">2015.00</td>
+<td align="right">2015.00</td>
+<td align="right">2015.00</td>
+<td align="left">▁▁▇▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">pc1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.00</td>
+<td align="right">1.09</td>
+<td align="right">-4.31</td>
+<td align="right">-0.76</td>
+<td align="right">0.07</td>
+<td align="right">0.95</td>
+<td align="right">1.93</td>
+<td align="left">▁▁▅▇▇</td>
+</tr>
+<tr class="odd">
+<td align="left">pc2</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.00</td>
+<td align="right">1.20</td>
+<td align="right">-3.22</td>
+<td align="right">-0.88</td>
+<td align="right">0.00</td>
+<td align="right">0.86</td>
+<td align="right">2.76</td>
+<td align="left">▁▅▇▆▂</td>
+</tr>
+<tr class="even">
+<td align="left">pc3</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.00</td>
+<td align="right">1.43</td>
+<td align="right">-3.42</td>
+<td align="right">-1.24</td>
+<td align="right">-0.04</td>
+<td align="right">1.30</td>
+<td align="right">2.54</td>
+<td align="left">▂▇▇▇▇</td>
+</tr>
+<tr class="odd">
+<td align="left">pc4</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.00</td>
+<td align="right">1.08</td>
+<td align="right">-3.33</td>
+<td align="right">-0.73</td>
+<td align="right">-0.14</td>
+<td align="right">0.82</td>
+<td align="right">2.02</td>
+<td align="left">▁▅▇▅▆</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="データの整形" class="section level1">
-<h1>データの整形</h1>
-<p>データフレームを使う変数だけに(データセット作成は事前にしているので、実際には実行されないセル)</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_raw<span class="ot">&lt;-</span>df_1363 <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(PanelID,w1回答フラグ,w2回答フラグ,w3回答フラグ,w4回答フラグ<span class="co">#ラベルの2577参照　4~6削除</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>         ,w1学年</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>         ,PMED4,PFED4 <span class="co">#学歴ラベルの2701 参照:7,8,99削除する</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>         ,w1BCQ14_5_1,w1BCQ14_5_2,w2BCQ19_5_1,w2BCQ19_5_2<span class="co">#社会のニュース_5_1父,_5_2母</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>         ,w3BCQ16_5_1,w3BCQ16_5_2,w4BCQ13_5_1,w4BCQ13_5_2<span class="co">#1よく話す,4全く話さない,99無回答</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>         ,w1BCQ21,w2BCQ15,w3BCQ13,w4BCQ21<span class="co">#文理　1はっきり文系,5はっきり理系,6よくわからないLorS</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>         ,w1BCQ18,w2BCQ11,w3BCQ9,w4BCQ17<span class="co">#「勉強」がどれくらい好きか　1とても好き,4まったく好きではない,99不明like_stu</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>         ,w1BCQ3_9,w2BCQ3_9,w3BCQ3_9,w4BCQ3_9<span class="co">#新聞を何分読むか 11695参照 99削除</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>         ,w1BCQ23_17,w2BCQ24_20,w3BCQ26_15,w4BCQ25_19<span class="co">#社会の出来事やニュースに関心が強い 0が強い 398参照 99削除</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>         ,w1BCQ15_8,w1BCQ15_9,w1BCQ15_10<span class="co">#勉強を教えてくれる 1~4　とてもあてはまる 99 無回答</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>         ,w1BPQ26,w2BPQ26<span class="co">#本人/配偶者親からの援助 1~9 小大　10,答えたくない99無回答</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>         ,w1子ども性別)<span class="co">#1男 88,99 除去 </span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(df_raw,<span class="st">&quot;df_1023.csv&quot;</span>,<span class="at">fileEncoding =</span> <span class="st">&quot;utf-8&quot;</span>)</span></code></pre></div>
-</div>
 <div id="対象の絞り込み-中高生のみに" class="section level1">
 <h1>対象の絞り込み　中高生のみに</h1>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span>df_raw <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="dv">7</span><span class="sc">&lt;=</span> w1学年)  <span class="sc">%&gt;%</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(w1学年<span class="sc">&lt;=</span><span class="dv">12</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>df_2015<span class="ot">&lt;-</span>df <span class="sc">%&gt;%</span> </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2015</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span>df_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="dv">7</span><span class="sc">&lt;=</span> w1学年)  <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(w1学年<span class="sc">&lt;=</span><span class="dv">12</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>df_2015<span class="ot">&lt;-</span>df <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2015</span>)</span></code></pre></div>
 </div>
 <div id="可視化" class="section level1">
 <h1>可視化</h1>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>news_M_medu<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>df_2015,<span class="fu">aes</span>(<span class="at">x=</span> PMED4,<span class="at">y=</span> news_M))<span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">fill =</span> PMED4), <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span>,<span class="at">fill =</span> <span class="st">&quot;lightsalmon&quot;</span>)<span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gdocs</span>()</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>news_M_medu</span></code></pre></div>
-<p><img src="data:image/png;base64,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+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNikUga0z7BfnUT45U/vVycRYJNKGdA+w351EuGXP71fnUSATSplQPsM+9VJhF/+9H51EgE2qZQB7TPsVycRfvnT+9VJBNik0tMM6J//4ZXN5rnP/OxQLTvqcyUM+9VJhF/+9H51EgE2qfQUA/q77XzuPPdfDhVzd/7nQN1EJF8pV48U2KRSf0Bvb+77xqFq5n8O1E1E8pVy9UiBTSq1B/SvX91sPr699/77r202z//8UDnjPwfqJiL5Srl6pMAmldoDenOz+cQfdr9477ubzecOlTP+c6BuIpKvlKtHCmxSqTug29l87ntnv/zTK+dTegjqcyUM+9VJhF/+9H51EgE2qdQd0O09+HureWFLn576XAnDfnUS4Zc/vV+dRIBNKnUH9PZm8zf3fn3jgN9GUp8rYdivTiL88qf3q5MIsEmlpxjQ+w983syAuvSrkwi//On96iQCbFKpO6AXR/P2nu8iXW9Snyth2K9OIvzyr6ubCL/8q1l8QCMi1pUBjYhoOtKAxgE9/mmL48npSy1+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" width="672" /></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>news_F_fedu<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>df_2015,<span class="fu">aes</span>(<span class="at">x=</span> PFED4,<span class="at">y=</span> news_F))<span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">fill =</span> PFED4), <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span>,<span class="at">fill =</span> <span class="st">&quot;lightsalmon&quot;</span>) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()<span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gdocs</span>()</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>news_F_fedu</span></code></pre></div>
-<p><img src="data:image/png;base64,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CGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg14+kEVILpCrn6hAhoNePpBFSC6Qq5+oQIaDXj6QRUgukKufqECGg1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" width="672" /></p>
-</div>
-<div id="標準化の実施" class="section level1">
-<h1>標準化の実施</h1>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>scaler<span class="ot">&lt;-</span> <span class="cf">function</span>(a){</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  ue<span class="ot">&lt;-</span>a<span class="sc">-</span><span class="fu">mean</span>(a,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  sita<span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(a,<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  ans<span class="ot">&lt;-</span>(ue<span class="sc">/</span>sita)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ans)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>PMED4<span class="ot">&lt;-</span><span class="fu">scale</span>(df<span class="sc">$</span>PMED4)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>news_M<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>news_M)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>PFED4<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>PFED4)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>news_F<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>news_F)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>like_stu<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>like_stu)</span></code></pre></div>
-<p><strong>試し</strong> 平均値 0: -1.365419e-16 標準偏差1: 1</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>news_M_medu<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>df_2015,<span class="fu">aes</span>(<span class="at">x=</span> PMED4,<span class="at">y=</span> news_M))<span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">fill =</span> PMED4), <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span>,<span class="at">fill =</span> <span class="st">&quot;lightsalmon&quot;</span>)<span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gdocs</span>()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>news_M_medu</span></code></pre></div>
+<p><img src="data:image/png;base64,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" width="672" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>news_F_fedu<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>df_2015,<span class="fu">aes</span>(<span class="at">x=</span> PFED4,<span class="at">y=</span> news_F))<span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">fill =</span> PFED4), <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span>,<span class="at">fill =</span> <span class="st">&quot;lightsalmon&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()<span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gdocs</span>()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>news_F_fedu</span></code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABUAAAAMACAMAAADSUD1fAAABVlBMVEUAAABmZmZmZoFmZp1mgYFmgZ1mgbZmnc91dXV1dY51daZ1jo51jqZ1jr11ptOBZmaBgWaBgYGBgZ2BnZ2BnbaBnc+BtueOdXWOjnWOjo6OjqaOpr2OptOOvemdZmadZoGdgWadgYGdgZ2dnZ2dnbadtradts+dtuedz+edz/+mdXWmjnWmjo6mpo6mvdOmvemm0+mm0/+2gWa2nWa2nYG2nZ22toG2tp22tra2ts+2z8+2z+e25/+9jnW9jo69po69vY696f/MzMzPnWbPnYHPtoHPtp3PtrbPz7bPz8/Pz+fP5+fP5//P///TpnXTpo7TvabT6enT6f/T///ntoHnz53nz7bnz8/n58/n5+fn5//n///pvY7pvabp06bp073p6b3p6dPp6f/p////oHr/z53/06b/57b/58//5+f/6b3/6dP/6en//8///9P//+f//+n///+ssAFPAAAACXBIWXMAAB2HAAAdhwGP5fFlAAAgAElEQVR4nO3d7aNcd3Xdca6I7ZFtUKCuVeqHhobQ2iaJRWnTBlyKnaQhJAJjEx6sOHGNZbCwJf3/bzoz90H3SjNLd+9zzuy1f/quF61JAH+yZp/l+zD36ktfIoQQQggh5MC5TwghJB4GlBBCkmFACSEkGQaUEEKSYUAJISQZBpQQQpJhQAkhJBkGlBBCkmFACSEkGQaUEEKSYUAJISQZBpQQQpJhQAkhJBkGdMm8/fbb1QTj0I4K7ajYtMOALhmbl9kytKNCOyo27TCgS8bmZbYM7ajQjopNOwzokrF5mS1DOyq0o2LTDgO6ZGxeZsvQjgrtqNi0w4AuGZuX2TK0o0I7KjbtMKBLxuZltgztqNCOik07DOiSsXmZLUM7KrSjYtMOA7pkbF5my9COCu2o2LTDgC4Zm5fZMrSjQjsqNu0woEvG5mW2DO2o0I6KTTsM6JKxeZktQzsqtKNi0w4DumRsXmbL0I4K7ajYtMOALhmbl9kytKNCOyo27TCgS8bmZbYM7ajQjopNOwzokrF5mS1DOyq0o2LTDgO6ZGxeZsvQjgrtqNi0w4AuGZuX2TK0o0I7KjbtMKBLxuZltgztqNCOik07DOiSsXmZLUM7KrSjYtPOlAH91++sVqvn/uLjOT1jxeZltgztqNCOik07+QG999bqOFdvzCoaKTYvs2VoR4V2VGzaSQ/o2X6uc2Ne0zixeZktQzsqtKNi0056QG+tP/TcfPb+b2+sVl/hs/jdsXmZLUM7KrSjYtNOdkDXH4Be/dH2r754/fSvyMOxeZktQzsqtKNi0052QD+7vvrqyV/e4nP4fbF5mS1DOyq0o2LTzgxvY7rJgO6LzctsGdpRoR0Vm3amD+j6U/hn35sHM1xsXmbL0I4K7ajYtDN1QO/97DofgO6NzctsGdpRoR0Vm3amDejN7ftA39zxv3mbEEKGy/wD+tybO97FVP1/JiHEOL8tTho+54De+9/f+M76M/hd7wOdsWpCyGhhQE9z543V2TuayMU82jd5ENpRGbyd6gGd6/+OGd7GxDvp92bwh2BiaEdl8HYY0Ae5tVq9ModlvAz+EEwM7agM3g4D+iC3GdA9GfwhmBjaURm8HQb0QRjQfRn8IZgY2lEZvJ0nfUDPf9rOz3Luy+APwcTQjsrg7TzpA/rZ9bPvHK23lJ/l3J3BH4KJoR2Vwdt50gd08/uUr27eQX/nhys+g9+XwR+CiaEdlcHbedIH9P6d1x/8RnreBrongz8EE0M7KoO388QP6PYN9Md5mV9IvyeDPwQTQzsqg7fDgJ7+qZwv/XwuyybVvc5W7DaDPwQTQzsqg7czynPu9ufCV/fKgB4utKMyeDujPOcM6ELFbjP4QzAxtKMyeDujPOcM6ELFbjP4QzAxtKMyeDujPOcM6ELFbjP4QzAxtKMyeDujPOcM6ELFbjP4QzAxtKMyeDujPOcM6ELFbjP4QzAxtKMyeDujPOcM6ELFbjP4QzAxtKMyeDujPOcM6ELFbjP4QzAxtKMyeDujPOcM6ELFbjP4QzAxtKMyeDujPOcM6ELFbjP4QzAxtKMyeDujPOcM6ELFbjP4QzAxtKMyeDujPOcM6ELFbjP4QzAxtKMyeDujPOcM6ELFbjP4QzAxtKMyeDujPOcM6ELFbjP4QzAxtKMyeDujPOcM6ELFbjP4QzAxtKMyeDujPOcMqCy2WjPvnptl8ImYmMHbGeXBYkBlsdUaBvSJzeDtjPJgMaCy2GoNA/rEZvB2RnmwGFBZbLWGAX1iM3g7ozxYDKgstlrDgD6xGbydUR4sBlQWW61hQJ/YDN7OKA8WAyqLrdYwoE9sBm9nlAeLAZXFVmu8ORMz+ERMzODtjHLJDKgstlrjzZmYwSdiYgZvZ5RLZkBlsdUab87EDD4REzN4O6NcMgMqi63WeHMmZvCJmJjB2xnlkhlQWWy1xpszMYNPxMQM3s4ol8yAymKrNd6ciRl8IiZm8HZGuWQGVBZbrfHmTMzgEzExg7czyiUzoLLYao03Z2IGn4iJGbydUS6ZAZXFVmu8ORMz+ERMzODtjHLJDKgstlrjzZmYwSdiYgZvZ5RLZkBlsdUab87EDD4REzN4O6NcMgMqi63WeHMmZvCJmJjB2xnlkhlQWWy1xpszMYNPxMQM3s4ol8yAymKrNd6ciRl8IiZm8HZGuWQGVBZbrfHmTMzgEzExg7czyiUzoLLYao03Z2IGn4iJGbydUS6ZAZXFVmu8ORMz+ERMzODtjHLJDKgstlrjzZmYwSdiYgZvZ5RLZkBlsdUab87EDD4REzN4O6NcMgMqi63WeHMmZvCJmJjB2xnlkhlQWWy1xpszMYNPxMQM3s4ol8yAymKrNd6ciRl8IiZm8HZGuWQGVBZbrfHmTMzgEzExg7czyiUzoLLYao03Z2IGn4iJGbydUS6ZAZXFVmu8ORMz+ERMzODtjHLJDKgstlrjzZmYuSdiqHIY0B4vFgMqi63WeHMmhgFVYUBbvFgMqCy2WuPNmRgGVIUBbfFiMaCy2GqNN2diGFAVBrTFi8WAymKrNd6ciWFAVRjQFi8WAyqLrdZ4cyaGAVVhQFu8WAyoLLZa482ZGAZUhQFt8WIxoLLYao03Z2IYUBUGtMWLxYDKYqs13pyJYUBVGNAWLxYDKout1nhzJoYBVRm8HTNOOgyoLLZa482ZmMEnYmIGb8eMkw4DKout1nhzJoaJgOPCSYcBlcVWa7w5E8OAwnHhpMOAymKrNd6ciWFA4bhw0mFAZbHVGm/OxDCgcFw46TCgsthqjTdnYhhQOC6cdBhQWWy1xpszMQwoHBdOOgyoLLZa482ZGAYUjgsnHQZUFlut8eZMDAMKx4WTDgMqi63WeHMmhgGF48JJhwGVxVZrvDkTw4DCceGkw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpTBjQez/7xmq1eu6ln89l2aS6V7NnEk4jjtkpwwlw0skP6IfXVyd5eS7M/fpezZ5JOI04ZqcMJ8BJJz2gt1cP8tW5NPW9mj2TcBpxzE4ZToCTTnZAv3h9tXr+3fVffPTGanX1R3Nxyns1eybhNOKYnTKcACed7IDePvu4895bc34IWt2r2TMJpxHH7JThBDjpZAf05mp14+QvP7u++srHc3mqezV7JuE04pidMpwAJ50Z3sa0/myeAYUDx+yU4QQ46TCgsthqDZxGHLNThhPgpDPDgN7ma6Bw4LhPBBzFSWf6gK4/AN3xXfi3k6nu9bdw4MyigdOJc/nMPaD3bu78ADTLq+7V7JmE04hjdspwApzLZ+YB3ezns+8xoHDgmJ0ynADn8pl3QDdvAp3xbfT1Xxox+7IanEYcs1OGE+CkM21A78z7Y0j363s1eybhNOKYnTKcACedSQO6+X0iz+/4/H1Cqns1eybhNOKYnTKcACedKQN6a/ObmGZ7B+hxqns1eybhNOKYnTKcACedCQP60/V+vjKX4zTVvZo9k3AaccxOGU6Ak05+QG/N/eXPbap7NXsm4TTimJ0ynAAnnSm/D/TZWX8X/XGqezV7JuE04pidMpwAJ50Jvw90gY8/63s1eybhNOKYnTKcACed7IDeWp3PfFta3avZMwmnEcfslOEEOOkkB3TzBnoGFA6cvRo4nTjpJAd08yd6MKBw4OzVwOnESYc/F14WW62B04hjdspwApx0GFBZbLUGTiOO2SnDCXDSYUBlsdUaOI04ZqcMJ8BJhwGVxVZr4DTimJ0ynAAnHQZUFlutgdOIY3bKcAKcdBhQWWy1Bk4jjtkpwwlw0mFAZbHVGjiNOGanDCfASYcBlcVWa+A04pidMpwAJx0GVBZbrYHTiGN2ynACnHQYUFlstQZOI47ZKcMJcNJhQGWx1Ro4jThmpwwnwEmHAZXFVmvgNOKYnTKcACcdBlQWW62B04hjdspwApx0GFBZbLUGTiOO2SnDCXDSYUBlsdUaOI04ZqcMJ8BJhwGVxVZr4DTimJ0ynAAnHQZUFlutgdOIY3bKcAKcdBhQWWy1Bk4jjtkpwwlw0mFAZbHVGjiNOGanDCfASYcBlcVWa+A04pidMpwAJx0GVBZbrYHTiGN2ynACnHQYUFlstQZOI47ZKcMJcNJhQGWx1Ro4jThmpwwnwEmHAZXFVmvgNOKYnTKcACcdBlQWW62B04hjdspwApx0GFBZbLUGTiOO2SnDCXDSYUBlsdUaOI04ZqcMJ8BJhwGVxVZr4DTimJ0ynAAnHQZUFlutgdOIY3bKcAKcdBhQWWy1Bk4jjtkpwwlw0mFAZbHVGjiNOGanDCfASYcBlcVWa+A04pidMpwAJ51HB/TzV4++/E9z/deHU92r2TMJpxHH7JThBDjpyAH9/a9/M9ff57Kp7tXsmYTTiGN2ynACnHTUgFZ8LFrdq9kzCacRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Cks3NAr/z1jzf5+2unf7XOP3ww199SprpXs2cSTiOO2SnDCXDS2Tmgu3Kgj0WrezV7JuE04pidMpwAJx0GVBZbrYHTiGN2ynACnHQeHdC7v/zxrvApPBw4AQ2cTpx0+IXKsthqDZxGHLNThhPgpBMa0AP8ftDqXs2eSTiNOGanDCfASScyoId4W1N1r2bPJJxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJNOZEDv/nL5P1quulezZxJOI47ZKcMJcNJ5/ID+4trR0Qv/ONff73Gp7tXsmYTTiGN2ynACnHTEgP7zn2w+YX9/+6fCX/nBXH/Dx6S6V7NnEk4jjtkpwwlw0tk/oOvlXA/op9e2A7r8Fz9PUt2r2TMJpxHH7JThBDjp7B3QzXKuV3M7o3e/e3T04lx/R53qXs2eSTiNOGanDCfASWfvgK6X8+kP7m+m85n79z/Z/r+HSHWvZs8knEYcs1OGE+Cks29A18u5+brn5uPQ1w7zBqbjVPdq9kzCacQxO2U4AU46+wb0ZDLfP/7+EQMKB05MA6cTJ53HDOg7x98+YkDhwIlp4HTipKMH9ORLoJvP5J9e+i30x6nu1eyZhNOIY3bKcAKcdMTXQI9eO/0S6OYDUb6JBAdOQAOnEycd9V34p37y37afwd/926PjHT1Aqns1eybhNOKYnTKcACedvQO6/hx+mxeP/+pAH4CW92r2TMJpxDE7ZTgBTjr7fxLp+GeQnv5gO6D//jBfAa3v1eyZhNOIY3bKcAKcdMTPwt/95z/91k/W///n/+mFn8z1t3tsqns1eybhNOKYnTKcACedyK+zO0SqezV7JuE04pidMpwAJ529b2P65rcP9Vn7hVT3avZMwmnEMTtlOAFOOuJ9oEdX/uxgvwb0LNW9mj2TcBpxzE4ZToCTjhrQze8BPeCXP7ep7tXsmYTTiGN2ynACnHT2fw30d3918qtAv/79uf5ml0h1r2bPJJxGHLNThhPgpCO/iXT37795vKFP/S/exgQHTkQDpxMnncd+F/5X3zv+QPRpfpkIHDiX18DpxEnnMm9j+t33DvdnelT3avZMwmnEMTtlOAFOOo8d0N//328e8g9Fqu7V7JmE04hjdspwApx05ICejufmu/EH+k5Sda9mzyScRhyzU4YT4KSzd0AvjOfh3lNf3avZMwmnEcfslOEEOOk87n2g/+6A47lJda9mzyScRhyzU4YT4KQjfxLphd/M9be5dKp7NXsm4TTimJ0ynAAnncf+JBIfgcKBk9DA6cRJR/wk0t/9yfHXQP/oWwf8cc7qXs2eSTiNOGanDCfASUe/jelXf/XHJyP6Zwca0epezZ5JOI04ZqcMJ8BJ5/FvpD8ZUd4HCgdOQAOnEyedy/wk0t2/u8aAwoET0sDpxEnnsQP6y5OfhWdA4cAJaOB04qQjB/R3p18CvXKoL4GW92r2TMJpxDE7ZTgBTjp7B/Tu2U8iHe532d2v79XsmYTTiGN2ynACnHQe8z7Qo0P9DPxpqns1eybhNOKYnTKcACcd/kwkWWy1Bk4jjtkpwwlw0tk7oP/5kJ+4P0h1r2bPJJxGHLNThhPgpMOfCy+LrdbAacQxO2U4AU46ekB//+Mf/8MH9+8e8HeKVPdq9kzCacQxO2U4AU46akB/8cfH7//8/NWnDvbF0OpezZ5JOI04ZqcMJ8BJRwzo35y+gf7zV4+u/GCuv+FjUt2r2TMJpxHH7JThBDjp7B/Q9zdvAf2f19YDeve7R0dPH+hbStW9mj2TcBpxzE4ZToCTzt4B/fTa0dF/XX/wufkRzs2CvjbX31GnulezZxJOI47ZKcMJcNLZO6DvHB09c/9kQO9/sv0Xh0h1r2bPJJxGHLNThhPgpLNvQNcfdG6+7nkyoOsPRw/0OXx1r2bPJJxGHLNThhPgpCN+EmkznScDevKvDpDqXs2eSTiNOGanDCfASYcBlcVWa+A04pidMpwAJx0+hZfFVmvgNOKYnTKcACcd9U2kF88G9H2+iQQHTkgDpxMnnb0D+snJe+g3A7r+a97GBAdORAOnEyed/b9Q+btHR1e+vxnQu397xBvp4cCJaeB04qSz/yeRTn+l8vGf6cGPcsKBE9HA6cRJR/ws/OZj0NM/1YNfJgIHTkgDpxMnHf2Hyn1v8/uYrrxwqD9R7n59r2bPJJxGHLNThhPgpMMvVJbFVmvgNOKYnTKcACcdBlQWW62B04hjdspwApx0GFBZbLUGTiOO2SnDCXDSUQP6y//+pw/yLX4SCQ6cy2vgdOKks39AN78Q9Fz4WXg4cAIaOJ046chfqMyAVmvgNOKYnTKcACedvQO6+RM9vv7Xvz7Lgf5kzupezZ5JOI04ZqcMJ8BJR/w2pkP9/pALqe7V7JmE04hjdspwApx0xO8DPdiPb55Pda9mzyScRhyzU4YT4KTzmF+ofPBU92r2TMJpxDE7ZTgBTjriU3gGFA6ctAZOJ0466ptIB/oVoBdS3avZMwmnEcfslOEEOOnsHdCiz+GrezV7JuE04pidMpwAJx35Rvor3/71XH+fy6a6V7NnEk4jjtkpwwlw0hHfROKN9HDgpDVwOnHSYUBlsdUaOI04ZqcMJ8BJZ++AfvNrF/N1BhQOnMtr4HTipMOvs5PFVmvgNOKYnTKcACcdBlQWW62B04hjdspwApx0GFBZbLUGTiOO2SnDCXDSYUBlsdUaOI04ZqcMJ8BJhwGVxVZr4DTimJ0ynAAnHQZUFlutgdOIY3bKcAKcdBhQWWy1Bk4jjtkpwwlw0mFAZbHVGjiNOGanDCfASYcBlcVWa+A04pidMpwAJx0GVBZbrYHTiGN2ynACnHQYUFlstQZOI47ZKcMJcNJhQGWx1Ro4jThmpwwnwEmHAZXFVmvgNOKYnTKcACcdBlQWW62B04hjdspwApx0GFBZbLUGTiOO2SnDCXDSYUBlsdUaOI04ZqcMJ8BJhwGVxVZr4DTimJ0ynAAnHQZUFlutgdOIY3bKcAKcdBhQWWy1Bk4jjtkpwwlw0mFAZbHVGjiNOGanDCfASYcBlcVWa+A04pidMpwAJx0GVBZbrYHTiGN2ynACnHQYUFlstQZOI47ZKcMJcNJhQGWx1Ro4jThmpwwnwEmHAZXFVmvgNOKYnTKcACcdBlQWW62B04hjdspwApx0GFBZbLUGTiOO2SnDCXDSYUBlsdUaOI04ZqcMJ8BJhwGVxVZr4DTimJ0ynAAnHQZUFlutgdOIY3bKcAKcdBhQWWy1Bk4jjtkpwwlw0mFAZbHVGjiNOGanDCfASYcBlcVWa+A04pidMpwAJx0GVBZbrYHTiGN2ynACnHSmDugXrz/73lyWTap7NXsm4TTimJ0ynAAnnYkDeu+tFQMKB86jGjidOOlMG9B7N1cMKBw4OzRwOnHSmTSg648/GVA4cHZp4HTipDNlQP/1+ooBhQNnpwZOJ046+QG988Z6PV96gwGFA2eHBk4nTjr5Ab21Wl19k28iwYGzUwOnEyedCQN69eWP+S48HDi7NXA6cdLJD+gfPr7P25jgwNmjgdOJk85S7wN9O5nqXn8LB84sGjidOJcPAxoptloDpxHH7JThBDiXDwMaKbZaA6cRx+yU4QQ4l8+BBjSb6l7NvqwGpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOfy68LLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThtJrYPEAABOlSURBVBPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46DKgstloDpxHH7JThBDjpMKCy2GoNnEYcs1OGE+Ckw4DKYqs1cBpxzE4ZToCTDgMqi63WwGnEMTtlOAFOOgyoLLZaA6cRx+yU4QQ46TCgsthqDZxGHLNThhPgpMOAymKrNXAaccxOGU6Akw4DKout1sBpxDE7ZTgBTjoMqCy2WgOnEcfslOEEOOkwoLLYag2cRhyzU4YT4KTDgMpiqzVwGnHMThlOgJMOAyqLrdbAacQxO2U4AU46Uwb0zg+vr1ZXX/r5XJZNqns1eybhNOKYnTKcACedCQP64Xo+N7n6l3Nh7tf3avZMwmnEMTtlOAFOOvkBvb06y425NPW9mj2TcBpxzE4ZToCTTnpAv3h9tXp+/dn7R2+sVs++NxenvFezZxJOI47ZKcMJcNJJD+it1eorH2/+4t5bq9Urc3HKezV7JuE04pidMpwAJ53sgK5n8+qPjv/ys+snUzpHqns1eybhNOKYnTKcACed7ICuP4M/Xc1zWzo91b2aPZNwGnHMThlOgJNOdkBvr1ZfPf3rmzN+G6m6V7NnEk4jjtkpwwlw0pkwoGdf+LzFgMKBYz4RcBQnneyAnh/N2zu+i/R2MtW9/hYOnFk0cDpxLh/zASWEEN8woIQQksyBBpRs8mjf5EFoR4V2VGzaYUCXjM3LbBnaUaEdFZt23L4LP1ZsXmbL0I4K7ajYtOP2PtCxYvMyW4Z2VGhHxaYdt59EGis2L7NlaEeFdlRs2nH7WfixYvMyW4Z2VGhHxaYdt9/GNFZsXmbL0I4K7ajYtDPt94G+O/vvAx0rNi+zZWhHhXZUbNpx+430Y8XmZbYM7ajQjopNOxP+TKR/WeLPRBorNi+zZWhHhXZUbNpx+1M5x4rNy2wZ2lGhHRWbdtz+XPixYvMyW4Z2VGhHxaYdBnTJ2LzMlqEdFdpRsWmHAV0yNi+zZWhHhXZUbNphQJeMzctsGdpRoR0Vm3YY0CVj8zJbhnZUaEfFph0GdMnYvMyWoR0V2lGxaYcBXTI2L7NlaEeFdlRs2mFAl4zNy2wZ2lGhHRWbdhjQJWPzMluGdlRoR8WmHQZ0ydi8zJahHRXaUbFphwFdMjYvs2VoR4V2VGzaYUCXjM3LbBnaUaEdFZt2GNAlY/MyW4Z2VGhHxaYdBnTJ2LzMlqEdFdpRsWmHAV0yNi+zZWhHhXZUbNpZakC/RAghw4UBJYSQZBhQQghJ5kADSgghw4cBJYSQZBhQQghJhgElhJBkGFBCCEmGASWEkGQYUEIISYYBJYSQZBhQQghJhgElhJBkGFBCCEmGASWEkGQYUEIISYYBJYSQZBhQQghJhgFdKvd+9o3VavXcSz+vhhjns+urG9UGy9z7cHM833jz42qIZT764fXV6qrHk8WALpQP16/xcV6uptjmi9dXDOiufHZ6PM+/V03xy72fnj5Zr1RT7jOgS+X26kG+Wo1xzc0VA7orZ/u5Wn2Fj0Efzs0HT5bBgjKgi2TzsdXz767/4qM31p9s/Kia45ntP2RuVCv8sjmeq29uvgh03WIjvLL5p8vms/c7b1k8WQzoIrl99nHnvbf4EHR3NjvBgO7IrdXq2eNP3W/zIegjuXX2PN10+McLA7pIbj5YhvU/MXkIdmT9T5Zn/w8D+mjWxZx+ZHXuL8lJbp5VctvhQxMGdOmsP9BiQHdk/ZHEjVsM6KNZ/xO3fhd8w4A+YWFAd2Y9E6/cZ0B35LbDZ6a+ufAp/I1SyiYM6NKx+OekXdafnK7/scKA7si2lDubtzo+92a1xTCbL51vv4n0Q4svEDOgC2f9evNlrEdz/IkYA7ojm2pu8T7QvbnzxsqoHQZ02dy7yQegO3LyaSoDuiPrAf3zs3c6PmuwEW7ZvIFpk5fqP/5kQBfOZj95Bh7J6deFGdBHc287D5tPUv/wU34KY0dunf3T5arBlzgY0CVzz+PNvna5efJPFQb00WwH9OS7SLc5n0ey2c+X/9/JP15uVGsY0CVzhx9D2pmz3WRAd+TmuW+OWHyj2Srnfn/Chw6f3TGgy2Xz+0Qcvs7tlgdvdGRAd+T8D9jwlqaHc/5NLQ7/eGFAF8v2cw2Hr3O75cEXsWx+JYRTbjGgIuf/mXvLoB0GdKn8lGnYEwZU5vzHWA4T4ZXzA+rwjxcGdKHc4suf+8KAynx2/cGX9hw+SfUKn8I/GVm/zs9a/MZs6/A10F3ZvHX4+Es/Ft8m8crmt9ndOP5Li/coMKCLhJ8/ulQY0F3ZbMTml8n+ga8C7cjN829jqn+XLAO6SC5+lsqW7gkDujPnrsfgp73NcvxrZG1+lpMBXSL33mJALxMGdHf+5fTP9LD4aUWzPHi4HP7pwoAukfP/lGRA94cB3ZM//Ow/rM/mP75b7fDMR9/Z/qmc71Y7NmFACSEkGQaUEEKSYUAJISQZBpQQQpJhQAkhJBkGlBBCkmFACSEkGQaUEEKSYUAJISQZBpQQQpJhQAkhJBkGlBBCkmFACSEkGQaUEEKSYUAJISQZBpSY5f2js1z52rd/c/w//OToYl68+G/c5pmH/tN/9ML3H/kv//Ta0WuH/D+GDB4GlJjl4i5e+S/b/2FmQNd56gcX/7s/f/WIASUzhgElZnl4F7eDlxzQoysX5/KdIwaUzBkGlJjl/Qcbd/cX146OvvxP97cD+qL4N174H578G+/+6nubBT3/MegnRwwomTUMKDHLhV389Nrxv0oM6Ml/+ukPzv7l5hN4BpTMGQaUmOXiLr5z/Kl5bkC3H3Ke/Xvufvfoy/+DASVzhgElZrm4i+9PGtDT/T379+/8zxCSDQNKzDLrgH5y8jXU+9vP51/c/Z8hJBsGlJjlkU/hN4OYHdDPXz39NtL6E/inP2BAybxhQIlZIt9EOp/j7xY9NKDr2Tz5b3tnu6QMKJk1DCgxy7mN+/XfnH4b/eL7QJ85/TdefkA/OXvvKANK5gsDSszy8Fvht5+BTx3Q9afy2/89A0pmDQNKzPLQj3IefwVzz4A+9mugpwP6zsn3khhQMmsYUGKW878O5OvfP3kbfPabSOsBvfClTwaUzBoGlJhl58ZN+y78p9dO3w3KgJJZw4ASs8w6oJ8cnbx56UIe+a8iJBcGlJhl1gE9/kkkBpQsFAaUmGXOAf3k6PRLoAwoWSIMKDHLjAO6eRv+Mw//r/kaKJkvDCgxy1wDuuP3gTKgZOYwoMQskQG9mNce/R8+tJ8MKJk3DCgxy5wD+tQ/Xua/nJBsGFBiltkG9Gvf+snl/ssJyYYBJYSQZBhQQghJhgElhJBkGFBCCEmGASWEkGQYUEIISYYBJYSQZBhQQghJhgElhJBkGFBCCEmGASWEkGQYUEIISYYBJYSQZBhQQghJhgElhJBkGFBCCEmGASWEkGQYUEIISYYBJYSQZL5ECCGEEELIYfP/AYcffKsUl4yWAAAAAElFTkSuQmCC" width="672" /></p>
 </div>
 <div id="年ファイルの再作成" class="section level1">
 <h1>2015年ファイルの再作成</h1>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;df_1105use.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>w1BCQ23_17<span class="ot">&lt;-</span><span class="fu">as.factor</span>(df<span class="sc">$</span>w1BCQ23_17)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;df_1106use.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>w1BCQ23_17<span class="ot">&lt;-</span><span class="fu">as.factor</span>(df<span class="sc">$</span>w1BCQ23_17)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span>df <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2015</span>)</span></code></pre></div>
 </div>
-<div id="標準化の実施-1" class="section level1">
+<div id="標準化の実施" class="section level1">
 <h1>標準化の実施</h1>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>scaler<span class="ot">&lt;-</span> <span class="cf">function</span>(a){</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  ue<span class="ot">&lt;-</span>a<span class="sc">-</span><span class="fu">mean</span>(a,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  sita<span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(a,<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  ans<span class="ot">&lt;-</span>(ue<span class="sc">/</span>sita)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ans)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>PMED4<span class="ot">&lt;-</span><span class="fu">scale</span>(df<span class="sc">$</span>PMED4)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>w1BCQ14_5_2<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>w1BCQ14_5_2)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>PFED4<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>PFED4)</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>w1BCQ14_5_1<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>w1BCQ14_5_1)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>scaler<span class="ot">&lt;-</span> <span class="cf">function</span>(a){</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  ue<span class="ot">&lt;-</span>a<span class="sc">-</span><span class="fu">mean</span>(a,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  sita<span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(a,<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  ans<span class="ot">&lt;-</span>(ue<span class="sc">/</span>sita)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ans)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>PMED4<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>PMED4)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>news_M<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>w1BCQ14_5_2)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>PFED4<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>PFED4)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>news_F<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>w1BCQ14_5_1)</span></code></pre></div>
+<p><strong>試し</strong> 平均値 0: -1.053257e-17 標準偏差1: 1</p>
 <div id="年の分析" class="section level2">
 <h2>2015年の分析</h2>
 <div id="初期設定" class="section level3">
 <h3>初期設定</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>all_nam <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;PMED4&quot;</span> <span class="ot">=</span> <span class="st">&quot;母学歴&quot;</span>, <span class="st">&quot;(Intercept)&quot;</span> <span class="ot">=</span> <span class="st">&quot;Constant&quot;</span>,<span class="st">&quot;w1BCQ14_5_2&quot;</span> <span class="ot">=</span> <span class="st">&quot;ニュース会話量（母）&quot;</span>, <span class="st">&quot;PFED4&quot;</span> <span class="ot">=</span> <span class="st">&quot;父学歴&quot;</span>,</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;w1BCQ14_5_1&quot;</span> <span class="ot">=</span> <span class="st">&quot;ニュース会話量（父）&quot;</span>,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;pc1&quot;</span> <span class="ot">=</span> <span class="st">&quot;子どものメディア接触&quot;</span>, <span class="st">&quot;pc2&quot;</span> <span class="ot">=</span> <span class="st">&quot;子どもの学力・学習意欲&quot;</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;pc3&quot;</span> <span class="ot">=</span> <span class="st">&quot;教育環境&quot;</span>,<span class="st">&quot;pc4&quot;</span> <span class="ot">=</span> <span class="st">&quot;友達付き合い&quot;</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>            )</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>all_nam <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;PMED4&quot;</span> <span class="ot">=</span> <span class="st">&quot;母学歴&quot;</span>, <span class="st">&quot;(Intercept)&quot;</span> <span class="ot">=</span> <span class="st">&quot;Constant&quot;</span>,<span class="st">&quot;w1BCQ14_5_2&quot;</span> <span class="ot">=</span> <span class="st">&quot;ニュース会話量（母）&quot;</span>, <span class="st">&quot;PFED4&quot;</span> <span class="ot">=</span> <span class="st">&quot;父学歴&quot;</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;w1BCQ14_5_1&quot;</span> <span class="ot">=</span> <span class="st">&quot;ニュース会話量（父）&quot;</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;pc1&quot;</span> <span class="ot">=</span> <span class="st">&quot;子どものメディア接触&quot;</span>, <span class="st">&quot;pc2&quot;</span> <span class="ot">=</span> <span class="st">&quot;子どもの学力・学習意欲&quot;</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;pc3&quot;</span> <span class="ot">=</span> <span class="st">&quot;教育環境&quot;</span>,<span class="st">&quot;pc4&quot;</span> <span class="ot">=</span> <span class="st">&quot;友達付き合い&quot;</span>)</span></code></pre></div>
 </div>
 <div id="母の単回帰重回帰交差項" class="section level3">
-<h3>母の単回帰+重回帰+交差項</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mother_reg<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;母学歴&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4,<span class="at">data =</span> df)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;ニュース会話量&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>w1BCQ14_5_2,<span class="at">data =</span> df)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;統制&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">+</span>w1BCQ14_5_2,<span class="at">data =</span> df)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;交差&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">*</span>w1BCQ14_5_2,<span class="at">data =</span> df)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;全部統制&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">*</span>w1BCQ14_5_2<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>pc4,<span class="at">data =</span> df)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(mother_reg,<span class="at">output =</span> <span class="st">&#39;html&#39;</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="cn">TRUE</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表1:母の単回帰+重回帰+交差項&#39;</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<h3>母の単回帰(+重回帰+交差項)</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mother_reg<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;母学歴&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4,<span class="at">data =</span> df)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;ニュース会話量&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>w1BCQ14_5_2,<span class="at">data =</span> df)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;統制&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">+</span>w1BCQ14_5_2,<span class="at">data =</span> df)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;交差&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">*</span>w1BCQ14_5_2,<span class="at">data =</span> df)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(mother_reg,<span class="at">output =</span> <span class="st">&#39;html&#39;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="cn">TRUE</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表1:母の単回帰+重回帰+交差項&#39;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
 <caption>
 表1:母の単回帰+重回帰+交差項
@@ -1946,9 +2257,6 @@ tidyverse: 1.3.2</p>
 <th style="text-align:center;">
 交差
 </th>
-<th style="text-align:center;">
-全部統制
-</th>
 </tr>
 </thead>
 <tbody>
@@ -1957,36 +2265,30 @@ tidyverse: 1.3.2</p>
 母学歴
 </td>
 <td style="text-align:center;">
-0.168***
+-0.177***
 </td>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-0.120**
+-0.131***
 </td>
 <td style="text-align:center;">
-0.121**
-</td>
-<td style="text-align:center;">
-0.022
+-0.022
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-(0.045)
+(0.026)
 </td>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-(0.046)
+(0.026)
 </td>
 <td style="text-align:center;">
-(0.046)
-</td>
-<td style="text-align:center;">
-(0.048)
+(0.075)
 </td>
 </tr>
 <tr>
@@ -1996,143 +2298,13 @@ tidyverse: 1.3.2</p>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-0.992***
+0.990***
 </td>
 <td style="text-align:center;">
-0.985***
+0.981***
 </td>
 <td style="text-align:center;">
-0.985***
-</td>
-<td style="text-align:center;">
-0.935***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(0.053)
-</td>
-<td style="text-align:center;">
-(0.053)
-</td>
-<td style="text-align:center;">
-(0.053)
-</td>
-<td style="text-align:center;">
-(0.054)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-子どものメディア接触
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-0.360***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(0.045)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-子どもの学力・学習意欲
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-0.355***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(0.042)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-教育環境
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-0.042
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(0.034)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-友達付き合い
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-0.010
+0.980***
 </td>
 </tr>
 <tr>
@@ -2141,13 +2313,13 @@ tidyverse: 1.3.2</p>
 <td style="text-align:center;box-shadow: 0px 1px">
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
+(0.032)
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
+(0.032)
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
-(0.046)
+(0.032)
 </td>
 </tr>
 <tr>
@@ -2155,19 +2327,16 @@ tidyverse: 1.3.2</p>
 Num.Obs.
 </td>
 <td style="text-align:center;">
-1666
+5193
 </td>
 <td style="text-align:center;">
-1666
+5193
 </td>
 <td style="text-align:center;">
-1666
+5193
 </td>
 <td style="text-align:center;">
-1666
-</td>
-<td style="text-align:center;">
-1666
+5193
 </td>
 </tr>
 <tr>
@@ -2175,19 +2344,16 @@ Num.Obs.
 R2 Nagelkerke
 </td>
 <td style="text-align:center;">
-0.009
+0.01
 </td>
 <td style="text-align:center;">
-0.23
+0.20
 </td>
 <td style="text-align:center;">
-0.23
+0.21
 </td>
 <td style="text-align:center;">
-0.23
-</td>
-<td style="text-align:center;">
-0.31
+0.21
 </td>
 </tr>
 </tbody>
@@ -2203,29 +2369,28 @@ R2 Nagelkerke
 </div>
 <div id="父の単回帰重回帰交差項" class="section level3">
 <h3>父の単回帰+重回帰+交差項</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>father_reg<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>father_reg[[<span class="st">&#39;父学歴&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4,<span class="at">data =</span> df)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>father_reg[[<span class="st">&#39;ニュース会話量&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>w1BCQ14_5_1,<span class="at">data =</span> df)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>father_reg[[<span class="st">&#39;統制&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">+</span>w1BCQ14_5_1,<span class="at">data =</span> df)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>father_reg[[<span class="st">&#39;交差&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">*</span>w1BCQ14_5_1,<span class="at">data =</span> df)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>father_reg[[<span class="st">&#39;全部統制&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">*</span>w1BCQ14_5_1<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>pc4,<span class="at">data =</span> df)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(father_reg,<span class="at">output =</span> <span class="st">&#39;html&#39;</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="cn">TRUE</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表2:父の単回帰+重回帰+交差項&#39;</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>father_reg<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>father_reg[[<span class="st">&#39;母学歴&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4,<span class="at">data =</span> df)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>father_reg[[<span class="st">&#39;ニュース会話量&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>w1BCQ14_5_1,<span class="at">data =</span> df)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>father_reg[[<span class="st">&#39;統制&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">+</span>w1BCQ14_5_1,<span class="at">data =</span> df)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>father_reg[[<span class="st">&#39;交差&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">*</span>w1BCQ14_5_1,<span class="at">data =</span> df)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(father_reg,<span class="at">output =</span> <span class="st">&#39;html&#39;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="cn">TRUE</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表2:父の単回帰(+重回帰+交差項)&#39;</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
 <caption>
-表2:父の単回帰+重回帰+交差項
+表2:父の単回帰(+重回帰+交差項)
 </caption>
 <thead>
 <tr>
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-父学歴
+母学歴
 </th>
 <th style="text-align:center;">
 ニュース会話量
@@ -2236,9 +2401,6 @@ R2 Nagelkerke
 <th style="text-align:center;">
 交差
 </th>
-<th style="text-align:center;">
-全部統制
-</th>
 </tr>
 </thead>
 <tbody>
@@ -2247,36 +2409,30 @@ R2 Nagelkerke
 父学歴
 </td>
 <td style="text-align:center;">
-0.119**
+-0.119***
 </td>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-0.056
+-0.064*
 </td>
 <td style="text-align:center;">
-0.056
-</td>
-<td style="text-align:center;">
--0.034
+-0.088
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-(0.045)
+(0.026)
 </td>
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-(0.046)
+(0.026)
 </td>
 <td style="text-align:center;">
-(0.046)
-</td>
-<td style="text-align:center;">
-(0.047)
+(0.082)
 </td>
 </tr>
 <tr>
@@ -2286,143 +2442,13 @@ R2 Nagelkerke
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-0.964***
+0.935***
 </td>
 <td style="text-align:center;">
-0.959***
+0.930***
 </td>
 <td style="text-align:center;">
-0.958***
-</td>
-<td style="text-align:center;">
-0.861***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(0.052)
-</td>
-<td style="text-align:center;">
-(0.052)
-</td>
-<td style="text-align:center;">
-(0.052)
-</td>
-<td style="text-align:center;">
-(0.053)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-子どものメディア接触
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-0.303***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(0.045)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-子どもの学力・学習意欲
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-0.327***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(0.042)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-教育環境
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-0.049
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-(0.034)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-友達付き合い
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
--0.031
+0.930***
 </td>
 </tr>
 <tr>
@@ -2431,13 +2457,13 @@ R2 Nagelkerke
 <td style="text-align:center;box-shadow: 0px 1px">
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
+(0.030)
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
+(0.030)
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
-(0.046)
+(0.030)
 </td>
 </tr>
 <tr>
@@ -2445,19 +2471,16 @@ R2 Nagelkerke
 Num.Obs.
 </td>
 <td style="text-align:center;">
-1666
+5193
 </td>
 <td style="text-align:center;">
-1666
+5193
 </td>
 <td style="text-align:center;">
-1666
+5193
 </td>
 <td style="text-align:center;">
-1666
-</td>
-<td style="text-align:center;">
-1666
+5193
 </td>
 </tr>
 <tr>
@@ -2468,16 +2491,13 @@ R2 Nagelkerke
 0.005
 </td>
 <td style="text-align:center;">
-0.22
+0.20
 </td>
 <td style="text-align:center;">
-0.22
+0.20
 </td>
 <td style="text-align:center;">
-0.22
-</td>
-<td style="text-align:center;">
-0.28
+0.20
 </td>
 </tr>
 </tbody>
@@ -2493,15 +2513,15 @@ R2 Nagelkerke
 </div>
 <div id="父母の重回帰交差項" class="section level3">
 <h3>父母の重回帰+交差項</h3>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>parents_reg<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>parents_reg[[<span class="st">&#39;全部&#39;</span>]]<span class="ot">&lt;-</span> reg<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">*</span>w1BCQ14_5_2 <span class="sc">+</span>PFED4<span class="sc">*</span>w1BCQ14_5_1<span class="sc">+</span>pc1<span class="sc">+</span>pc2 <span class="sc">+</span>pc3<span class="sc">+</span>pc4,<span class="at">data =</span> df) </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(parents_reg,<span class="at">output =</span> <span class="st">&#39;html&#39;</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="cn">TRUE</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表3:両親の単回帰+重回帰+交差項&#39;</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>parents_reg<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>parents_reg[[<span class="st">&#39;全部&#39;</span>]]<span class="ot">&lt;-</span> reg<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">*</span>w1BCQ14_5_2 <span class="sc">+</span>PFED4<span class="sc">*</span>w1BCQ14_5_1 <span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>pc4,<span class="at">data =</span> df) </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(parents_reg,<span class="at">output =</span> <span class="st">&#39;html&#39;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="cn">TRUE</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表3:両親の単回帰+重回帰+交差項&#39;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
 <caption>
 表3:両親の単回帰+重回帰+交差項
@@ -2528,7 +2548,7 @@ R2 Nagelkerke
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-(0.052)
+(0.079)
 </td>
 </tr>
 <tr>
@@ -2536,14 +2556,14 @@ R2 Nagelkerke
 ニュース会話量（母）
 </td>
 <td style="text-align:center;">
-0.683***
+0.656***
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-(0.060)
+(0.036)
 </td>
 </tr>
 <tr>
@@ -2551,14 +2571,14 @@ R2 Nagelkerke
 父学歴
 </td>
 <td style="text-align:center;">
--0.046
+0.047
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-(0.052)
+(0.087)
 </td>
 </tr>
 <tr>
@@ -2566,52 +2586,7 @@ R2 Nagelkerke
 ニュース会話量（父）
 </td>
 <td style="text-align:center;">
-0.535***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-(0.060)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-子どものメディア接触
-</td>
-<td style="text-align:center;">
-0.330***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-(0.046)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-子どもの学力・学習意欲
-</td>
-<td style="text-align:center;">
-0.310***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-(0.043)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-教育環境
-</td>
-<td style="text-align:center;">
-0.037
+0.555***
 </td>
 </tr>
 <tr>
@@ -2623,17 +2598,62 @@ R2 Nagelkerke
 </tr>
 <tr>
 <td style="text-align:left;">
+子どものメディア接触
+</td>
+<td style="text-align:center;">
+0.281***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.026)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+子どもの学力・学習意欲
+</td>
+<td style="text-align:center;">
+0.257***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.024)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+教育環境
+</td>
+<td style="text-align:center;">
+0.008
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.019)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 友達付き合い
 </td>
 <td style="text-align:center;">
--0.022
+0.036
 </td>
 </tr>
 <tr>
 <td style="text-align:left;box-shadow: 0px 1px">
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
-(0.046)
+(0.025)
 </td>
 </tr>
 <tr>
@@ -2641,7 +2661,7 @@ R2 Nagelkerke
 Num.Obs.
 </td>
 <td style="text-align:center;">
-1666
+5193
 </td>
 </tr>
 <tr>
@@ -2649,7 +2669,7 @@ Num.Obs.
 R2 Nagelkerke
 </td>
 <td style="text-align:center;">
-0.35
+0.31
 </td>
 </tr>
 </tbody>
@@ -2664,45 +2684,44 @@ R2 Nagelkerke
 </table>
 <div id="父母重回帰分析の多重共線性確認" class="section level4">
 <h4>父母重回帰分析の多重共線性確認</h4>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(reg) <span class="co">#carパッケージより</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(reg) <span class="co">#carパッケージより</span></span></code></pre></div>
 <pre><code>##                       GVIF Df GVIF^(1/(2*Df))
-## PMED4             3.016994  0             Inf
-## w1BCQ14_5_2       3.016994  0             Inf
-## PFED4             3.016994  0             Inf
-## w1BCQ14_5_1       3.016994  0             Inf
-## pc1               3.016994  0             Inf
-## pc2               3.016994  0             Inf
-## pc3               3.016994  0             Inf
-## pc4               3.016994  0             Inf
-## PMED4:w1BCQ14_5_2 3.016994  0             Inf
-## PFED4:w1BCQ14_5_1 3.016994  0             Inf</code></pre>
-<p>(3.016994, 3.016994, 3.016994, 3.016994, 3.016994, 3.016994,
-3.016994, 3.016994, 3.016994, 3.016994, 0.000000, 0.000000, 0.000000,
-0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000,
-Inf, Inf, Inf, Inf, Inf, Inf, Inf, Inf, Inf, Inf )&lt;
-<strong><em>10</em></strong>なのでOK</p>
+## PMED4             45457.78  0             Inf
+## w1BCQ14_5_2       45457.78  0             Inf
+## PFED4             45457.78  0             Inf
+## w1BCQ14_5_1       45457.78  0             Inf
+## pc1               45457.78  0             Inf
+## pc2               45457.78  0             Inf
+## pc3               45457.78  0             Inf
+## pc4               45457.78  0             Inf
+## PMED4:w1BCQ14_5_2 45457.78  0             Inf
+## PFED4:w1BCQ14_5_1 45457.78  0             Inf</code></pre>
+<p>(45457.78, 45457.78, 45457.78, 45457.78, 45457.78, 45457.78,
+45457.78, 45457.78, 45457.78, 45457.78, 0.00, 0.00, 0.00, 0.00, 0.00,
+0.00, 0.00, 0.00, 0.00, 0.00, Inf, Inf, Inf, Inf, Inf, Inf, Inf, Inf,
+Inf, Inf )&lt; <strong><em>10</em></strong>なのでOK</p>
 </div>
 </div>
 </div>
 <div id="固定効果モデルwithinを用いた回帰-父母" class="section level2">
 <h2>固定効果モデル（within）を用いた回帰 父母</h2>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df.naomit <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">make.pbalanced</span>(<span class="at">balance.type =</span> <span class="st">&quot;shared.individuals&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>)) </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>pdf <span class="ot">&lt;-</span> <span class="fu">pdata.frame</span>(df.naomit, <span class="at">index =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fe1 <span class="ot">&lt;-</span> <span class="fu">plm</span>(social_interest<span class="sc">~</span>PMED4<span class="sc">+</span>news_M<span class="sc">+</span>PFED4<span class="sc">+</span>news_F<span class="sc">+</span>LorS<span class="sc">+</span>like_stu </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">data =</span> pdf, <span class="at">effect =</span><span class="st">&quot;individual&quot;</span>, </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">model =</span> <span class="st">&quot;within&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>fe2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(social_interest<span class="sc">~</span>PMED4<span class="sc">*</span>news_M<span class="sc">+</span>PFED4<span class="sc">*</span>news_F<span class="sc">+</span>LorS<span class="sc">+</span>like_stu </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">data =</span> pdf, <span class="at">effect =</span><span class="st">&quot;individual&quot;</span>, </span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">model =</span> <span class="st">&quot;within&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(fe1,fe2,<span class="at">type =</span> <span class="st">&#39;text&#39;</span>,</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.caption =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">df=</span><span class="cn">FALSE</span>,</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">keep.stat =</span> <span class="fu">c</span>(<span class="st">&quot;n&quot;</span>, <span class="st">&quot;adj.rsq&quot;</span>, <span class="st">&quot;f&quot;</span>), </span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.labels=</span><span class="fu">c</span>(<span class="st">&quot;社会関心&quot;</span>),</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">&quot;統制&quot;</span>,<span class="st">&quot;交差項&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df.naomit <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">make.pbalanced</span>(<span class="at">balance.type =</span> <span class="st">&quot;shared.individuals&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>)) </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>pdf <span class="ot">&lt;-</span> <span class="fu">pdata.frame</span>(df.naomit, <span class="at">index =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fe1 <span class="ot">&lt;-</span> <span class="fu">plm</span>(social_interest<span class="sc">~</span>PMED4<span class="sc">+</span>news_M<span class="sc">+</span>PFED4<span class="sc">+</span>news_F<span class="sc">+</span>LorS<span class="sc">+</span>like_stu </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">data =</span> pdf, <span class="at">effect =</span><span class="st">&quot;individual&quot;</span>, </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">model =</span> <span class="st">&quot;within&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>fe2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(social_interest<span class="sc">~</span>PMED4<span class="sc">*</span>news_M<span class="sc">+</span>PFED4<span class="sc">*</span>news_F<span class="sc">+</span>LorS<span class="sc">+</span>like_stu </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">data =</span> pdf, <span class="at">effect =</span><span class="st">&quot;individual&quot;</span>, </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">model =</span> <span class="st">&quot;within&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(fe1,fe2,<span class="at">type =</span> <span class="st">&#39;text&#39;</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.caption =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">df=</span><span class="cn">FALSE</span>,</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">keep.stat =</span> <span class="fu">c</span>(<span class="st">&quot;n&quot;</span>, <span class="st">&quot;adj.rsq&quot;</span>, <span class="st">&quot;f&quot;</span>), </span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.labels=</span><span class="fu">c</span>(<span class="st">&quot;社会関心&quot;</span>),</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">&quot;統制&quot;</span>,<span class="st">&quot;交差項&quot;</span>))</span></code></pre></div>
 </div>
 </div>
 </div>
