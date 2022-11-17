@@ -1133,7 +1133,7 @@ margin-left: 0 !important;
 <div id="パッケージの読み込み" class="section level1">
 <h1>パッケージの読み込み</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)<span class="sc">:</span><span class="fu">library</span>(pacman)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(car,fmsb,ggthemes,gt,gtsummary,modelsummary,ordinal,patchwork,plm,skimr,stargazer,tidyverse)</span></code></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(car,ggthemes,gt,gtsummary,modelsummary,ordinal,patchwork,plm,skimr,stargazer,tidyverse)</span></code></pre></div>
 <div id="バージョン" class="section level2">
 <h2>バージョン</h2>
 <p>R version 4.2.1 (2022-06-23 ucrt)</p>
@@ -1637,7 +1637,7 @@ tidyverse: 1.3.2</p>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>               ,<span class="at">fill =</span> <span class="st">&quot;grey75&quot;</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>               )<span class="sc">+</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&#39;表1&#39;</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&#39;表2&#39;</span>,</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;母&quot;</span>,</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;学歴&quot;</span>,</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;ニュース会話量&quot;</span>)<span class="sc">+</span></span>
@@ -1647,7 +1647,7 @@ tidyverse: 1.3.2</p>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>news_F_fedu<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>df_2015,<span class="fu">aes</span>(<span class="at">x=</span> PFED4,<span class="at">y=</span> news_F))<span class="sc">+</span></span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">fill =</span> PFED4), <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span>,<span class="at">fill =</span> <span class="st">&quot;grey75&quot;</span>) <span class="sc">+</span></span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>     <span class="fu">labs</span>(</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#itle = &quot;表1学歴とニュース会話量の相関確認&quot;,</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#itle = &quot;表2学歴とニュース会話量の相関確認&quot;,</span></span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;父&quot;</span>,</span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;学歴&quot;</span>,</span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;ニュース会話量&quot;</span>)<span class="sc">+</span></span>
@@ -2200,7 +2200,7 @@ tidyverse: 1.3.2</p>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表2:分析1&#39;</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表3:分析1&#39;</span></span>
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
 <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
 <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">3</span>)) <span class="sc">%&gt;%</span> </span>
@@ -2567,7 +2567,7 @@ text-indent: 25px;
 }
 </style>
 <table class="gt_table">
-  <caption>表2:分析1</caption>
+  <caption>表3:分析1</caption>
   
   <thead class="gt_col_headings">
     <tr>
@@ -3496,7 +3496,7 @@ R2 Nagelkerke
 <span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
 <span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
 <span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表1:分析1&#39;</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表3:分析1&#39;</span></span>
 <span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
 <span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
 <span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">3</span>)) <span class="sc">%&gt;%</span> </span>
@@ -3508,7 +3508,7 @@ R2 Nagelkerke
 <span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
 <span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
 <span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表2:交差項&#39;</span></span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表4:交差項&#39;</span></span>
 <span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
 <span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
 <span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>                <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">9</span>))</span>
@@ -3534,7 +3534,7 @@ R2 Nagelkerke
 <span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
 <span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
 <span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表3:交差項&#39;</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表4:交差項&#39;</span></span>
 <span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
 <span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
 <span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">13</span>)) <span class="sc">%&gt;%</span> </span>
@@ -3905,7 +3905,7 @@ text-indent: 25px;
 }
 </style>
 <table class="gt_table">
-  <caption>表3:交差項</caption>
+  <caption>表4:交差項</caption>
   
   <thead class="gt_col_headings">
     <tr>
