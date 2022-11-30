@@ -897,8 +897,8 @@ margin-left: 0 !important;
 
    
       <!-- html_docco authors -->
-         <h4 class="date"><em>最終更新日:2022年 11月 23日
-11:55:47</em></h4>
+         <h4 class="date"><em>最終更新日:2022年 12月 01日
+0:06:32</em></h4>
          
       <div id="toc">
      
@@ -909,19 +909,20 @@ margin-left: 0 !important;
 <div id="パッケージの読み込み" class="section level1">
 <h1>パッケージの読み込み</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)<span class="sc">:</span><span class="fu">library</span>(pacman)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(car,fmsb,ggthemes,gt,gtsummary,modelsummary,ordinal,patchwork,plm,skimr,stargazer,tidyverse)</span></code></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(car,fmsb,ggthemes,gt,modelsummary,ordinal,patchwork,plm,skimr,tidyverse)</span></code></pre></div>
 <div id="バージョン" class="section level2">
 <h2>バージョン</h2>
 <p>R version 4.2.1 (2022-06-23 ucrt)</p>
 <p>pacman: 0.5.1<br />
 car: 3.1.1<br />
+fmsb: 0.7.3<br />
 ggthemes: 4.2.4<br />
 gt: 0.7.0<br />
 modelsummary: 1.1.0<br />
 ordinal: 2019.12.10<br />
+patchwork: 1.1.2<br />
 plm: 2.6.2<br />
 skimr: 2.1.4<br />
-stargazer: 5.2.3<br />
 tidyverse: 1.3.2</p>
 </div>
 </div>
@@ -929,555 +930,40 @@ tidyverse: 1.3.2</p>
 <h1>ファイルの読み込み</h1>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#df_1363&lt;-read_csv(&quot;1363.csv&quot;)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#df_1368&lt;-read_csv(&quot;1368.csv&quot;)</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df_raw<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;df_1110use.csv&quot;</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df_raw<span class="ot">&lt;-</span>df_raw <span class="sc">%&gt;%</span> </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(PMED4,PFED4,w1BCQ14_5_1,w1BCQ14_5_2,w1BCQ23_17,pc1,pc2,pc3,w1BCQ3_11,w1BCQ15_11,year,w1学年)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>df_raw <span class="ot">&lt;-</span> df_raw <span class="sc">%&gt;%</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>   <span class="fu">rename</span>(<span class="at">news_F =</span> w1BCQ14_5_1,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">news_M =</span> w1BCQ14_5_2,)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>df_2015<span class="ot">&lt;-</span>df_raw <span class="sc">%&gt;%</span> </span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2015</span>)</span></code></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df_raw<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;df_1110use.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="学校ダミーの作成と学年絞り込み" class="section level1">
+<h1>学校ダミーの作成と学年絞り込み</h1>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_raw<span class="ot">&lt;-</span>df_raw<span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="dv">9</span><span class="sc">&lt;=</span> w1学年)  <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(w1学年<span class="sc">&lt;=</span><span class="dv">12</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df_raw<span class="ot">&lt;-</span>df_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">scdum =</span> <span class="fu">if_else</span>(<span class="at">condition =</span> w1学年 <span class="sc">&lt;=</span><span class="dv">9</span>,<span class="at">true =</span> <span class="dv">0</span>, <span class="at">false =</span> <span class="dv">1</span>)) <span class="co">#有職ダミー</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df_raw<span class="ot">&lt;-</span>df_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2015</span>)</span></code></pre></div>
+</div>
+<div id="dfの保存" class="section level1">
+<h1>dfの保存</h1>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df0 <span class="ot">=</span> df_raw </span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_raw<span class="ot">&lt;-</span>df_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(PMED4,PFED4,w1BCQ14_5_1,w1BCQ14_5_2,w1BCQ23_17,pc1,pc2,pc3,w1BCQ3_11,scdum,w1子ども性別)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df_raw <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">rename</span>(母学歴 <span class="ot">=</span> PMED4,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>          父学歴 <span class="ot">=</span> PFED4,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>          ニュース会話量_父<span class="ot">=</span> w1BCQ14_5_1,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>          ニュース会話量_母<span class="ot">=</span> w1BCQ14_5_2,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>          社会関心 <span class="ot">=</span> w1BCQ23_17,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>          メディア接触 <span class="ot">=</span> pc1,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>          学力と学習意欲 <span class="ot">=</span> pc2,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>          教育環境  <span class="ot">=</span> pc3,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>          友達付き合い  <span class="ot">=</span> w1BCQ3_11,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>          教育段階<span class="ot">=</span> scdum,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>          性別 <span class="ot">=</span> w1子ども性別</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>          )</span></code></pre></div>
 <div id="基礎統計量" class="section level2">
 <h2>基礎統計量</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(df_2015)</span></code></pre></div>
-<table>
-<caption>Data summary</caption>
-<tbody>
-<tr class="odd">
-<td align="left">Name</td>
-<td align="left">df_2015</td>
-</tr>
-<tr class="even">
-<td align="left">Number of rows</td>
-<td align="left">5096</td>
-</tr>
-<tr class="odd">
-<td align="left">Number of columns</td>
-<td align="left">12</td>
-</tr>
-<tr class="even">
-<td align="left">_______________________</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Column type frequency:</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">numeric</td>
-<td align="left">12</td>
-</tr>
-<tr class="odd">
-<td align="left">________________________</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">Group variables</td>
-<td align="left">None</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Variable type: numeric</strong></p>
-<table>
-<colgroup>
-<col width="14%" />
-<col width="10%" />
-<col width="14%" />
-<col width="8%" />
-<col width="5%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="6%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">skim_variable</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="right">mean</th>
-<th align="right">sd</th>
-<th align="right">p0</th>
-<th align="right">p25</th>
-<th align="right">p50</th>
-<th align="right">p75</th>
-<th align="right">p100</th>
-<th align="left">hist</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">PMED4</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">3.54</td>
-<td align="right">1.18</td>
-<td align="right">1.00</td>
-<td align="right">2.00</td>
-<td align="right">4.00</td>
-<td align="right">5.00</td>
-<td align="right">6.00</td>
-<td align="left">▇▅▇▆▁</td>
-</tr>
-<tr class="even">
-<td align="left">PFED4</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">3.80</td>
-<td align="right">1.49</td>
-<td align="right">1.00</td>
-<td align="right">2.00</td>
-<td align="right">5.00</td>
-<td align="right">5.00</td>
-<td align="right">6.00</td>
-<td align="left">▆▂▁▇▁</td>
-</tr>
-<tr class="odd">
-<td align="left">news_F</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2.24</td>
-<td align="right">0.97</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">2.00</td>
-<td align="right">3.00</td>
-<td align="right">4.00</td>
-<td align="left">▆▇▁▇▂</td>
-</tr>
-<tr class="even">
-<td align="left">news_M</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2.50</td>
-<td align="right">0.94</td>
-<td align="right">1.00</td>
-<td align="right">2.00</td>
-<td align="right">3.00</td>
-<td align="right">3.00</td>
-<td align="right">4.00</td>
-<td align="left">▃▇▁▇▃</td>
-</tr>
-<tr class="odd">
-<td align="left">w1BCQ23_17</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2.41</td>
-<td align="right">0.86</td>
-<td align="right">1.00</td>
-<td align="right">2.00</td>
-<td align="right">2.00</td>
-<td align="right">3.00</td>
-<td align="right">4.00</td>
-<td align="left">▂▇▁▆▂</td>
-</tr>
-<tr class="even">
-<td align="left">pc1</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">0.00</td>
-<td align="right">1.09</td>
-<td align="right">-1.93</td>
-<td align="right">-0.96</td>
-<td align="right">-0.08</td>
-<td align="right">0.76</td>
-<td align="right">4.32</td>
-<td align="left">▇▇▅▁▁</td>
-</tr>
-<tr class="odd">
-<td align="left">pc2</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">0.00</td>
-<td align="right">1.19</td>
-<td align="right">-2.77</td>
-<td align="right">-0.86</td>
-<td align="right">-0.01</td>
-<td align="right">0.88</td>
-<td align="right">3.23</td>
-<td align="left">▂▆▇▅▁</td>
-</tr>
-<tr class="even">
-<td align="left">pc3</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">0.00</td>
-<td align="right">1.41</td>
-<td align="right">-2.32</td>
-<td align="right">-1.20</td>
-<td align="right">-0.25</td>
-<td align="right">1.04</td>
-<td align="right">5.45</td>
-<td align="left">▇▆▅▁▁</td>
-</tr>
-<tr class="odd">
-<td align="left">w1BCQ3_11</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">3.80</td>
-<td align="right">2.94</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">4.00</td>
-<td align="right">6.00</td>
-<td align="right">10.00</td>
-<td align="left">▇▁▅▂▁</td>
-</tr>
-<tr class="even">
-<td align="left">w1BCQ15_11</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2.60</td>
-<td align="right">0.85</td>
-<td align="right">1.00</td>
-<td align="right">2.00</td>
-<td align="right">3.00</td>
-<td align="right">3.00</td>
-<td align="right">4.00</td>
-<td align="left">▂▆▁▇▂</td>
-</tr>
-<tr class="odd">
-<td align="left">year</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2015.00</td>
-<td align="right">0.00</td>
-<td align="right">2015.00</td>
-<td align="right">2015.00</td>
-<td align="right">2015.00</td>
-<td align="right">2015.00</td>
-<td align="right">2015.00</td>
-<td align="left">▁▁▇▁▁</td>
-</tr>
-<tr class="even">
-<td align="left">w1学年</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">9.39</td>
-<td align="right">1.69</td>
-<td align="right">7.00</td>
-<td align="right">8.00</td>
-<td align="right">9.00</td>
-<td align="right">11.00</td>
-<td align="right">12.00</td>
-<td align="left">▇▅▃▃▃</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(df_raw)</span></code></pre></div>
-<table>
-<caption>Data summary</caption>
-<tbody>
-<tr class="odd">
-<td align="left">Name</td>
-<td align="left">df_raw</td>
-</tr>
-<tr class="even">
-<td align="left">Number of rows</td>
-<td align="left">5096</td>
-</tr>
-<tr class="odd">
-<td align="left">Number of columns</td>
-<td align="left">12</td>
-</tr>
-<tr class="even">
-<td align="left">_______________________</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Column type frequency:</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">numeric</td>
-<td align="left">12</td>
-</tr>
-<tr class="odd">
-<td align="left">________________________</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">Group variables</td>
-<td align="left">None</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Variable type: numeric</strong></p>
-<table>
-<colgroup>
-<col width="14%" />
-<col width="10%" />
-<col width="14%" />
-<col width="8%" />
-<col width="5%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="6%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">skim_variable</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="right">mean</th>
-<th align="right">sd</th>
-<th align="right">p0</th>
-<th align="right">p25</th>
-<th align="right">p50</th>
-<th align="right">p75</th>
-<th align="right">p100</th>
-<th align="left">hist</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">PMED4</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">3.54</td>
-<td align="right">1.18</td>
-<td align="right">1.00</td>
-<td align="right">2.00</td>
-<td align="right">4.00</td>
-<td align="right">5.00</td>
-<td align="right">6.00</td>
-<td align="left">▇▅▇▆▁</td>
-</tr>
-<tr class="even">
-<td align="left">PFED4</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">3.80</td>
-<td align="right">1.49</td>
-<td align="right">1.00</td>
-<td align="right">2.00</td>
-<td align="right">5.00</td>
-<td align="right">5.00</td>
-<td align="right">6.00</td>
-<td align="left">▆▂▁▇▁</td>
-</tr>
-<tr class="odd">
-<td align="left">news_F</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2.24</td>
-<td align="right">0.97</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">2.00</td>
-<td align="right">3.00</td>
-<td align="right">4.00</td>
-<td align="left">▆▇▁▇▂</td>
-</tr>
-<tr class="even">
-<td align="left">news_M</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2.50</td>
-<td align="right">0.94</td>
-<td align="right">1.00</td>
-<td align="right">2.00</td>
-<td align="right">3.00</td>
-<td align="right">3.00</td>
-<td align="right">4.00</td>
-<td align="left">▃▇▁▇▃</td>
-</tr>
-<tr class="odd">
-<td align="left">w1BCQ23_17</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2.41</td>
-<td align="right">0.86</td>
-<td align="right">1.00</td>
-<td align="right">2.00</td>
-<td align="right">2.00</td>
-<td align="right">3.00</td>
-<td align="right">4.00</td>
-<td align="left">▂▇▁▆▂</td>
-</tr>
-<tr class="even">
-<td align="left">pc1</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">0.00</td>
-<td align="right">1.09</td>
-<td align="right">-1.93</td>
-<td align="right">-0.96</td>
-<td align="right">-0.08</td>
-<td align="right">0.76</td>
-<td align="right">4.32</td>
-<td align="left">▇▇▅▁▁</td>
-</tr>
-<tr class="odd">
-<td align="left">pc2</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">0.00</td>
-<td align="right">1.19</td>
-<td align="right">-2.77</td>
-<td align="right">-0.86</td>
-<td align="right">-0.01</td>
-<td align="right">0.88</td>
-<td align="right">3.23</td>
-<td align="left">▂▆▇▅▁</td>
-</tr>
-<tr class="even">
-<td align="left">pc3</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">0.00</td>
-<td align="right">1.41</td>
-<td align="right">-2.32</td>
-<td align="right">-1.20</td>
-<td align="right">-0.25</td>
-<td align="right">1.04</td>
-<td align="right">5.45</td>
-<td align="left">▇▆▅▁▁</td>
-</tr>
-<tr class="odd">
-<td align="left">w1BCQ3_11</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">3.80</td>
-<td align="right">2.94</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">4.00</td>
-<td align="right">6.00</td>
-<td align="right">10.00</td>
-<td align="left">▇▁▅▂▁</td>
-</tr>
-<tr class="even">
-<td align="left">w1BCQ15_11</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2.60</td>
-<td align="right">0.85</td>
-<td align="right">1.00</td>
-<td align="right">2.00</td>
-<td align="right">3.00</td>
-<td align="right">3.00</td>
-<td align="right">4.00</td>
-<td align="left">▂▆▁▇▂</td>
-</tr>
-<tr class="odd">
-<td align="left">year</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2015.00</td>
-<td align="right">0.00</td>
-<td align="right">2015.00</td>
-<td align="right">2015.00</td>
-<td align="right">2015.00</td>
-<td align="right">2015.00</td>
-<td align="right">2015.00</td>
-<td align="left">▁▁▇▁▁</td>
-</tr>
-<tr class="even">
-<td align="left">w1学年</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">9.39</td>
-<td align="right">1.69</td>
-<td align="right">7.00</td>
-<td align="right">8.00</td>
-<td align="right">9.00</td>
-<td align="right">11.00</td>
-<td align="right">12.00</td>
-<td align="left">▇▅▃▃▃</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="対象の絞り込み-中学生のみに" class="section level1">
-<h1>対象の絞り込み　中学生のみに</h1>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span>df_raw <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="dv">9</span><span class="sc">&lt;=</span> w1学年)  <span class="sc">%&gt;%</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(w1学年<span class="sc">&lt;=</span><span class="dv">12</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>df_2015<span class="ot">&lt;-</span>df <span class="sc">%&gt;%</span> </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2015</span>)</span></code></pre></div>
-</div>
-<div id="可視化" class="section level1">
-<h1>可視化</h1>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>news_M_medu<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>df_2015,<span class="fu">aes</span>(<span class="at">x=</span> PMED4,<span class="at">y=</span> news_M,<span class="at">fill =</span> PMED4))<span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">fill =</span> PMED4), <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>               ,<span class="at">fill =</span> <span class="st">&quot;grey75&quot;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>               )<span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&#39;表2&#39;</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;母&quot;</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;学歴&quot;</span>,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;ニュース会話量&quot;</span>)<span class="sc">+</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#news_M_medu</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>news_F_fedu<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>df_2015,<span class="fu">aes</span>(<span class="at">x=</span> PFED4,<span class="at">y=</span> news_F))<span class="sc">+</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">fill =</span> PFED4), <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span>,<span class="at">fill =</span> <span class="st">&quot;grey75&quot;</span>) <span class="sc">+</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>     <span class="fu">labs</span>(</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#itle = &quot;表1学歴とニュース会話量の相関確認&quot;,</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;父&quot;</span>,</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;学歴&quot;</span>,</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;ニュース会話量&quot;</span>)<span class="sc">+</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>news_M_medu<span class="sc">+</span>news_F_fedu</span></code></pre></div>
-<p><img src="data:image/png;base64,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" width="672" /></p>
-</div>
-<div id="年ファイルの再作成" class="section level1">
-<h1>2015年ファイルの再作成</h1>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;df_1110use.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>w1BCQ23_17<span class="ot">&lt;-</span><span class="fu">as.ordered</span>(df<span class="sc">$</span>w1BCQ23_17)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span>df <span class="sc">%&gt;%</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2015</span>)</span></code></pre></div>
-</div>
-<div id="対象の絞り込み-中高生のみに" class="section level1">
-<h1>対象の絞り込み　中高生のみに</h1>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span>df<span class="sc">%&gt;%</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="dv">9</span><span class="sc">&lt;=</span> w1学年)  <span class="sc">%&gt;%</span> </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(w1学年<span class="sc">&lt;=</span><span class="dv">12</span>)</span></code></pre></div>
-</div>
-<div id="第2段階の分析" class="section level1">
-<h1>第2段階の分析</h1>
-</div>
-<div id="標準化の実施" class="section level1">
-<h1>標準化の実施</h1>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>scaler<span class="ot">&lt;-</span> <span class="cf">function</span>(a){</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  ue<span class="ot">&lt;-</span>a<span class="sc">-</span><span class="fu">mean</span>(a,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  sita<span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(a,<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  ans<span class="ot">&lt;-</span>(ue<span class="sc">/</span>sita)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ans)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>PMED4<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>PMED4)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>w1BCQ14_5_2<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>w1BCQ14_5_2)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>PFED4<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>PFED4)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>w1BCQ14_5_1<span class="ot">&lt;-</span><span class="fu">scaler</span>(df<span class="sc">$</span>w1BCQ14_5_1)</span></code></pre></div>
-<p><strong>試し</strong> 平均値 0: 2.229299 標準偏差1: 0.9642659</p>
-<div id="年の分析" class="section level2">
-<h2>2015年の分析</h2>
-<div id="初期設定" class="section level3">
-<h3>初期設定</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>all_nam <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;PMED4&quot;</span> <span class="ot">=</span> <span class="st">&quot;母学歴&quot;</span>, <span class="st">&quot;(Intercept)&quot;</span> <span class="ot">=</span> <span class="st">&quot;Constant&quot;</span>,<span class="st">&quot;w1BCQ14_5_2&quot;</span> <span class="ot">=</span> <span class="st">&quot;ニュース会話量（母）&quot;</span>, <span class="st">&quot;PFED4&quot;</span> <span class="ot">=</span> <span class="st">&quot;父学歴&quot;</span>,</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;w1BCQ14_5_1&quot;</span> <span class="ot">=</span> <span class="st">&quot;ニュース会話量（父）&quot;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">&#39;w1子ども性別&#39;</span> <span class="ot">=</span> <span class="st">&#39;性別&#39;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">&#39;scdum&#39;</span> <span class="ot">=</span> <span class="st">&#39;中高生ダミー&#39;</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">&#39;w1BCQ14_5_2:w1子ども性別&#39;</span> <span class="ot">=</span> <span class="st">&#39;ニュース交差項（母）と性別&#39;</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">&#39;w1BCQ14_5_1:w1子ども性別&#39;</span> <span class="ot">=</span> <span class="st">&#39;ニュース交差項（父）と性別&#39;</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">&#39;w1BCQ14_5_2:scdum&#39;</span> <span class="ot">=</span> <span class="st">&#39;ニュース交差項（母）と中高生ダミー&#39;</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">&#39;w1BCQ14_5_1:scdum&#39;</span> <span class="ot">=</span> <span class="st">&#39;ニュース交差項（父）と中高生ダミー&#39;</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">&quot;pc1&quot;</span> <span class="ot">=</span> <span class="st">&quot;子どものメディア接触&quot;</span>, <span class="st">&quot;pc2&quot;</span> <span class="ot">=</span> <span class="st">&quot;子どもの学力・学習意欲&quot;</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">&quot;pc3&quot;</span> <span class="ot">=</span> <span class="st">&quot;教育環境&quot;</span>,<span class="st">&quot;w1BCQ3_11&quot;</span> <span class="ot">=</span> <span class="st">&quot;友達付き合い&quot;</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>            )</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>w1BCQ23_17<span class="ot">&lt;-</span><span class="fu">as.ordered</span>(df<span class="sc">$</span>w1BCQ23_17)</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(df)</span></code></pre></div>
 <table>
 <caption>Data summary</caption>
 <tbody>
@@ -1491,7 +977,7 @@ tidyverse: 1.3.2</p>
 </tr>
 <tr class="odd">
 <td align="left">Number of columns</td>
-<td align="left">30</td>
+<td align="left">11</td>
 </tr>
 <tr class="even">
 <td align="left">_______________________</td>
@@ -1502,67 +988,32 @@ tidyverse: 1.3.2</p>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left">factor</td>
-<td align="left">1</td>
+<td align="left">numeric</td>
+<td align="left">11</td>
 </tr>
 <tr class="odd">
-<td align="left">numeric</td>
-<td align="left">29</td>
-</tr>
-<tr class="even">
 <td align="left">________________________</td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Group variables</td>
 <td align="left">None</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Variable type: factor</strong></p>
-<table>
-<colgroup>
-<col width="15%" />
-<col width="11%" />
-<col width="15%" />
-<col width="9%" />
-<col width="10%" />
-<col width="37%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">skim_variable</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="left">ordered</th>
-<th align="right">n_unique</th>
-<th align="left">top_counts</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">w1BCQ23_17</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="left">TRUE</td>
-<td align="right">4</td>
-<td align="left">2: 1484, 3: 1017, 1: 421, 4: 375</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Variable type: numeric</strong></p>
 <table style="width:100%;">
 <colgroup>
-<col width="14%" />
-<col width="10%" />
-<col width="14%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
+<col width="20%" />
+<col width="11%" />
+<col width="15%" />
+<col width="6%" />
+<col width="5%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="5%" />
+<col width="6%" />
 <col width="6%" />
 </colgroup>
 <thead>
@@ -1582,85 +1033,7 @@ tidyverse: 1.3.2</p>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">…1</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">1649.77</td>
-<td align="right">952.21</td>
-<td align="right">1.00</td>
-<td align="right">826.00</td>
-<td align="right">1650.00</td>
-<td align="right">2474.00</td>
-<td align="right">3298.00</td>
-<td align="left">▇▇▇▇▇</td>
-</tr>
-<tr class="even">
-<td align="left">index</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2941.21</td>
-<td align="right">1650.16</td>
-<td align="right">1.00</td>
-<td align="right">1539.00</td>
-<td align="right">2964.00</td>
-<td align="right">4358.00</td>
-<td align="right">5736.00</td>
-<td align="left">▇▇▇▇▇</td>
-</tr>
-<tr class="odd">
-<td align="left">w1回答フラグ</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">1.01</td>
-<td align="right">0.09</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">3.00</td>
-<td align="left">▇▁▁▁▁</td>
-</tr>
-<tr class="even">
-<td align="left">w2回答フラグ</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2.61</td>
-<td align="right">2.12</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">4.00</td>
-<td align="right">6.00</td>
-<td align="left">▇▁▂▁▃</td>
-</tr>
-<tr class="odd">
-<td align="left">w3回答フラグ</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">3.74</td>
-<td align="right">2.33</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">4.00</td>
-<td align="right">6.00</td>
-<td align="right">6.00</td>
-<td align="left">▇▁▂▁▇</td>
-</tr>
-<tr class="even">
-<td align="left">w4回答フラグ</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4.93</td>
-<td align="right">1.94</td>
-<td align="right">1.00</td>
-<td align="right">4.00</td>
-<td align="right">6.00</td>
-<td align="right">6.00</td>
-<td align="right">6.00</td>
-<td align="left">▂▁▁▁▇</td>
-</tr>
-<tr class="odd">
-<td align="left">PMED4</td>
+<td align="left">母学歴</td>
 <td align="right">0</td>
 <td align="right">1</td>
 <td align="right">3.53</td>
@@ -1673,7 +1046,7 @@ tidyverse: 1.3.2</p>
 <td align="left">▇▃▇▆▁</td>
 </tr>
 <tr class="even">
-<td align="left">PFED4</td>
+<td align="left">父学歴</td>
 <td align="right">0</td>
 <td align="right">1</td>
 <td align="right">3.79</td>
@@ -1686,46 +1059,7 @@ tidyverse: 1.3.2</p>
 <td align="left">▆▂▁▇▁</td>
 </tr>
 <tr class="odd">
-<td align="left">w1子ども性別</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">1.49</td>
-<td align="right">0.50</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">2.00</td>
-<td align="right">2.00</td>
-<td align="left">▇▁▁▁▇</td>
-</tr>
-<tr class="even">
-<td align="left">w1学年</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">10.43</td>
-<td align="right">1.12</td>
-<td align="right">9.00</td>
-<td align="right">9.00</td>
-<td align="right">10.00</td>
-<td align="right">11.00</td>
-<td align="right">12.00</td>
-<td align="left">▇▇▁▇▆</td>
-</tr>
-<tr class="odd">
-<td align="left">Pincome15</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">769.82</td>
-<td align="right">359.08</td>
-<td align="right">150.00</td>
-<td align="right">550.00</td>
-<td align="right">700.00</td>
-<td align="right">900.00</td>
-<td align="right">2250.00</td>
-<td align="left">▆▇▂▁▁</td>
-</tr>
-<tr class="even">
-<td align="left">w1BCQ14_5_1</td>
+<td align="left">ニュース会話量_父</td>
 <td align="right">0</td>
 <td align="right">1</td>
 <td align="right">2.23</td>
@@ -1737,8 +1071,8 @@ tidyverse: 1.3.2</p>
 <td align="right">4.00</td>
 <td align="left">▆▇▁▇▂</td>
 </tr>
-<tr class="odd">
-<td align="left">w1BCQ14_5_2</td>
+<tr class="even">
+<td align="left">ニュース会話量_母</td>
 <td align="right">0</td>
 <td align="right">1</td>
 <td align="right">2.49</td>
@@ -1750,177 +1084,21 @@ tidyverse: 1.3.2</p>
 <td align="right">4.00</td>
 <td align="left">▃▇▁▇▃</td>
 </tr>
-<tr class="even">
-<td align="left">w1BCQ3_4</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">5.52</td>
-<td align="right">2.40</td>
-<td align="right">1.00</td>
-<td align="right">5.00</td>
-<td align="right">6.00</td>
-<td align="right">7.00</td>
-<td align="right">10.00</td>
-<td align="left">▃▂▇▆▂</td>
-</tr>
 <tr class="odd">
-<td align="left">w1BCQ3_5</td>
+<td align="left">社会関心</td>
 <td align="right">0</td>
 <td align="right">1</td>
-<td align="right">2.66</td>
-<td align="right">2.34</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">5.00</td>
-<td align="right">10.00</td>
-<td align="left">▇▁▂▁▁</td>
-</tr>
-<tr class="even">
-<td align="left">w1BCQ3_9</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">1.45</td>
-<td align="right">0.90</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">2.00</td>
-<td align="right">7.00</td>
-<td align="left">▇▁▁▁▁</td>
-</tr>
-<tr class="odd">
-<td align="left">w1seiseki</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">1.98</td>
-<td align="right">0.82</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">2.00</td>
-<td align="right">3.00</td>
-<td align="right">3.00</td>
-<td align="left">▇▁▇▁▇</td>
-</tr>
-<tr class="even">
-<td align="left">w1BCQ3_14</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">5.08</td>
-<td align="right">1.83</td>
-<td align="right">1.00</td>
-<td align="right">5.00</td>
-<td align="right">6.00</td>
-<td align="right">6.00</td>
-<td align="right">10.00</td>
-<td align="left">▂▂▇▂▁</td>
-</tr>
-<tr class="odd">
-<td align="left">w1BCQ18</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2.31</td>
-<td align="right">0.78</td>
+<td align="right">2.41</td>
+<td align="right">0.85</td>
 <td align="right">1.00</td>
 <td align="right">2.00</td>
 <td align="right">2.00</td>
 <td align="right">3.00</td>
 <td align="right">4.00</td>
-<td align="left">▃▇▁▇▁</td>
+<td align="left">▂▇▁▆▂</td>
 </tr>
 <tr class="even">
-<td align="left">w1BCQ4_1</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">0.64</td>
-<td align="right">1.27</td>
-<td align="right">0.00</td>
-<td align="right">0.00</td>
-<td align="right">0.00</td>
-<td align="right">1.00</td>
-<td align="right">7.00</td>
-<td align="left">▇▁▁▁▁</td>
-</tr>
-<tr class="odd">
-<td align="left">w1BCQ5_1</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">1.08</td>
-<td align="right">1.67</td>
-<td align="right">0.00</td>
-<td align="right">0.00</td>
-<td align="right">0.00</td>
-<td align="right">2.00</td>
-<td align="right">7.00</td>
-<td align="left">▇▂▂▁▁</td>
-</tr>
-<tr class="even">
-<td align="left">w2BPQ11_2</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2.97</td>
-<td align="right">0.71</td>
-<td align="right">1.00</td>
-<td align="right">3.00</td>
-<td align="right">3.00</td>
-<td align="right">3.00</td>
-<td align="right">4.00</td>
-<td align="left">▁▃▁▇▃</td>
-</tr>
-<tr class="odd">
-<td align="left">w1BPQ14_1</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4.53</td>
-<td align="right">2.93</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">4.00</td>
-<td align="right">7.00</td>
-<td align="right">10.00</td>
-<td align="left">▇▅▃▅▂</td>
-</tr>
-<tr class="even">
-<td align="left">w1BCQ3_11</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">3.75</td>
-<td align="right">2.89</td>
-<td align="right">1.00</td>
-<td align="right">1.00</td>
-<td align="right">4.00</td>
-<td align="right">6.00</td>
-<td align="right">10.00</td>
-<td align="left">▇▁▅▂▁</td>
-</tr>
-<tr class="odd">
-<td align="left">w1BCQ15_11</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2.68</td>
-<td align="right">0.82</td>
-<td align="right">1.00</td>
-<td align="right">2.00</td>
-<td align="right">3.00</td>
-<td align="right">3.00</td>
-<td align="right">4.00</td>
-<td align="left">▂▅▁▇▂</td>
-</tr>
-<tr class="even">
-<td align="left">year</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2015.00</td>
-<td align="right">0.00</td>
-<td align="right">2015.00</td>
-<td align="right">2015.00</td>
-<td align="right">2015.00</td>
-<td align="right">2015.00</td>
-<td align="right">2015.00</td>
-<td align="left">▁▁▇▁▁</td>
-</tr>
-<tr class="odd">
-<td align="left">pc1</td>
+<td align="left">メディア接触</td>
 <td align="right">0</td>
 <td align="right">1</td>
 <td align="right">-0.19</td>
@@ -1932,8 +1110,8 @@ tidyverse: 1.3.2</p>
 <td align="right">4.19</td>
 <td align="left">▇▆▃▁▁</td>
 </tr>
-<tr class="even">
-<td align="left">pc2</td>
+<tr class="odd">
+<td align="left">学力と学習意欲</td>
 <td align="right">0</td>
 <td align="right">1</td>
 <td align="right">-0.04</td>
@@ -1945,8 +1123,8 @@ tidyverse: 1.3.2</p>
 <td align="right">3.23</td>
 <td align="left">▂▆▇▅▁</td>
 </tr>
-<tr class="odd">
-<td align="left">pc3</td>
+<tr class="even">
+<td align="left">教育環境</td>
 <td align="right">0</td>
 <td align="right">1</td>
 <td align="right">-0.07</td>
@@ -1958,53 +1136,151 @@ tidyverse: 1.3.2</p>
 <td align="right">5.45</td>
 <td align="left">▇▅▃▁▁</td>
 </tr>
+<tr class="odd">
+<td align="left">友達付き合い</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3.75</td>
+<td align="right">2.89</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">4.00</td>
+<td align="right">6.00</td>
+<td align="right">10.00</td>
+<td align="left">▇▁▅▂▁</td>
+</tr>
+<tr class="even">
+<td align="left">教育段階</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.73</td>
+<td align="right">0.45</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="left">▃▁▁▁▇</td>
+</tr>
+<tr class="odd">
+<td align="left">性別</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.49</td>
+<td align="right">0.50</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">2.00</td>
+<td align="left">▇▁▁▁▇</td>
+</tr>
 </tbody>
 </table>
 </div>
-<div id="母の分析" class="section level3">
-<h3>母の分析</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mother_reg<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;モデル1母&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4,<span class="at">data =</span> df)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;モデル2母&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;モデル3母&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">+</span>w1BCQ14_5_2<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;モデル1父&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4,<span class="at">data =</span> df)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;モデル2父&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>mother_reg[[<span class="st">&#39;モデル3父&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">+</span>w1BCQ14_5_1<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>tempra<span class="ot">&lt;-</span><span class="fu">msummary</span>(mother_reg,<span class="st">&#39;gt&#39;</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="fu">c</span>(<span class="st">&quot;*&quot;</span> <span class="ot">=</span> <span class="fl">0.05</span>)</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表3:分析1&#39;</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">3</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">7</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_options</span>(</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">table.border.top.width =</span> <span class="dv">0</span>, <span class="co">#タイトルの上の線を消す，</span></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">table.border.bottom.width =</span> <span class="dv">0</span>, <span class="co">#注の下の線を消す</span></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">heading.title.font.size =</span> <span class="fu">px</span>(<span class="dv">16</span>), <span class="co">#タイトルのフォントサイズをいい感じに</span></span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">row_group.border.bottom.width =</span> <span class="dv">0</span>, <span class="co">#セクション名の下の線を消す</span></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">table_body.hlines.width =</span> <span class="dv">0</span>, <span class="co"># tableの中の水平線消す</span></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">stub.border.width =</span> <span class="dv">0</span>, <span class="co"># stub列の中の線を消す</span></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">column_labels.border.top.width =</span> <span class="dv">3</span>, <span class="co"># 変数名の行の線を黒く太く</span></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">column_labels.border.top.color =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">column_labels.border.bottom.width =</span> <span class="dv">3</span>,</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">column_labels.border.bottom.color =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">table_body.border.bottom.color =</span> <span class="st">&quot;black&quot;</span>, <span class="co">#テーブルの下線を黒く</span></span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">table.width =</span> <span class="fu">pct</span>(<span class="dv">60</span>), <span class="co"># 程よく幅を広げる（数字で調整）</span></span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">table.background.color =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">row_group.border.top.color =</span> <span class="st">&quot;black&quot;</span>, <span class="co">#セクション名の上の線を消す</span></span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">row_group.border.top.width =</span> <span class="dv">1</span> <span class="co">#セクション名の上の線を細く</span></span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">cols_align</span>(<span class="at">align=</span><span class="st">&quot;center&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>tempra</span></code></pre></div>
-<div id="bcesmnqxnt" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+</div>
+<div id="可視化" class="section level1">
+<h1>可視化</h1>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_raw <span class="ot">=</span> df0</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_raw <span class="ot">&lt;-</span> df_raw <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">rename</span>(<span class="at">news_F =</span> w1BCQ14_5_1,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">news_M =</span> w1BCQ14_5_2)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>df_2015<span class="ot">&lt;-</span>df_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2015</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>news_M_medu<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>df_2015,<span class="fu">aes</span>(<span class="at">x=</span> PMED4,<span class="at">y=</span> news_M,<span class="at">fill =</span> PMED4))<span class="sc">+</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">fill =</span> PMED4), <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>               ,<span class="at">fill =</span> <span class="st">&quot;grey75&quot;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>               )<span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&#39;表2&#39;</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;母&quot;</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;学歴&quot;</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;ニュース会話量&quot;</span>)<span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>news_F_fedu<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>df_2015,<span class="fu">aes</span>(<span class="at">x=</span> PFED4,<span class="at">y=</span> news_F))<span class="sc">+</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">fill =</span> PFED4), <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span>,<span class="at">fill =</span> <span class="st">&quot;grey75&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>     <span class="fu">labs</span>(</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;父&quot;</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;学歴&quot;</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;ニュース会話量&quot;</span>)<span class="sc">+</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>news_M_medu<span class="sc">+</span>news_F_fedu</span></code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABUAAAAMACAMAAADSUD1fAAABVlBMVEUAAAAAADoAAGYAOjoAOmYAOpAAZmYAZrYzMzM6AAA6ADo6OgA6Ojo6OmY6ZmY6ZpA6ZrY6kJA6kLY6kNtNTU1NTW5NTY5Nbm5Nbo5NbqtNjshmAABmOgBmOjpmZjpmZmZmZpBmkJBmkLZmkNtmtrZmtttmtv9uTU1ubk1ubo5ujqtujshuq+SOTU2Obk2Obm6Oq6uOyOSOyP+QOgCQOjqQZjqQZmaQZpCQkLaQtraQttuQtv+Q27aQ2/+rbk2rjm6ryOSr5P+2ZgC2Zjq2kDq2kGa2kJC2kLa2tpC2tra2ttu229u22/+2//+/v7/Ijk3Ijm7Iq27IyKvI5P/I///bkDrbkGbbtmbbtpDbtrbb25Db27bb29vb2//b/7bb/9vb///kq27kyI7kyKvk////tmb/yI7/25D/27b/29v/5Kv/5Mj/5OT//7b//8j//9v//+T///8kKomAAAAACXBIWXMAAB2HAAAdhwGP5fFlAAAgAElEQVR4nO2d/Xvc1pWYQUeuxEaOtTbk6sNeb+O12Uii3Yh1tnFrKaad7Sq2l25kRnFFtWIsUhIV8eP//6UDzAdnhjjgPQc4uHMx7/s8uxKJuW9g4OjlDAczk50AAICJLPYOAACkCgEFADBCQAEAjBBQAAAjBBQAwAgBBQAwQkABAIwQUAAAIwQUAMAIAQUAMEJAAQCMEFAAACMEFADACAEFADBCQAEAjBBQAAAjBBQAwAgBBQAwQkABAIwQUAAAIwQUAMAIAQUAMEJAAQCMEFAAACMEFADACAEFADDSYUC3s+zd7v7XAAC86Tagn3T3vwYA4A0BBQAw4hzQv354yvtZ9tbpV//0ne//MgCAN84BHdzrFFj5cnKjx5//cvCNy79+6rsvAADtEj+gRxuTb/EIHwBSIvrvQE/7mfE7UgBIiugB3Rx088qTQUj/uJplb3zf3e4AADTEPaCPH4z5PMvemXzxZLT59c0s+3j41+erXCgKACnhHtDN6l+Bju+L7mXZm09Pb3rRe3cAAFojdkCnX540HVMAgIXHPaBHO2O+GTxYn3xRdVMCCgBJEf1JpNkb8BAeANLBN6A708zcAx3wZO7GxQVNPIkEAOngGtDieXWZ+Yfre1zGBABJsTgBLS5o4g4oACSEa0CPJpd9Piguk7+yka388+m3/jR72w2eQgKAtOjoSaQX7xdPEJ0+jfSXL+duUPSTB/AAkBTdBLR4LD+4ezn4Y/g0+6PpN2MqKAJLPwEgLToJ6F9GL3Mf3M0sw/lo/jegRWAv0E8ASIsOAlrcuxw9PzS8VL7o58fTtzgTVACABHAP6Muvh8+5lwEt3zpkO5t7AF+8aegV+gkAqeEc0Befl++U/I/jK5T2yphemPk4j68zrl8CgBTxDOjRN8PrQK883Rsnsnz75Nl7m8Ud0o8r1wMALDSu90DL+5tvf1f+ZXQfc/R8/Mxt+CgPAEgS3wvpN1aulK94Pw1oGdWph/DFb0XpJwAkie/vQF+O/hwH9Ojxv35RPGW0MvkEzrlPneNaUABIh24upB8E9J2f/vhB8SvRi8NmrnxcJnTmI+UIKAAkhX9AXz5+8LsPZt5C5FH53FL56L54BE9AASBNOv1Ij7f+87fl94aX1vO7TwBIG/eADq/8zFZ+9fvpN1B+9EteewQAqeMe0OerK7/679+e/f7jD7gDCgBp4/+hcv+LO5oA0E86/FA5AIB+QUABAIwQUAAAIwQUAMAIAQUAMEJAAQCMEFAAACMEFADACAEFADBCQAEAjBBQAAAjBBQAwAgBBQAwQkABAIwQUAAAIwQUAMAIAQUAMOId0KP/dnmOj5z/FwGC+ct4GrevRN0PSBXvgM5/bnGWvev8vwgQyvPV7Er5iTPbWUZBwUAHAf1455THG3yYMSwKxU/3d+f+BqDBO6CDn/FFMffe+qL88oiAwqLw+v3Tz9beW6WgYMA/oCtfDn/Av/3dCQGFxaHo5xvfj7/ay3gUD3q8A7qXFQE9+uPgB3z5FwIKi8GLwQ/1N747/Xo7O70/ChCIf0CHP+RfbBBQWCAejX6kn1IUdPY7AOfhHdDt8aOko6+LchJQWAgeDWp5YXD/88nwy9c3rzwpCnr6kB4gBP+AzjwsOtrgZzwsApvFYD5/f1TMvfLh+6O36Cfo8Azo3vwloFwLCovC6z+dlNeIlKN4tMGDdzBBQGGJ2Rw+aB+E9GLsXYEkcX0IX144/87UdfQ7/2e1vK6eJzthIRiVc5M7oGDD+Xegr2+WTxq9vnlheMHI6Lp6gMVgOxsM5OChEndAwYRzQEfB3Bw8bH/n6cn4unqABWHwE/6Nbzd49h2MOAd0eB39yYv3R1cp7/FYCRaKPX4pDw1wD+jwZ/vRN8NHSXv8rIfFglcgQQOcA3p6Gejz8ho7AgoLRvGSpAs8LAIbzgHdnPvhvk1AYZE4+np4Yd0V7oOCBd+AHm1k2czb0a+WX/OuN7AQHJWviP/4m+JV8L8moaDHN6Bn34++hGtGYAEo3yOsfPj+1+IvK1eexN4jSA7fgD5fnXk/+p2djewi19HDIvD486nH7qNH8r/gbijo8A3o/FVLL25ywQgsAi+Gj43enrwh6Iuyp1xkBzqcn0R6/KfJj/Ti96FMKCwI22cesx99vcqPd1DS4efCFy9HWuGFnLAQHP3Lt2e/+ZhH8KCjw4Ae7ezwW3oA6BEdBhQAoF8QUAAAIwQUAMAIAQUAMEJAAQCMEFAAACMEFADACAEFADBCQAEAjBBQAAAjBBQAwAgBBQAwQkABAIwQUAAAIwQUAMAIAQUAMEJAAQCM+AU0o82wmDCa0BYEFJYORhPagoDC0sFoQlsQUFg6GE1oCwIKSwejCW1BQGHpYDShLQgoLB2MJrQFAYW+8PNneX711sOp7xyu5yXv/ThzQ0YT2oKAQk/4YRjLq1+dfutgjYCCKwQU+sF+fvW3Jyev7k3Xcj+/UXVTRhPagoBCLzi+l98t/hw8ar87+eZWfqfqtowmtAUBhV5wuD665zkVzeN704/nT2E0oS0IKPSLqYAerl//86d5/puHczdhNKEtCCj0isP103ud4+eQTh/UXxrCaEJLEFDoFbtTzxvt5/ntZyd/v3/6zDwBhXYhoNAn9qcvYxrHdP65JEYT2oKAQo/YX7t6t+K7+fVn018zmtAWBBT6w25e+bT7wdrslfSMJrQFAYXe8EN1PwcB5R4o+EBAoSccb+XXZu5ojq+tP/OCJEYT2oKAQk/YmvtNZ/GdMpyTkI5hNKEtCCj0g90z/SyuA7397OTVp/NbGE1oCwIKvWD8znUDbhTpLH8bujt6M6a5lyIxmtAWBBR6wX5eEdCTV8VbhN6ev2fKaEJbEFBYOhhNaAsCCvX8e5vE/o8ZwmjK9PB0u0JAoZ4e/otiNGV6eLpdIaBQTw//RTGaMj083a4QUKinh/+iGE2ZHp5uVwgo1NPDf1GMpkwPT7crBBTq6eG/KEZTpoen2xUCCvX08F8UoynTw9PtCgGFenr4L4rRlOnh6XaFgEI9PfwXxWjK9PB0u0JAoZ4e/otiNGV6eLpdIaBQTw//RTGaMj083a5ECSgnKSF6eLIIqEwPT7crBBTq6eHJIqAyPTzdrhBQqKeHJ4uAyvTwdLtCQKGeHp4sAirTw9PtCgGFenp4sgioTA9PtysEFOrp4ckioDI9PN2uEFCop4cni4DK9PB0u0JAoZ4eniwCKtPD0+0KAYV6eniyCKhMSqd7EfaVgEI9PTxZBFQmpdO9CPtKQKGeHp4sAiqT0ulehH0loFBPD08WAZVJ6XQvwr4SUKinhyeLgMqkdLoXYV8JKNTTw5NFQGVSOt2LsK8EFOrp4ckioDIpne5F2FcCCvX08GQRUJmUTvci7CsB7Q8+h9XHGhUCKuNzulOy6iCg/cHnsPpYo0JAZXxOd0pWHQS0P/gcVh9rVAiojM/pTsmqg4D2B5/D6mONCgGV8TndKVl1END+4HNYfaxRIaAyPqc7JasOAtoffA6rjzUqBFTG53SnZNVBQPuDz2H1sUaFgMr4nO6UrDoIaH/wOaw+1qgQUBmf052SVQcB7Q8+h9XHGhUCKuNzulOy6iCg/cHnsPpYo0JAZXxOd0pWHQS0P/gcVh9rVAiojM/pTsmqg4D2B5/D6mONCgGV8TndKVl1END+4HNYfaxRIaAyPqc7JasOAtoffA6rjzUqBFTG53SnZNVBQPuDz2H1sUaFgMr4nO6UrDoIaH/wOaw+1qgQUBmf052SVQcB7Q8+h9XHGhUCKuNzulOy6iCg/cHnsPpYo0JAZXxOd0pWHQS0P/gcVh9rVAiojM/pTsmqg4D2B5/D6mONCgGV8TndKVl1END+4HNYfaxRIaAyPqc7JasOAtoffA6rjzUqBFTG53SnZNVBQPuDz2H1sUaFgMr4nO6UrDoIaH/wOaw+1qgQUBmf052SVQcB7Q8+h9XHGhUCKuNzulOy6iCgMfA5AClZo0JAZXxOd0pWHQQ0Bj4HICVrVAiojM/pTsmqg4DGwOcApGSNCgGV8TndKVl1ENAY+ByAlKxRIaAyPqc7JasOAhoDnwOQkjUqBFTG53SnZNVBQGPgcwBSskaFgMr4nO6UrDoIaD0+u4o1KgRUxud0p2TVQUDr8dlVrFEhoDI+pzslqw4CWo/PrmKNCgGV8TndKVl1ENB6fHYVa1QIqIzP6U7JqoOA1uOzq1ijQkBlfE53SlYdBLQen13FGhUCKuNzulOy6iCg9fjsKtaodB3QVg/hv7tYffY1SasOAlqPz65ijQoBFaVYlRDQenx2FWtUCKgoxaqEgNbjs6tYo0JARSlWJf0JaKtSptTZGhUCKkqxKiGgHVp9D0BS1qgQUFGKVQkB7dDqewCSskaFgIpSrEoIaIdW3wOQlDUqBFSUYlVCQDu0+h6ApKxRIaCiFKsSAtqh1fcAJGWNCgEVpViVENAOrb4HIClrVAioKMWqhIB2aPU9AElZo0JARSlWJQS0Q6vvAUjKGhUCKkqxKiGgHVp9D0BS1qgQUFGKVQkB7dDqewCSskaFgIpSrEoIaIdW3wOQlDUqBFSUYlVCQDu0+h6ApKxRIaCiFKsSAtqh1fcAJGWNCgEVpViVENAOrb4HIClrVAioKMWqhIB2aPU9AElZPfj5szy/euvh9LeO76/l+ey3TghojRSrEgLaodX3ACRldeCHvOTqV6ffOlwvv/Xej7O3JKCiFKsSAtqh1fcAJGVtn/386m9PTl7dm87lVn79YfGt689mbkpARSlWJQS0Q6vvAUjK2jrH9/K7xZ+DO513x987WCtjerg+fa/0hIDWSLEqIaAdWn0PQFLW1jlcH93z3MrvjL+3m98Y/Xln5rYEVJRiVUJAO7T6HoCkrH5MBXRrdGd0fxTSMQRUlGJVQkA7tPoegKSsbkw9Xj++N/rrwdr4l6CXhhBQSYpVCQHt0Op7AJKyurF7em+TgOqlWJUQ0A6tvgcgKasX+1OXMU0FdPZCJh7Ci1KsSghoh1bfA5CU1Yn9tauT5+Cr7oEOIaCiFKsSAtqh1fcAJGX1YXfmMnoCqpdiVUJAO7T6HoCkrC78kM9e8Mmz8GopViUEtEOr7wFIyurA8VZ+bfY1m+PrP7kONFiKVQkB7dDqewCSsjqwNf+KTV6JpJdiVUJAO7T6HoCkrO2ze6afxcs7r/FaeJUUqxIC2qHV9wAkZW2d0RsvFdwo7nuWdzpf8W5MSilWJQS0Q6vvAUjK2jr7eUVAT17dH3x9a/6eqTyarf7HMppJWnUQ0A6tvgcgKWtUCKgoxaqdJeO6ADMBlaRY40JARSlW7SwZ1wWYCagkxRoXAipKsWpnybguwExAJSnWuBBQUYpVO0vGdQFmAipJscaFgIpSrNpZMq4LMBNQSYo1LgRUlGLVzpJxXYCZgEpSrHEhoKIUq3aWjOsCzARUkmKNCwEVpVi1s2RcF2AmoJIUa1wIqCjFqp0l47oAMwGVpFjjQkBFKVbtLBnXBZgJqCTFGhcCKkqxamfJuC7ATEAlKda4EFBRilU7S8Z1AWYCKkmxxoWAilKs2lkyrgswE1BJijUuBFSUYtXOknFdgJmASlKscSGgohSrdpaM6wLMBFSSYo0LARWlWLWzZFwXYCagkhRrXAioKMWqnSXjugAzAZWkWONCQEUpVu0sGdcFmAmoJMUaFwIqSrFqZ8m4LsBMQCUp1rgQUFGKVTtLxnUBZgIqSbHGhYCKUqzaWTKuCzATUEmKNS4EVJRi1c6ScV2AmYBKUqxxIaCiFKt2lozrAswEVJJijQsBFaVYtbNkXBdgJqCSFGtcCKgoxaqdJeO6ADMBlaRY40JARSlW7SwZ1wWYCagkxRoXAipKsWpnybguwExAJSnWuBBQUYpVO0vGdQFmAipJscaFgIpSrNpZMq4LMBNQSYo1LgRUlGLVzpJxXYCZgEpSrHEhoKIUq3aWjOsCzARUkmKNCwEVpVi1s2RcN83Pn+X51VsP580EVJJijQsBFaVYtbNkXDfFD3nJ1a/mzARUkmKNCwEVpVi1s2Rcd8p+fvW3Jyev7uXv/ThrJqCSFGtcCKgoxaqdJeO6Ccf38rvFn4frwz9PzQRUkmKNCwEVpVi1s2RcN+FwfXTPcyu/M2smoJIUa1wIqCjFqp0l47qzENBgKda4EFBRilU7S8Z1ZzhcnzyLdGkIAZWkWONCQEUpVu0sGdedYTe/Mf4rAT1HijUuBFSUYtXOknHdPPtcxhQuxRoXAipKsWpnybhujv21q3fnvkVARSnWuBBQUYpVO0vGdbPsnrn/SUBrpFjjQkBFKVbtLBnXzfBDRT8JqCzFGhcCKkqxamfJuG6K46382o9nv01ARSnWuBBQUYpVO0vGdVNs5defVZkJqCTFGhcCKkqxamfJuO6U3ep+ElBZijUuBFSUYtXOknHdhMP1fMyNmQ0EVJRijQsBFaVYtbNkXDdhPyegWinWuBBQUYpVO0vGdQFmAipJscaFgIpSrNpZMq4LMBNQSYo1LgRUlGLVzpJxXYCZgEpSrHEhoKIUq3aWjOsCzARUkmKNCwEVpVi1s2RcF2AmoJIUa1wIqCjFqp0l47oAMwGVpFjjQkBFKVbtLBnXBZgJqCTFGhcCKkqxamfJuC7ATEAlKda4EFBRilU7S8Z1AWYCKkmxxoWAilKs2lkyrgswE1BJijUuBFSUYtXOknFdgJmASlKscSGgohSrdpYMa37609MQMwGVpFhbIWwOKyCgohSrdpYCbvP65pvTk3q08cb3IWYCKkmxmrDNYQUEVJRi1c5SwG0IaMtSrCYIqJ/V5wgkaVXOUsBtCGjLUqwmCKif1ecIJGlVzlLAbaYH98XvPiKgTaVYTdjmsAICKkqxamdJ3nS0kZVcLAZ3c/j3d5+vXiSgTaVYNTScwwoIqCjFqp0leRMB9dpVrBoIaAdWnyOQpFU5S/Kmo43BjL47+P/l4F4cfklAW5Bi1dBwDisgoKIUq3aW5E0E1GtXsWogoB1YfY5AklblLMmbCKjXrmLVQEA7sPocgSStylmSNxFQr13FqoGAdmD1OQJJWpWzJG8ioF67ilUDAe3A6nMEkrQqZ0neREC9dhWrBgLagdXnCCRpVc6SvGl2cLMpCGgzKVYNDeewAgIqSrFqZ0neREC9dhWrBgLagdXnCCRpVc6SvImH8F67ilUDD+E7sPocgSStylmSNxFQr13FqoGAdmD1OQJJWpWzJG8ioF67ilUDAe3A6nMEkrQqZ0neREC9dhWrBgLagdXnCCRpVc6SvImAeu0qVg0EtAOrzxFI0qqcJXkTAfXaVawaCGgHVp8jkKRVOUvyJt7OzmtXsWrg7ew6sPocgSStylmSNxFQr13FqoGAdmD1OQJJWpWzFHAbPtKjZSlWE3ykh5/V5wgkaVXOUsBt+FC5lqVYTfChcn5WnyOQpFU5SwG3IaAtS7GaCJjDw/Ubs1/mJe/9OHMrAipKsSoJCugHbxPQNqVYTQTM4VY+E9CDNQKqk2JVEhLQeV4+CTITUEmKtRXOzOHxVj4b0P3ZL8cQUFGKVYkloIFmAipJsbrw86f5XEC38jtVNySgohSrEgLaodX3ACRldWA3z2//bSagx/euflV1SwIqSrEqCQnoTw+CHrPPmwmoJMVq4pw53L32h7nH7Ifr1/88uFf6m4dztySgohSrktqA/vWL4v8fbWSfWMwEVJJi1RE+h7MBHT+HlN8df+fSEAIqSbEqqXsl0ufZu+Wfw8EdvyCkICSoBFSUYtWgmcPZgO4PHtQ/O/n7/XzySJ6AniPFqqT+pZwXR38S0FalWDVo5nA2oLujr+afS+IhvCjFqqTuIfxmVl64fDq4bz8Y8G+r2TshvxMloKIUqwrFHFZft7SfX382/TUBFaVYldQFdG/4qV2ng1s+knp9M+xXogRUlGJVoZjD6oAerM1eSU9ARSlWJXUBfb668sXOzs7jjezj4R8EtB0pVhWKOZQCyj3QQClWJXUBHYzoLAS0HSlWFYo5nAno8b3R0+/zWSWgohSrkrqATv+6noC2KMWqQjGHs6kcvTJ+EtIxBFSUYlVSex3oZnaRh/AOUqw6wufwzHWgt5+dvPp07jkkAipLsSqpDeh2ef0ITyK1LcWqI3wOxwE9WCsv/dwdvRnT3EuRCKgoxaqkNqB75fUjp4P7zk5xD+Bm9vHTulVjMwGVpFh1hM/hXEBPXn2W51dvP5u7FQEVpViVqAI6+0uo88wEVJJi1dFoDisgoKIUq3aW6jY+Xy0uwCOgbUux6mg0hxUQUFGKVTtLdRtnBvfk5c4EHsI3kmLV0WgOKyCgohSrdpbqNh6VL5U7+vwy78bUqhSrjkZzWAEBFaVYtbN0zvbnH7zV+kcfElCsWuxzWAEBFaVYtbNUt3HnyfDR08udk/L/vr48gndjaiTFqqPRHFZAQEUpVu0s1WwrnvwsBvf1zZUvy19AbfJ2dq1IsapoNocVEFBRilU7SzXbzg5u+aYOj7J3gswEVJJiVdFsDisgoKIUq3aWarZVDO6X5beDrh4hoKIUq4pmc1gBARWlWLWzVLONgKZ15lOyaiCg/lafI5CkVTlLNdsIaFpnPiWrBgLqb/U5AklalbNUs42ApnXmU7JqIKD+Vp8jkKRVOUs12+RnP98MeAkIARWlWFU0m8MKCKgoxaqdpZpte5ffHg7uB299Wb4MhIC2I8WqotkcVkBARSlW7Syds334MmSTmYBKUqxq7HNYAQEVpVi1s3TeDXZCPsK40kxAJSlWPeY5rICAilKs2lkyrgswE1BJijUuBFSUYtXOknFdgJmASlKscSGgohSrdpaM6wLMBFSSYo0LARWlWLWzFHCb7QtfWMwEVJJiNWGbwwoIqCjFqp2l829SfIbCJ8Vny44uGjn616DnQwmoKMVqwTiHFRBQUYpVO0vn3+T5alZcQjIe3MEcXwwyE1BJitWCcQ4rIKCiFKt2ls6/yfbww7tGg1vcDyhfSXeumYBKUqwWjHNYAQEVpVi1s3TuLV7fHA7qaHA3Q+eWgIpSrAasc1gBARWlWLWzdO4tRj/4R4O7HTy3BFSUYjVgncMKCKgoxaqdpfNuMPjBn/3qwy9Gg7uXZVnga+oIqCjFqsc8hxUQUFGKVTtL591g8FDpH24WP/s3y/fEIaAtSLHqMc9hBQRUlGLVztI52wcPlS6+Hg/u/72ZrfzPmzyEbyrFqsY+hxUQUFGKVTtL9ZsHD5UufD8Z3P+3kX1SviFjkJmASlKsWhrMYQUEVJRi1c5S7dZHxdyevD596PTRCQFtLsWqpMkcVkBARSlW7SzVbHvw9fAta08Ht/juZuAnKRBQUYpVRbM5rICAilKs2lmSNw1+xq98VPxlfnDDXgBCQEUpVg0N57ACAipKsWpnSd40mNcrT0d/mRrcbQLaVIpVQ8M5rICAilKs2lmSN70ev1huPLhZ+W4424GfRENARSlWDQ3nsAICKkqxamepbuOj1fLVH5PBzbK3vxsMbtgFeARUlGLV0WgOKyCgohSrdpZqt754P8uuTAZ3ZTDHK79+RECbSrEqaTKHFRBQUYpVO0v1m4v3vLlyev3dH4tXgPBmIk2lWLU0mMMKCKgoxaqdpXO2F5N7+hK6k5dfF5MbdAEeARWlWNXY57ACAipKsWpn6bwbFG/i8NbkTRwGj6Y+J6BNpVj1mOewAgIqSrFqZ+ncW+xl4zdgHD7r+Xw17ApmAipKsRqwzmEFBFSUYtXO0vk32Zx5J/BicPlIj2ZSrBaMc1gBARWlWLWzdP5N5j6LZvBYioA2k2K1YJzDCgioKMWqnaWA2wx/9E8NLp+J1EyK1YRtDisgoKIUq3aWAm4z/NE/Gdx/+TbMTEAlKVYTtjmsgICKUqzaWQq4zdFGduE7vZmASlKsJmxzWAEBFaVYtbMUcqOfnljMBFSSYrVhmsMKCKgoxaqdJeO6ADMBlaRY40JARSlW7SypV7wMvBtAQEUp1hYIncMKCKgoxaqdJe2C56t8qFxTKdbmBM9hBQRUlGLVzpLy9sU7i4X9Jp+AilKsjQmfwwoIqCjFqp0l3c23s2z09uDnmwmoJMXaFMUcVkBARSlW7Sypbv11lq18HGomoJIUa0M0c1gBARWlWLWzVLv16PPLlz/8p9+Pfl1/tKl52ERARSlWJU3msAICKkqxamepdmvxLozlW9e+/d1wbhUfQ0NARSlWJU3msAICKkqxamepdmsxuKvD2X3r283iYxUUZgIqSbEqaTKHFRBQUYpVO0u1WweDW7z991/fHw6v6v0XCagoxaqkyRxWQEBFKVbtLNVuHQ7ugPIjFHQX3hFQUYpVSZM5rICAilKs2lmq3ToZ3OEHI6p+9BNQUYpVSZM5rICAilKs2lmq3To1uKNr7xRmAipJsSppMocVEFBRilU7S7VbZwa3eD/G7GLw058EVJRiVdJkDisgoKIUq3aWarfODu7Ji5tZ+McoEFBRilVJkzmsgICKUqzaWardOje45WfLhv7+iYCKUqxKmsxhBQRUlGLVzlLt1vnBLX/2B34aNwEVpViVNJnDCgioKMWqnaXarWcGt/h07uKjEUPMBFSSYlXSZA4rIKCiFKt2lmq3nh3c4jnQsF8/EVBRilVJkzmsgICKUqzaWardWjG4g2+FXchMQEUpViVN5rACAipKsWpnqXbr0eeX356/XmQv8Ec/ARWlWJU0mcMKCKgoxaqdJfWKo42Vj4LMBFSSYm2B0DmsgICKUqzaWdIveRH2VowEVJRibYPAOayAgIpSrNpZMq4LMBNQSYo1LgRUlGLVzpJxXYCZgEpSrHEhoKIUq3aWjOsCzARUkmKNCwEVpVi1sxR2s6OdJ2ozAZWkWK0Y5rACAipKsWpnKexm2/rXfRBQUYrVimEOKyCgohSrdpbCbkZA25RitUJAGc3FGk0C2qHV9wAkZTVCQBnNxXcUNBYAABhlSURBVBpNAtqh1fcAJGU1QkAZzcUaTQLaodX3ACRlNUJAGc3FGk0C2qHV9wAkZTVCQBnNxRpNAtqh1fcAJGU1QkAZzcUaTQLaodX3ACRlNUJAGc3FGk0C2qHV9wAkZTVCQBnNxRpNAtqh1fcAJGU1QkAZzcUaTQLaodX3ACRlNUJAGc3FGk0C2qHV9wAkZTVCQBnNxRpNAtqh1fcAJGU1ct4cHq7fmPn6+P5ant96OHcrAipKsSohoB1afQ9AUlYj583hVj4T0MP1vOC9H2dvRUBFKVYlBLRDq+8BSMpqpH4Oj7fy2YBu5dcfnry6l19/NnM7AipKsSohoB1afQ9AUlYjtXP486f5bEAP1sr7nofrV7+auSEBFaVYlRDQDq2+ByApq5G6OdzN89t/mwno7uir3fzOzC0JqCjFqoSAdmj1PQBJWY3UBvTaH072ZwK6ld8t/5z9LgGtkWJVQkA7tPoegKSsRs6bw5lUHt8bPXQ/WBv/EvTSEAIqSbEqIaAdWn0PQFJWIwSU0Vys0eRD5Tq0+h6ApKxGzptDKaCzFzLxEF6UYlXCxxp3aPU9AElZnTjvHugQAipKsSohoB1afQ9AUlYnCGhDKVYl+oD+9OBpmJmASlKsLVA5hzwL31CKVYk6oEcbK1+GmQmoJMXanOo53J+7DvTOzJ9jCKgoxaqEgHZo9T0ASVkbExJQXomklmJVQkA7tPoegKSsjQkJ6PG9/BqvhVdJsSoJCejzXz8o+HangIA2l2I1ETCH44AerJV3Ol/xbkxKKVYlIQHdy2YgoE2lWE0EzOFcQE9e3R/089azuVsRUFGKVUlYQH9xecAvCWhLUqwmbHNYAQEVpVi1sxRwm73s3dMvHvMQvrEUqwnbHFZAQEUpVu0sBdxmZnD5HWhzKVYTtjmsgICKUqzaWQq4DQFtWYrVBAH1s/ocgSStylkKuA0BbVmK1QQB9bP6HIEkrcpZCrgNAW1ZitUEAfWz+hyBJK3KWQq4DQFtWYrVBAH1s/ocgSStylkKuA0BbVmK1QQB9bP6HIEkrcpZCrhNwOAert+Y/xYBFaVYTRBQP6vPEUjSqpylgNs8//CL0y+qB3crJ6DhUqwmAuYwDAIqSrFqZ0m7oGpwj7dyAqqQYm0OAXWRYtXOknbB0edvzQ/uz5/mBFQjxdqcijkMhoCKUqzaWTKum2I3z2//jYAqpFjjQkBFKVbtLGkXvDzzuYi71/5w5kMTTghojRRrc87OYTgEVJRi1c6S8vZHG9mb530WzXkfvk1AsTZFmMMwCKgoxaqdJeXtCWgLUqyNIaBJne6UrMpZqt989LsPP5r9RkBAR2YCKkmxagmdwzAIqCjFqp2l+s2vb2YXZ75BQFuQYtUSOodhEFBRilU7S/WbCaiHFKsWAups9TkCSVqVs1S/mYB6SLFqIaDOVp8jkKRVOUv1mwmohxSrFgLqbPU5AklalbNUv5mAekixaiGgzlafI5CkVTlL9ZsJqIcUqxYC6mz1OQJJWpWzVL+ZgHpIsWohoM5WnyOQpFU5S/WbCaiHFKsWAups9TkCSVqVs1S/ucHgElBRilULAXW2+hyBJK3KWarfTEA9pFi1EFBnq88RSNKqnKX6zQTUQ4pVCwF1tvocgSStylmq30xAPaRYtRBQZ6vPEUjSqpyl+s0E1EOKVQsBdbb6HIEkrcpZqt9MQD2kWLUQUGerzxFI0qqcpfrNRz89+Hb2GwS0uRSrlgZzWAEBFaVYtbOkvD0BbUGKtTEENKnTnZJVOUvK2xPQFqRYG0NAkzrdKVmVs2RcF2AmoJIUa1wIqCjFqp0l47oAMwGVpFjjQkBFKVbtLBnXBZgJqCTFGhcCKkqxamfJuC7ATEAlKda4EFBRilU7S8Z1AWYCKkmxxoWAilKs2lkyrgswE1BJijUuBFSUYtXOknFdgJmASlKscSGgohSrdpaM6wLMBFSSYo0LARWlWLWzZFwXYCagkhRrXAioKMWqnSXjugAzAZWkWONCQEUpVu0sGdcFmAmoJMUaFwIqSrFqZ8m4LsBMQCUp1rgQUFGKVTtLxnUBZgIqSbHGhYCKUqzaWTKuCzATUEmKNS4EVJRi1c6ScV2AmYBKUqxxIaCiFKt2lozrAswEVJJijQsBFaVYtbNkXBdgJqCSFGtcCKgoxaqdJeO6ADMBlaRY40JARSlW7SwZ1wWYCagkxRoXAipKsWpnybguwExAJSnWuBBQUYpVO0vGdQFmAipJscaFgIpSrNpZMq4LMBNQSYo1LgRUlGLVzpJxXYCZgEpSrHEhoKIUq3aWjOsCzARUkmKNCwEVpVi1s2RcF2AmoJIUa1wIqCjFqp0l47oAMwGVpFjjQkBFKVbtLBnXBZgJqCTFGhcCKkqxamfJuC7ATEAlKda4EFBRilU7S8Z1AWYCKkmxxoWAilKs2lkyrgswE1BJijUuBFSUYtXOknFdgJmASlKscSGgohSrdpaM6wLMBFSSYo0LARWlWLWzZFwXYCagkhRrXAioKMWqnSXjugAzAZWkWONCQEUpVu0sGdcFmAmoJMUaFwIqSrFqZ8m4LsBMQCUp1rgQUFGKVTtLxnUBZgIqSbHGhYCKUqzaWTKuCzATUEmKNS4EVJRi1c6ScV2AmYBKUqxxIaCiFKt2lozrAswEVJJijQsBFaVYtbNkXBdgJqCSFGtcCKgoxaqdJeO6ADMBlaRY40JARSlW7SwZ1wWYCagkxRoXAipKsWpnybguwExAJSnWuBBQUYpVO0vGdQFmAipJscaFgIpSrNpZMq4LMBNQSYo1LgRUlGLVzpJxXYCZgEpSrHEhoKIUq3aWjOsCzARUkmKNCwEVpVi1s2RcF2AmoJIUa1wIqCjFqp0l47oAMwGVpFjjQkBFKVbtLBnXBZgJqCTFGhcCKkqxamfJuC7ATEAlKVYXju+v5fmth1PfOVzPS977ceaGBFSUYlVCQDu0+h6ApKwOjGo5HcuDNQKqk2JVQkA7tPoegKSsDmzl1x+evLqXX382+dZ+fqPqlgRUlGJVQkA7tPoegKSs7XOwVt7PPFy/+tXke1v5naqbElBRilUJAe3Q6nsAkrK2z+7o3ubuaTSP703FdAoCKkqxKiGgHVp9D0BS1vbZyu+Wf049bD9cv/7nT/P8Nw/nbkpARSlWJQS0Q6vvAUjK2jqTe5sHa5Nfgo6fQxqldcClIQRUkmJVQkA7tPoegKSsrVMV0P08v/3s5O/388kjeQJ6jhSrEgLaodX3ACRlbZ2pgE4uWhr/WnT+uSQewotSrEoIaIdW3wOQlLV1qu6BjtnPZ79FQEUpViUEtEOr7wFIyto6dQGdulNaQkBFKVYlBLRDq+8BSMraPhXPwo+ZbyoBFaVYlRDQDq2+ByApa/uMr/88vQ70+J7QVAIqSrEqIaAdWn0PQFLW9ql4JdLWMJyTkI4hoKIUqxIC2qHV9wAkZW2fQSavzb0W/mCtuIzp1adzzyERUFmKVQkB7dDqewCSsjrwaurdmA7Wyvuhu6M3Y5p7KRIBFaVYlRDQDq2+ByApqwev7g9ieau8szkK6Mmrz/L86u35Z+UJqCjFqoSAdmj1PQBJWaNCQEUpVu0sGdcFmAmoJMUaFwIqSrFqZ8m4LsBMQCUp1rgQUFGKVTtLxnUBZgIqSbHGhYCKUqzaWTKuCzATUEmKNS4EVJRi1c6ScV2AmYBKUqxxIaCiFKt2lozrAswEVJJijQsBFaVYtbNkXBdgJqCSFGtcCKgoxaqdJeO6ADMBlaRY40JARSlW7SwZ1wWYCagkxRoXAipKsWpnybguwExAJSnWuBBQUYpVO0vGdQFmAipJscaFgIpSrNpZMq4LMBNQSYo1LgRUlGLVzpJxXYCZgEpSrHEhoKIUq3aWjOsCzARUkmKNCwEVpVi1s2RcF2AmoJIUa1wIqCjFqp0l47oAMwGVpFjjQkBFKVbtLBnXBZgJqCTFGhcCKkqxamfJuC7ATEAlKda4EFBRilU7S8Z1AWYCKkmxxoWAilKs2lkyrgswE1BJijUuBFSUYtXOknFdgJmASlKscSGgohSrdpaM6wLMBFSSYo0LARWlWLWzZFwXYCagkhRrXAioKMWqnSXjugAzAZWkWONCQEUpVu0sGdcFmAmoJMUaFwIqSrFqZ8m4LsBMQCUp1rgQUFGKVTtLxnUBZgIqSbHGhYCKUqzaWTKuCzATUEmKNS4EVJRi1c6ScV2AmYBKUqxxIaCiFKt2lozrAswEVJJijQsBFaVYtbNkXBdgJqCSFGtcCKgoxaqdJeO6ADMBlaRY40JARSlW7SwZ1wWYCagkxRoXAipKsWpnybguwExAJSnWuBBQUYpVO0vGdQFmAipJscaFgIpSrNpZMq4LMBNQSYo1LgRUlGLVzpJxXYCZgEpSrHEhoKIUq3aWjOsCzARUkmKNCwEVpVi1s2RcF2AmoJIUa1wIqCjFqp0l47oAMwGVpFjjQkBFKVbtLBnXBZgJqCTFGhcCKkqxamfJuC7ATEAlKda4EFBRilU7S8Z1AWYCKkmxxoWAilKs2lkyrgswE1BJijUuBFSUYtXOknFdgJmASlKscSGgohSrdpaM6wLMBFSSYo0LARWlWLWzZFwXYCagkhRrXAioKMWqnSXjugAzAZWkWONCQEUpVu0sGdcFmAmoJMUaFwIqSrFqZ8m4LsBMQCUp1rgQUFGKVTtLxnUBZgIqSbHGhYCKUqzaWTKuCzATUEmKNS4EVJRi1c6ScV2AmYBKUqxxIaCiFKt2lozrAswEVJJijQsBFaVYtbNkXBdgJqCSFGtcCKgoxaqdJeO6ADMBlaRY40JARSlW7SwZ1wWYCagkxRoXAipKsWpnybguwExAJSnWuBBQUYpVO0vGdQFmAipJscaFgIpSrNpZMq4LMBNQSYo1LgRUlGLVzpJxXYCZgEpSrHEhoKIUq3aWjOsCzARUkmKNCwEVpVi1s2RcF2AmoJIUa1wIqCjFqp0l47oAMwGVpFjjQkBFKVbtLBnXBZgJqCTFGhcCKkqxamfJuC7ATEAlKda4EFBRilU7S8Z1AWYCKkmxxoWAilKs2lkyrgswE1BJijUuBFSUYtXOknFdgJmASlKscSGgohSrdpaM6wLMBFSSYo0LARWlWLWzZFwXYCagkhRrXAioKMWqnSXjugAzAZWkWONCQEUpVu0sGdcFmAmoJMUaFwIqSrFqZ8m4LsBMQCUp1rgQUFGKVTtLxnUBZgIqSbHGhYCKUqzaWTKuCzATUEmKNS4EVJRi1c6ScV2AmYBKUqxxIaCiFKt2lozrAswEVJJijQsBFaVYtbNkXBdgJqCSFGtcCKgoxaqdJeO6ADMBlaRY40JARSlW7SwZ1wWYCagkxRoXAipKsWpnybguwExAJSnWuBBQUYpVO0vGdQFmAipJscaFgIpSrNpZMq4LMBNQSYo1LgRUlGLVzpJx3TTH99fy/NbDeTMBlaRYXaiYQ+1otvofy2gmadXRQkAP1/OC936cMxNQSYrVg4o5VI9mq/+xjGaSVh0tBHQrv/7w5NW9/PqzWTMBlaRYPaiYQ/Votvofy2gmadXRPKAHa+UP+MP1q1/NmgmoJMXqQMUc6kez1f9YRjNJq47mAd3Nb4z+vDNrJqCSFKsDFXOoH81W/2MZzSStOpoHdCu/W/65P5rWiZmASlKsDlTMoX40W/2PZTSTtOpoHNDje6PHRwdr4980XRpCQCUp1vapmEPDaLb6H8toJmnVESWgAG3TTkABdLQZ0NmrRWoewgO0TcUcMprgjsc90JGZKYXuCLsHOoTRhLYgoNALCCjEIMqz8ACt08qz8AA62rgO9M7MnxMzUwodUjGHjCZ4E+WVSACt08orkQB0NB+l43v5NeVr4QFap2IOGU3wpoVReqV+NyaA9pmew4O18k4nownOtDFKr+4PhvTWs7nvMqXQLVNzOAooownORHlHeoCYMJrQFgQUlg5GE9qCgMLSwWhCWxBQWDoYTWgLAgpLB6MJbUFAYelgNKEtCCgsHYwmtAUBhaWD0YS2IKCwdDCa0BYEFJYORhPagoDC0sFoQlsQUFg6GE1oCwIKSwejCW1BQGHpYDShLTwDChCK2xgymtCMc2Zpycb00qXYexBOQvvaeFf9xpDRdCChfXUezWV7MHPpUuw9CCehfU1oVxeWlI5hQvvqvKsEdHFJaF8T2tWFJaVjmNC+EtBWSejMp7SvCe3qwpLSMUxoXwloqyR05lPa14R2dWFJ6RgmtK8EtFUSOvMp7WtCu7qwpHQME9pXAtoqCZ35lPY1oV1dWFI6hgntKwEFAFhMCCgAgBECCgBghIACABghoAAARggoAIARAgoAYISAAgAYWaqA/vxZnl+99TD2bgRzsHb9Wex9COD4h7U8/0+/jb0bScNouuA/mssU0B/ykqtfxd6RQI7v5SlM6av14XG9HXtHEobRdKGD0VyigO7nV387OKb38vd+jL0rYezmKUzp4N/StYcnx/87nX/9iwej6UIXo7k8AR0czbvFn4frwz8XnoO1JKZ0f/Svfje/EXtXUoXR9KGL0VyegB6uj368b+V3Iu9KEIN/Vf81gV80jf/xgx1G04VORnN5AjohkSndym+k8Jv6yT9+aA6j2SadjObyBfRwPYlf1u0PHiOlMKXFPv7tv+T5tT/E3pP0YTRbpZPRXL6ApvG7uvLfUiJTen/4VGcSd54WGkazVToZzaUL6H4azxaXD+ZSmNL94iqRZyfHP6RxXBcZRrNdOhnNZQvo/trVFJ7z2C2f5ExkSoc/37eSuPu0wDCaLdPJaC5ZQHfT+CF/sFbuZgpTOtrVNHZ2kWE026aT0VyugKbyOHM3n7Doz3EfrI32cPIXsMBotk4no7lMAT3eyq8t+DkfkdCUHt8b/cPfT+HS6kWF0XSgk9FcpoBupfZPPIXHSZNfMCVyDeNiwmh60MVoLlFAd1Mb0jSm9GAtv/WQZ+EbwWi60MVoLk9AD9cnjz1Sebo4iSk92V8bvpNQCk8hLyaMphMdjObyBHQ/Z0p9eHV/MKe/See9LBcORtML/9FcnoACALQMAQUAMEJAAQCMEFAAACMEFADACAEFADBCQAEAjBBQAAAjBBQAwAgBBQAwQkC9OXoy/ONPkfcDYA5GszkE1I1H//HL4v+vvvF98dV29ov/Md7y+EEl30bbVVguGM3WIKBePF/Nivncy7KLg6+ONrLhtBZsZpVcjLi3sEQwmu1BQN3YLuduMJ7ZJ+WwfjLZMpjSyxVcibizsEwwmq1BQN042rjwxUnx4/7Kk2JWp36Ib46+2HkyuuVPD552v3+wtDCarUFAXfjLh7P8Y5a9Vfz5Ubl1NKV72egH++ubbzKl0A2MZqsQUBeEXyWNfrxPpvTd4a2ZUugMRrNVCKgLm9mFD8/y/umUPv/g8uXVbOXy5St7ly//cviLp0/OkQI0h9FsFQLqwub4J/gM21NTujr+wb83uQ/AlII/jGarEFAXzk7p0dOZKZ250XZWOdQA7cNotgoBdaEYwNOf3yVvPp2b0mJ7+WRo8ZcVfsZDJzCarUJAXSindOo6utVyTP86/VTn6JHSlafDv6x8HHmXYTlgNFuFgHbA0R9XZ6awmNLBbF7O3vkm+2RvNfuHm28+KuY13h7CksJoNoSAevPiQTGjMyM4mNJHq9lgMt89efnNYDyLa0W2Bz/pv4y2k7CMMJrNIaDebGdnfoJvZv/h5uBhU3mxXfH/yovtHq1yxR10CqPZHALqzXZ24fu5bw1+zG8PBnd4tfLO+Grl0ZuLAXQEo9kcAurBy6l3Avs8u/D706++KzZvTr36eO/yZR4eQWcwmu1CQD2Yu0xkivKiupkpnXovMQBvGM12IaAePJ95kdzK1FfFxXXji+0uv/VdMaUrvzrdAuALo9kuBNSb7ezMb+CHr/PYKzfszdwBAOgORrM5BNSbs1P6+ubMlK78/vRXUADdwWg2h4B6c3ZKn6+Wl9WNp5RfNEEcGM3mEFBvzk7p5nAwmVKIC6PZHALqytHOztfzUzp4mHTxxe8+/PCD8lf4H4x/U88v66FLGM1WIKCubJ++1/eER9nKl5P3XDx7IQlAFzCarUBAXdmrGr7tKyfFj/mz8GMeOoPRbAUC6svOzg4vg4NFhNFsAwIKAGCEgAIAGCGgAABGCCgAgBECCgBghIACABghoAAARggoAIARAgoAYISAAgAYIaAAAEYIKACAEQIKAGCEgAIAGCGgAABGCCgAgBECCgBghIACABghoAAARggoAIARAgoAYISAAgAYIaAAAEYIKACAEQIKAGCEgAIAGCGgAABGCCgAgBECCgBghIACABghoAAARggoAICR/w+l5Jb8nUndVwAAAABJRU5ErkJggg==" width="672" /></p>
+<div id="初期設定" class="section level3">
+<h3>初期設定</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>all_nam <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;PMED4&quot;</span> <span class="ot">=</span> <span class="st">&quot;母学歴&quot;</span>, <span class="st">&quot;(Intercept)&quot;</span> <span class="ot">=</span> <span class="st">&quot;Constant&quot;</span>,<span class="st">&quot;w1BCQ14_5_2&quot;</span> <span class="ot">=</span> <span class="st">&quot;ニュース会話量（母）&quot;</span>, <span class="st">&quot;PFED4&quot;</span> <span class="ot">=</span> <span class="st">&quot;父学歴&quot;</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;w1BCQ14_5_1&quot;</span> <span class="ot">=</span> <span class="st">&quot;ニュース会話量（父）&quot;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">&#39;w1子ども性別&#39;</span> <span class="ot">=</span> <span class="st">&#39;*性別*&#39;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">&#39;scdum&#39;</span> <span class="ot">=</span> <span class="st">&#39;学校段階&#39;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">&#39;w1BCQ14_5_2:w1子ども性別&#39;</span> <span class="ot">=</span> <span class="st">&#39;ニュース交差項（母）と性別&#39;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">&#39;w1BCQ14_5_1:w1子ども性別&#39;</span> <span class="ot">=</span> <span class="st">&#39;ニュース交差項（父）と性別&#39;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">&#39;w1BCQ14_5_2:scdum&#39;</span> <span class="ot">=</span> <span class="st">&#39;ニュース交差項（母）と学校段階&#39;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">&#39;w1BCQ14_5_1:scdum&#39;</span> <span class="ot">=</span> <span class="st">&#39;ニュース交差項（父）と学校段階&#39;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">&quot;pc1&quot;</span> <span class="ot">=</span> <span class="st">&quot;子どものメディア接触&quot;</span>, <span class="st">&quot;pc2&quot;</span> <span class="ot">=</span> <span class="st">&quot;子どもの学力・学習意欲&quot;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">&quot;pc3&quot;</span> <span class="ot">=</span> <span class="st">&quot;教育環境&quot;</span>,<span class="st">&quot;w1BCQ3_11&quot;</span> <span class="ot">=</span> <span class="st">&quot;友達付き合い&quot;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#表形式の設定</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>likeapa <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="fu">tab_options</span>(x,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">table.border.top.width =</span> <span class="dv">0</span>, <span class="co">#タイトルの上の線を消す，</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">table.border.bottom.width =</span> <span class="dv">0</span>, <span class="co">#注の下の線を消す</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">heading.title.font.size =</span> <span class="fu">px</span>(<span class="dv">16</span>), <span class="co">#タイトルのフォントサイズをいい感じに</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">row_group.border.bottom.width =</span> <span class="dv">0</span>, <span class="co">#セクション名の下の線を消す</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">table_body.hlines.width =</span> <span class="dv">0</span>, <span class="co"># tableの中の水平線消す</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">stub.border.width =</span> <span class="dv">0</span>, <span class="co"># stub列の中の線を消す</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">column_labels.border.top.width =</span> <span class="dv">3</span>, <span class="co"># 変数名の行の線を黒く太く</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">column_labels.border.top.color =</span> <span class="st">&quot;black&quot;</span>, </span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">column_labels.border.bottom.width =</span> <span class="dv">3</span>,</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">column_labels.border.bottom.color =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">table_body.border.bottom.color =</span> <span class="st">&quot;black&quot;</span>, <span class="co">#テーブルの下線を黒く</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">table.width =</span> <span class="fu">pct</span>(<span class="dv">30</span>), <span class="co"># 程よく幅を広げる（数字で調整）</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">table.background.color =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">row_group.border.top.color =</span> <span class="st">&quot;black&quot;</span>, <span class="co">#セクション名の上の線を消す</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">row_group.border.top.width =</span> <span class="dv">1</span> <span class="co">#セクション名の上の線を細く</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> <span class="fu">cols_align</span>(<span class="at">align=</span><span class="st">&quot;center&quot;</span>) <span class="sc">%&gt;%</span>  <span class="co"># スタブ以外の列名を中央揃えに</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_style</span>(</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">style=</span><span class="fu">list</span>(<span class="fu">cell_text</span>(<span class="at">align=</span><span class="st">&quot;center&quot;</span>)), <span class="co"># グループ変数名を中央揃えに</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">locations=</span><span class="fu">cells_row_groups</span>()</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    )}</span></code></pre></div>
+</div>
+</div>
+<div id="分析1-ニュースが学歴を媒介するのか" class="section level1">
+<h1>分析1 ニュースが学歴を媒介するのか</h1>
+<div id="ファイル読み込み" class="section level2">
+<h2>ファイル読み込み</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> df0</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>w1BCQ23_17<span class="ot">&lt;-</span><span class="fu">as.ordered</span>(df<span class="sc">$</span>w1BCQ23_17) <span class="co">#　従属変数を順序化</span></span></code></pre></div>
+</div>
+<div id="年の分析" class="section level2">
+<h2>2015年の分析</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>first_reg<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>first_reg[[<span class="st">&#39;モデル1母&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4,<span class="at">data =</span> df)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>first_reg[[<span class="st">&#39;モデル2母&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>first_reg[[<span class="st">&#39;モデル3母&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">+</span>w1BCQ14_5_2<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>first_reg[[<span class="st">&#39;モデル1父&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4,<span class="at">data =</span> df)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>first_reg[[<span class="st">&#39;モデル2父&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>first_reg[[<span class="st">&#39;モデル3父&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">+</span>w1BCQ14_5_1<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>first<span class="ot">&lt;-</span><span class="fu">msummary</span>(first_reg,<span class="st">&#39;gt&#39;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="fu">c</span>(<span class="st">&quot;*&quot;</span> <span class="ot">=</span> <span class="fl">0.05</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表3:分析1&#39;</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">3</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">7</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  likeapa</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>first</span></code></pre></div>
+<div id="wpgpnjscuw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
-#bcesmnqxnt .gt_table {
+#wpgpnjscuw .gt_table {
 display: table;
 border-collapse: collapse;
 margin-left: auto;
@@ -2014,7 +1290,7 @@ font-size: 16px;
 font-weight: normal;
 font-style: normal;
 background-color: #FFFFFF;
-width: 60%;
+width: 30%;
 border-top-style: solid;
 border-top-width: 0px;
 border-top-color: #A8A8A8;
@@ -2028,7 +1304,7 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#bcesmnqxnt .gt_heading {
+#wpgpnjscuw .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -2039,7 +1315,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#bcesmnqxnt .gt_title {
+#wpgpnjscuw .gt_title {
 color: #333333;
 font-size: 16px;
 font-weight: initial;
@@ -2050,7 +1326,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#bcesmnqxnt .gt_subtitle {
+#wpgpnjscuw .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -2061,12 +1337,12 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#bcesmnqxnt .gt_bottom_border {
+#wpgpnjscuw .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#bcesmnqxnt .gt_col_headings {
+#wpgpnjscuw .gt_col_headings {
 border-top-style: solid;
 border-top-width: 3px;
 border-top-color: #000000;
@@ -2080,7 +1356,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#bcesmnqxnt .gt_col_heading {
+#wpgpnjscuw .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2099,7 +1375,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#bcesmnqxnt .gt_column_spanner_outer {
+#wpgpnjscuw .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2110,13 +1386,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#bcesmnqxnt .gt_column_spanner_outer:first-child {
+#wpgpnjscuw .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#bcesmnqxnt .gt_column_spanner_outer:last-child {
+#wpgpnjscuw .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#bcesmnqxnt .gt_column_spanner {
+#wpgpnjscuw .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 3px;
 border-bottom-color: #000000;
@@ -2127,7 +1403,7 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#bcesmnqxnt .gt_group_heading {
+#wpgpnjscuw .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2151,7 +1427,7 @@ border-right-width: 1px;
 border-right-color: #D3D3D3;
 vertical-align: middle;
 }
-#bcesmnqxnt .gt_empty_group_heading {
+#wpgpnjscuw .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -2165,13 +1441,13 @@ border-bottom-width: 0px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#bcesmnqxnt .gt_from_md > :first-child {
+#wpgpnjscuw .gt_from_md > :first-child {
 margin-top: 0;
 }
-#bcesmnqxnt .gt_from_md > :last-child {
+#wpgpnjscuw .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#bcesmnqxnt .gt_row {
+#wpgpnjscuw .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2189,7 +1465,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#bcesmnqxnt .gt_stub {
+#wpgpnjscuw .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2201,7 +1477,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#bcesmnqxnt .gt_stub_row_group {
+#wpgpnjscuw .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2214,10 +1490,10 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#bcesmnqxnt .gt_row_group_first td {
+#wpgpnjscuw .gt_row_group_first td {
 border-top-width: 1px;
 }
-#bcesmnqxnt .gt_summary_row {
+#wpgpnjscuw .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2226,14 +1502,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#bcesmnqxnt .gt_first_summary_row {
+#wpgpnjscuw .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#bcesmnqxnt .gt_first_summary_row.thick {
+#wpgpnjscuw .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#bcesmnqxnt .gt_last_summary_row {
+#wpgpnjscuw .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2242,7 +1518,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#bcesmnqxnt .gt_grand_summary_row {
+#wpgpnjscuw .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2251,7 +1527,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#bcesmnqxnt .gt_first_grand_summary_row {
+#wpgpnjscuw .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2260,10 +1536,10 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#bcesmnqxnt .gt_striped {
+#wpgpnjscuw .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#bcesmnqxnt .gt_table_body {
+#wpgpnjscuw .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2271,7 +1547,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #000000;
 }
-#bcesmnqxnt .gt_footnotes {
+#wpgpnjscuw .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2284,7 +1560,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#bcesmnqxnt .gt_footnote {
+#wpgpnjscuw .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-left: 4px;
@@ -2292,7 +1568,7 @@ padding-right: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#bcesmnqxnt .gt_sourcenotes {
+#wpgpnjscuw .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2305,58 +1581,58 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#bcesmnqxnt .gt_sourcenote {
+#wpgpnjscuw .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#bcesmnqxnt .gt_left {
+#wpgpnjscuw .gt_left {
 text-align: left;
 }
-#bcesmnqxnt .gt_center {
+#wpgpnjscuw .gt_center {
 text-align: center;
 }
-#bcesmnqxnt .gt_right {
+#wpgpnjscuw .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#bcesmnqxnt .gt_font_normal {
+#wpgpnjscuw .gt_font_normal {
 font-weight: normal;
 }
-#bcesmnqxnt .gt_font_bold {
+#wpgpnjscuw .gt_font_bold {
 font-weight: bold;
 }
-#bcesmnqxnt .gt_font_italic {
+#wpgpnjscuw .gt_font_italic {
 font-style: italic;
 }
-#bcesmnqxnt .gt_super {
+#wpgpnjscuw .gt_super {
 font-size: 65%;
 }
-#bcesmnqxnt .gt_footnote_marks {
+#wpgpnjscuw .gt_footnote_marks {
 font-style: italic;
 font-weight: normal;
 font-size: 75%;
 vertical-align: 0.4em;
 }
-#bcesmnqxnt .gt_asterisk {
+#wpgpnjscuw .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#bcesmnqxnt .gt_indent_1 {
+#wpgpnjscuw .gt_indent_1 {
 text-indent: 5px;
 }
-#bcesmnqxnt .gt_indent_2 {
+#wpgpnjscuw .gt_indent_2 {
 text-indent: 10px;
 }
-#bcesmnqxnt .gt_indent_3 {
+#wpgpnjscuw .gt_indent_3 {
 text-indent: 15px;
 }
-#bcesmnqxnt .gt_indent_4 {
+#wpgpnjscuw .gt_indent_4 {
 text-indent: 20px;
 }
-#bcesmnqxnt .gt_indent_5 {
+#wpgpnjscuw .gt_indent_5 {
 text-indent: 25px;
 }
 </style>
@@ -2510,13 +1786,144 @@ text-indent: 25px;
   
 </table>
 </div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gtsave</span>(tempra,<span class="st">&#39;表3.png&#39;</span>)</span></code></pre></div>
-<div id="多重共線性確認" class="section level4">
-<h4>多重共線性確認</h4>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ma<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">+</span>w1BCQ14_5_2<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fa<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">+</span>w1BCQ14_5_1<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>all<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">+</span>w1BCQ14_5_2<span class="sc">+</span>PFED4<span class="sc">+</span>w1BCQ14_5_1<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df) </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(ma) <span class="co">#carパッケージより</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#gtsave(first,&#39;表3.png&#39;)</span></span></code></pre></div>
+<div id="比例オッズの確認" class="section level3">
+<h3>比例オッズの確認</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(MASS)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(Hmisc)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">polr</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">+</span>w1BCQ14_5_1<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df,<span class="at">Hess =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code></pre></div>
+<pre><code>## Call:
+## polr(formula = w1BCQ23_17 ~ PFED4 + w1BCQ14_5_1 + pc1 + pc2 + 
+##     pc3 + w1BCQ3_11, data = df, Hess = TRUE)
+## 
+## Coefficients:
+##                Value Std. Error t value
+## PFED4        0.01037    0.02301  0.4505
+## w1BCQ14_5_1  0.80531    0.03875 20.7824
+## pc1          0.32708    0.03288  9.9465
+## pc2          0.23930    0.02948  8.1164
+## pc3          0.05372    0.02351  2.2851
+## w1BCQ3_11   -0.02263    0.01171 -1.9332
+## 
+## Intercepts:
+##     Value   Std. Error t value
+## 1|2 -0.5845  0.1340    -4.3607
+## 2|3  2.0441  0.1372    14.8959
+## 3|4  4.1080  0.1525    26.9385
+## 
+## Residual Deviance: 7286.335 
+## AIC: 7304.335</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## store table</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>(ctable <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(m)))</span></code></pre></div>
+<pre><code>##                   Value Std. Error    t value
+## PFED4        0.01036829 0.02301385  0.4505238
+## w1BCQ14_5_1  0.80530945 0.03874962 20.7823818
+## pc1          0.32708060 0.03288415  9.9464507
+## pc2          0.23930307 0.02948403  8.1163614
+## pc3          0.05372350 0.02351024  2.2851102
+## w1BCQ3_11   -0.02262801 0.01170514 -1.9331690
+## 1|2         -0.58454439 0.13404792 -4.3607122
+## 2|3          2.04410479 0.13722596 14.8959043
+## 3|4          4.10804022 0.15249722 26.9384593</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">## calculate and store p values</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(ctable[, <span class="st">&quot;t value&quot;</span>]), <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="do">## combined table</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>(ctable <span class="ot">&lt;-</span> <span class="fu">cbind</span>(ctable, <span class="st">&quot;p value&quot;</span> <span class="ot">=</span> p))</span></code></pre></div>
+<pre><code>##                   Value Std. Error    t value       p value
+## PFED4        0.01036829 0.02301385  0.4505238  6.523328e-01
+## w1BCQ14_5_1  0.80530945 0.03874962 20.7823818  6.248069e-96
+## pc1          0.32708060 0.03288415  9.9464507  2.613380e-23
+## pc2          0.23930307 0.02948403  8.1163614  4.803689e-16
+## pc3          0.05372350 0.02351024  2.2851102  2.230637e-02
+## w1BCQ3_11   -0.02262801 0.01170514 -1.9331690  5.321538e-02
+## 1|2         -0.58454439 0.13404792 -4.3607122  1.296398e-05
+## 2|3          2.04410479 0.13722596 14.8959043  3.504111e-50
+## 3|4          4.10804022 0.15249722 26.9384593 7.788128e-160</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(ci <span class="ot">&lt;-</span> <span class="fu">confint</span>(m)) <span class="co"># default method gives profiled CIs</span></span></code></pre></div>
+<pre><code>##                    2.5 %       97.5 %
+## PFED4       -0.034735540 0.0554861934
+## w1BCQ14_5_1  0.729671183 0.8815843857
+## pc1          0.262741052 0.3916640157
+## pc2          0.181600445 0.2971895225
+## pc3          0.007647119 0.0998176315
+## w1BCQ3_11   -0.045581963 0.0003063271</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint.default</span>(m) <span class="co"># CIs assuming normality</span></span></code></pre></div>
+<pre><code>##                    2.5 %      97.5 %
+## PFED4       -0.034738028 0.055474603
+## w1BCQ14_5_1  0.729361587 0.881257317
+## pc1          0.262628845 0.391532353
+## pc2          0.181515430 0.297090719
+## pc3          0.007644267 0.099802728
+## w1BCQ3_11   -0.045569660 0.000313639</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">## odds ratios</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(m))</span></code></pre></div>
+<pre><code>##       PFED4 w1BCQ14_5_1         pc1         pc2         pc3   w1BCQ3_11 
+##   1.0104222   2.2373888   1.3869133   1.2703635   1.0551928   0.9776261</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">## OR and CI</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">OR =</span> <span class="fu">coef</span>(m), ci))</span></code></pre></div>
+<pre><code>##                    OR     2.5 %   97.5 %
+## PFED4       1.0104222 0.9658608 1.057054
+## w1BCQ14_5_1 2.2373888 2.0743984 2.414723
+## pc1         1.3869133 1.3004899 1.479441
+## pc2         1.2703635 1.1991350 1.346070
+## pc3         1.0551928 1.0076764 1.104969
+## w1BCQ3_11   0.9776261 0.9554413 1.000306</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>sf <span class="ot">&lt;-</span> <span class="cf">function</span>(y) {</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">&#39;Y&gt;=1&#39;</span> <span class="ot">=</span> <span class="fu">qlogis</span>(<span class="fu">mean</span>(y <span class="sc">&gt;=</span> <span class="dv">1</span>)),</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Y&gt;=2&#39;</span> <span class="ot">=</span> <span class="fu">qlogis</span>(<span class="fu">mean</span>(y <span class="sc">&gt;=</span> <span class="dv">2</span>)),</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Y&gt;=3&#39;</span> <span class="ot">=</span> <span class="fu">qlogis</span>(<span class="fu">mean</span>(y <span class="sc">&gt;=</span> <span class="dv">3</span>)),</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Y&gt;=4&#39;</span> <span class="ot">=</span> <span class="fu">qlogis</span>(<span class="fu">mean</span>(y <span class="sc">&gt;=</span> <span class="dv">4</span>)))</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>(s <span class="ot">&lt;-</span> <span class="fu">with</span>(df, <span class="fu">summary</span>(<span class="fu">as.numeric</span>(w1BCQ23_17)<span class="sc">~</span>PMED4<span class="sc">+</span>w1BCQ14_5_2<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">fun=</span>sf)))</span></code></pre></div>
+<pre><code>## as.numeric(w1BCQ23_17)      N= 3297  
+## 
+## +-----------+---------------+----+----+---------+-----------+----------+
+## |           |               |   N|Y&gt;=1|     Y&gt;=2|       Y&gt;=3|      Y&gt;=4|
+## +-----------+---------------+----+----+---------+-----------+----------+
+## |      PMED4|              1|  14| Inf|1.2992830|-0.58778666|-2.5649494|
+## |           |              2| 940| Inf|1.6145530|-0.53586962|-2.2577758|
+## |           |              3| 487| Inf|1.8355621|-0.41231445|-2.3604047|
+## |           |              4|1028| Inf|1.9593182|-0.29392677|-2.0237526|
+## |           |              5| 792| Inf|2.3978953|-0.02525387|-1.7626029|
+## |           |              6|  36| Inf|2.8332133|-0.22314355|-1.4213857|
+## +-----------+---------------+----+----+---------+-----------+----------+
+## |w1BCQ14_5_2|              1| 526| Inf|0.4484311|-1.42476064|-2.5814446|
+## |           |              2|1093| Inf|1.9851725|-0.84251004|-3.0170716|
+## |           |              3|1201| Inf|2.8938929| 0.01165708|-2.1437940|
+## |           |              4| 477| Inf|3.0779704| 1.09024404|-0.6743378|
+## +-----------+---------------+----+----+---------+-----------+----------+
+## |        pc1|[-1.931,-0.863)|1156| Inf|1.4367991|-0.81374316|-2.6399845|
+## |           |[-0.863,-0.320)| 516| Inf|2.1886408|-0.42488319|-2.3727894|
+## |           |[-0.320, 0.356)| 804| Inf|2.1091677|-0.29566760|-2.0963434|
+## |           |[ 0.356, 4.185]| 821| Inf|2.5402888| 0.39228702|-1.3726474|
+## +-----------+---------------+----+----+---------+-----------+----------+
+## |        pc2|[-2.772,-0.844)|1008| Inf|1.3289965|-0.80234647|-2.4784758|
+## |           |[-0.844,-0.076)| 682| Inf|2.0041458|-0.34955748|-2.1842584|
+## |           |[-0.076, 0.880)| 789| Inf|2.3293661|-0.25228015|-2.0373596|
+## |           |[ 0.880, 3.228]| 818| Inf|2.5544643| 0.21599477|-1.6035814|
+## +-----------+---------------+----+----+---------+-----------+----------+
+## |        pc3|[-2.317,-1.204)| 936| Inf|1.7047481|-0.58446440|-2.5788385|
+## |           |[-1.204,-0.468)| 733| Inf|1.8804876|-0.30521240|-2.1136595|
+## |           |[-0.468, 1.022)| 808| Inf|2.1019144|-0.23373156|-1.8904943|
+## |           |[ 1.022, 5.454]| 820| Inf|2.0685125|-0.10252875|-1.7250681|
+## +-----------+---------------+----+----+---------+-----------+----------+
+## |  w1BCQ3_11|              1|1498| Inf|1.9232163|-0.24690764|-1.8994250|
+## |           |         [2, 5)| 272| Inf|2.4809305| 0.08829261|-1.9799560|
+## |           |         [5, 7)| 999| Inf|2.0007984|-0.37469345|-2.1524328|
+## |           |         [7,10]| 528| Inf|1.5824092|-0.60906406|-2.4229488|
+## +-----------+---------------+----+----+---------+-----------+----------+
+## |    Overall|               |3297| Inf|1.9215229|-0.31374045|-2.0530976|
+## +-----------+---------------+----+----+---------+-----------+----------+</code></pre>
+</div>
+<div id="多重共線性確認" class="section level3">
+<h3>多重共線性確認</h3>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>mother<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">+</span>w1BCQ14_5_2<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>father<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">+</span>w1BCQ14_5_1<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>parents<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">+</span>w1BCQ14_5_2<span class="sc">+</span>PFED4<span class="sc">+</span>w1BCQ14_5_1<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df) </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(mother) <span class="co">#carパッケージより</span></span></code></pre></div>
 <pre><code>##                 GVIF Df GVIF^(1/(2*Df))
 ## PMED4       1461.882  0             Inf
 ## w1BCQ14_5_2 1461.882  0             Inf
@@ -2524,7 +1931,7 @@ text-indent: 25px;
 ## pc2         1461.882  0             Inf
 ## pc3         1461.882  0             Inf
 ## w1BCQ3_11   1461.882  0             Inf</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(fa) <span class="co">#carパッケージより</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(father) <span class="co">#carパッケージより</span></span></code></pre></div>
 <pre><code>##                 GVIF Df GVIF^(1/(2*Df))
 ## PFED4       720.6515  0             Inf
 ## w1BCQ14_5_1 720.6515  0             Inf
@@ -2532,7 +1939,7 @@ text-indent: 25px;
 ## pc2         720.6515  0             Inf
 ## pc3         720.6515  0             Inf
 ## w1BCQ3_11   720.6515  0             Inf</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(all) <span class="co">#carパッケージより</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(parents) <span class="co">#carパッケージより</span></span></code></pre></div>
 <pre><code>##                GVIF Df GVIF^(1/(2*Df))
 ## PMED4       3546.66  0             Inf
 ## w1BCQ14_5_2 3546.66  0             Inf
@@ -2542,60 +1949,42 @@ text-indent: 25px;
 ## pc2         3546.66  0             Inf
 ## pc3         3546.66  0             Inf
 ## w1BCQ3_11   3546.66  0             Inf</code></pre>
-<p>=IMPORTRANGE(“1J2St4rgedACVF-6oqQ0L3d1FIHE5EA8aEGQ03UuKWXc”,“rawdata!A1:U30000”)</p>
 </div>
 </div>
 </div>
-</div>
-<div id="学校ダミーの作成" class="section level1">
-<h1>学校ダミーの作成</h1>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span>df <span class="sc">%&gt;%</span> </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">scdum =</span> <span class="fu">if_else</span>(<span class="at">condition =</span> w1学年 <span class="sc">&lt;=</span><span class="dv">9</span>,<span class="at">true =</span> <span class="dv">0</span>, <span class="at">false =</span> <span class="dv">1</span>)) <span class="co">#有職ダミー</span></span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>kousa_reg<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>kousa_reg[[<span class="st">&#39;モデル4母&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">+</span>w1BCQ14_5_2<span class="sc">*</span>scdum<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df) </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>kousa_reg[[<span class="st">&#39;モデル4父&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">+</span>w1BCQ14_5_1<span class="sc">*</span>scdum<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df) </span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>kousa_reg[[<span class="st">&#39;モデル5母&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">+</span>w1BCQ14_5_2<span class="sc">*</span>w1子ども性別<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>kousa_reg[[<span class="st">&#39;モデル5父&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">+</span>w1BCQ14_5_1<span class="sc">*</span>w1子ども性別<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df) </span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>temp<span class="ot">&lt;-</span> <span class="fu">msummary</span>(kousa_reg,<span class="st">&#39;gt&#39;</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="fu">c</span>(<span class="st">&quot;*&quot;</span> <span class="ot">=</span> <span class="fl">0.05</span>)</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表4:交差項&#39;</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">13</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">15</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>             <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">17</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>             <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">19</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_options</span>(</span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">table.border.top.width =</span> <span class="dv">0</span>, <span class="co">#タイトルの上の線を消す，</span></span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">table.border.bottom.width =</span> <span class="dv">0</span>, <span class="co">#注の下の線を消す</span></span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">heading.title.font.size =</span> <span class="fu">px</span>(<span class="dv">16</span>), <span class="co">#タイトルのフォントサイズをいい感じに</span></span>
-<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">row_group.border.bottom.width =</span> <span class="dv">0</span>, <span class="co">#セクション名の下の線を消す</span></span>
-<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">table_body.hlines.width =</span> <span class="dv">0</span>, <span class="co"># tableの中の水平線消す</span></span>
-<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">stub.border.width =</span> <span class="dv">0</span>, <span class="co"># stub列の中の線を消す</span></span>
-<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">column_labels.border.top.width =</span> <span class="dv">3</span>, <span class="co"># 変数名の行の線を黒く太く</span></span>
-<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">column_labels.border.top.color =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">column_labels.border.bottom.width =</span> <span class="dv">3</span>,</span>
-<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">column_labels.border.bottom.color =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">table_body.border.bottom.color =</span> <span class="st">&quot;black&quot;</span>, <span class="co">#テーブルの下線を黒く</span></span>
-<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">table.width =</span> <span class="fu">pct</span>(<span class="dv">60</span>), <span class="co"># 程よく幅を広げる（数字で調整）</span></span>
-<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">table.background.color =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">row_group.border.top.color =</span> <span class="st">&quot;black&quot;</span>, <span class="co">#セクション名の上の線を消す</span></span>
-<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">row_group.border.top.width =</span> <span class="dv">1</span> <span class="co">#セクション名の上の線を細く</span></span>
-<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">cols_align</span>(<span class="at">align=</span><span class="st">&quot;center&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>temp</span></code></pre></div>
-<div id="ginswrhspt" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="分析2-交差項" class="section level1">
+<h1>分析2 交差項</h1>
+<div id="年の分析-1" class="section level2">
+<h2>2015年の分析</h2>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>second_reg<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>second_reg[[<span class="st">&#39;モデル4母&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">+</span>w1BCQ14_5_2<span class="sc">*</span>scdum<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df) </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>second_reg[[<span class="st">&#39;モデル4父&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">+</span>w1BCQ14_5_1<span class="sc">*</span>scdum<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df) </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>second_reg[[<span class="st">&#39;モデル5母&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">+</span>w1BCQ14_5_2<span class="sc">*</span>w1子ども性別<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>second_reg[[<span class="st">&#39;モデル5父&#39;</span>]]<span class="ot">&lt;-</span><span class="fu">clm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">+</span>w1BCQ14_5_1<span class="sc">*</span>w1子ども性別<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11,<span class="at">data =</span> df) </span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>second<span class="ot">&lt;-</span> <span class="fu">msummary</span>(second_reg,<span class="st">&#39;gt&#39;</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="fu">c</span>(<span class="st">&quot;*&quot;</span> <span class="ot">=</span> <span class="fl">0.05</span>)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表4:交差項&#39;</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">13</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">15</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>             <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">17</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>             <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">19</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>  likeapa</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>second</span></code></pre></div>
+<div id="csyppfhqmb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
-#ginswrhspt .gt_table {
+#csyppfhqmb .gt_table {
 display: table;
 border-collapse: collapse;
 margin-left: auto;
@@ -2605,7 +1994,7 @@ font-size: 16px;
 font-weight: normal;
 font-style: normal;
 background-color: #FFFFFF;
-width: 60%;
+width: 30%;
 border-top-style: solid;
 border-top-width: 0px;
 border-top-color: #A8A8A8;
@@ -2619,7 +2008,7 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#ginswrhspt .gt_heading {
+#csyppfhqmb .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -2630,7 +2019,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#ginswrhspt .gt_title {
+#csyppfhqmb .gt_title {
 color: #333333;
 font-size: 16px;
 font-weight: initial;
@@ -2641,7 +2030,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#ginswrhspt .gt_subtitle {
+#csyppfhqmb .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -2652,12 +2041,12 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#ginswrhspt .gt_bottom_border {
+#csyppfhqmb .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ginswrhspt .gt_col_headings {
+#csyppfhqmb .gt_col_headings {
 border-top-style: solid;
 border-top-width: 3px;
 border-top-color: #000000;
@@ -2671,7 +2060,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#ginswrhspt .gt_col_heading {
+#csyppfhqmb .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2690,7 +2079,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#ginswrhspt .gt_column_spanner_outer {
+#csyppfhqmb .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2701,13 +2090,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#ginswrhspt .gt_column_spanner_outer:first-child {
+#csyppfhqmb .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#ginswrhspt .gt_column_spanner_outer:last-child {
+#csyppfhqmb .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#ginswrhspt .gt_column_spanner {
+#csyppfhqmb .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 3px;
 border-bottom-color: #000000;
@@ -2718,7 +2107,7 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#ginswrhspt .gt_group_heading {
+#csyppfhqmb .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2742,7 +2131,7 @@ border-right-width: 1px;
 border-right-color: #D3D3D3;
 vertical-align: middle;
 }
-#ginswrhspt .gt_empty_group_heading {
+#csyppfhqmb .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -2756,13 +2145,13 @@ border-bottom-width: 0px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#ginswrhspt .gt_from_md > :first-child {
+#csyppfhqmb .gt_from_md > :first-child {
 margin-top: 0;
 }
-#ginswrhspt .gt_from_md > :last-child {
+#csyppfhqmb .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#ginswrhspt .gt_row {
+#csyppfhqmb .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2780,7 +2169,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#ginswrhspt .gt_stub {
+#csyppfhqmb .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2792,7 +2181,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ginswrhspt .gt_stub_row_group {
+#csyppfhqmb .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2805,10 +2194,10 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#ginswrhspt .gt_row_group_first td {
+#csyppfhqmb .gt_row_group_first td {
 border-top-width: 1px;
 }
-#ginswrhspt .gt_summary_row {
+#csyppfhqmb .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2817,14 +2206,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ginswrhspt .gt_first_summary_row {
+#csyppfhqmb .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#ginswrhspt .gt_first_summary_row.thick {
+#csyppfhqmb .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#ginswrhspt .gt_last_summary_row {
+#csyppfhqmb .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2833,7 +2222,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ginswrhspt .gt_grand_summary_row {
+#csyppfhqmb .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2842,7 +2231,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ginswrhspt .gt_first_grand_summary_row {
+#csyppfhqmb .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2851,10 +2240,10 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#ginswrhspt .gt_striped {
+#csyppfhqmb .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#ginswrhspt .gt_table_body {
+#csyppfhqmb .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2862,7 +2251,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #000000;
 }
-#ginswrhspt .gt_footnotes {
+#csyppfhqmb .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2875,7 +2264,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#ginswrhspt .gt_footnote {
+#csyppfhqmb .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-left: 4px;
@@ -2883,7 +2272,7 @@ padding-right: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ginswrhspt .gt_sourcenotes {
+#csyppfhqmb .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2896,58 +2285,58 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#ginswrhspt .gt_sourcenote {
+#csyppfhqmb .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ginswrhspt .gt_left {
+#csyppfhqmb .gt_left {
 text-align: left;
 }
-#ginswrhspt .gt_center {
+#csyppfhqmb .gt_center {
 text-align: center;
 }
-#ginswrhspt .gt_right {
+#csyppfhqmb .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#ginswrhspt .gt_font_normal {
+#csyppfhqmb .gt_font_normal {
 font-weight: normal;
 }
-#ginswrhspt .gt_font_bold {
+#csyppfhqmb .gt_font_bold {
 font-weight: bold;
 }
-#ginswrhspt .gt_font_italic {
+#csyppfhqmb .gt_font_italic {
 font-style: italic;
 }
-#ginswrhspt .gt_super {
+#csyppfhqmb .gt_super {
 font-size: 65%;
 }
-#ginswrhspt .gt_footnote_marks {
+#csyppfhqmb .gt_footnote_marks {
 font-style: italic;
 font-weight: normal;
 font-size: 75%;
 vertical-align: 0.4em;
 }
-#ginswrhspt .gt_asterisk {
+#csyppfhqmb .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#ginswrhspt .gt_indent_1 {
+#csyppfhqmb .gt_indent_1 {
 text-indent: 5px;
 }
-#ginswrhspt .gt_indent_2 {
+#csyppfhqmb .gt_indent_2 {
 text-indent: 10px;
 }
-#ginswrhspt .gt_indent_3 {
+#csyppfhqmb .gt_indent_3 {
 text-indent: 15px;
 }
-#ginswrhspt .gt_indent_4 {
+#csyppfhqmb .gt_indent_4 {
 text-indent: 20px;
 }
-#ginswrhspt .gt_indent_5 {
+#csyppfhqmb .gt_indent_5 {
 text-indent: 25px;
 }
 </style>
@@ -3004,7 +2393,7 @@ text-indent: 25px;
 <td class="gt_row gt_center">(0.067)</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center">(0.113)</td></tr>
-    <tr><td class="gt_row gt_center">性別</td>
+    <tr><td class="gt_row gt_center">*性別*</td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center">-0.314</td>
@@ -3014,7 +2403,7 @@ text-indent: 25px;
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center">(0.199)</td>
 <td class="gt_row gt_center">(0.173)</td></tr>
-    <tr><td class="gt_row gt_center">中高生ダミー</td>
+    <tr><td class="gt_row gt_center">学校段階</td>
 <td class="gt_row gt_center">0.056</td>
 <td class="gt_row gt_center">0.362</td>
 <td class="gt_row gt_center"></td>
@@ -3044,7 +2433,7 @@ text-indent: 25px;
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center">(0.071)</td></tr>
-    <tr><td class="gt_row gt_center" style="font-weight: bold;">ニュース交差項（母）と中高生ダミー</td>
+    <tr><td class="gt_row gt_center" style="font-weight: bold;">ニュース交差項（母）と学校段階</td>
 <td class="gt_row gt_center" style="font-weight: bold;">0.032</td>
 <td class="gt_row gt_center" style="font-weight: bold;"></td>
 <td class="gt_row gt_center" style="font-weight: bold;"></td>
@@ -3054,7 +2443,7 @@ text-indent: 25px;
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_center" style="font-weight: bold;">ニュース交差項（父）と中高生ダミー</td>
+    <tr><td class="gt_row gt_center" style="font-weight: bold;">ニュース交差項（父）と学校段階</td>
 <td class="gt_row gt_center" style="font-weight: bold;"></td>
 <td class="gt_row gt_center" style="font-weight: bold;">-0.087</td>
 <td class="gt_row gt_center" style="font-weight: bold;"></td>
@@ -3123,7 +2512,590 @@ text-indent: 25px;
   
 </table>
 </div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gtsave</span>(temp,<span class="st">&#39;表4.png&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#gtsave(second,&#39;表4.png&#39;)</span></span></code></pre></div>
+</div>
+</div>
+<div id="分析1-パネルデータ" class="section level1">
+<h1>分析1　パネルデータ</h1>
+<div id="ファイルの読み込み-1" class="section level2">
+<h2>ファイルの読み込み</h2>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#df_1363&lt;-read_csv(&quot;1363.csv&quot;)</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co">#df_1368&lt;-read_csv(&quot;1368.csv&quot;)</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;df_1116useall.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="対象の絞り込み-中高生のみに" class="section level2">
+<h2>対象の絞り込み　中高生のみに</h2>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span>df<span class="sc">%&gt;%</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="dv">9</span><span class="sc">&lt;=</span> w1学年)  <span class="sc">%&gt;%</span> </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(w1学年<span class="sc">&lt;=</span><span class="dv">12</span>)</span></code></pre></div>
+<div id="固定効果モデルwithinを用いた回帰-父母" class="section level3">
+<h3>固定効果モデル（within）を用いた回帰 父母</h3>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df.naomit <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">make.pbalanced</span>(<span class="at">balance.type =</span> <span class="st">&quot;shared.individuals&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>)) </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>pdf <span class="ot">&lt;-</span> <span class="fu">pdata.frame</span>(df.naomit, <span class="at">index =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>mother1 <span class="ot">&lt;-</span> <span class="fu">plm</span>(w1BCQ23_17<span class="sc">~</span>PMED4</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">data =</span> pdf, <span class="at">effect =</span><span class="st">&quot;individual&quot;</span>, </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">model =</span> <span class="st">&quot;within&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>mother2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11 </span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">data =</span> pdf, <span class="at">effect =</span><span class="st">&quot;individual&quot;</span>, </span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">model =</span> <span class="st">&quot;within&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>mother3 <span class="ot">&lt;-</span> <span class="fu">plm</span>(w1BCQ23_17<span class="sc">~</span>PMED4<span class="sc">+</span>w1BCQ14_5_2<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11 </span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">data =</span> pdf, <span class="at">effect =</span><span class="st">&quot;individual&quot;</span>, </span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">model =</span> <span class="st">&quot;within&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>father1 <span class="ot">&lt;-</span> <span class="fu">plm</span>(w1BCQ23_17<span class="sc">~</span>PFED4</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">data =</span> pdf, <span class="at">effect =</span><span class="st">&quot;individual&quot;</span>, </span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">model =</span> <span class="st">&quot;within&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>father2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11 </span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">data =</span> pdf, <span class="at">effect =</span><span class="st">&quot;individual&quot;</span>, </span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">model =</span> <span class="st">&quot;within&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>father3 <span class="ot">&lt;-</span> <span class="fu">plm</span>(w1BCQ23_17<span class="sc">~</span>PFED4<span class="sc">+</span>w1BCQ14_5_1<span class="sc">+</span>pc1<span class="sc">+</span>pc2<span class="sc">+</span>pc3<span class="sc">+</span>w1BCQ3_11 </span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">data =</span> pdf, <span class="at">effect =</span><span class="st">&quot;individual&quot;</span>, </span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">model =</span> <span class="st">&quot;within&quot;</span>, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;index&quot;</span>, <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
+<div id="表作成" class="section level4">
+<h4>表作成</h4>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>panel_reg<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>panel_reg[[<span class="st">&#39;モデル1母&#39;</span>]]<span class="ot">&lt;-</span>mother1</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>panel_reg[[<span class="st">&#39;モデル2母&#39;</span>]]<span class="ot">&lt;-</span>mother2</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>panel_reg[[<span class="st">&#39;モデル3母&#39;</span>]]<span class="ot">&lt;-</span>mother3</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>panel_reg[[<span class="st">&#39;モデル1父&#39;</span>]]<span class="ot">&lt;-</span>father1</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>panel_reg[[<span class="st">&#39;モデル2父&#39;</span>]]<span class="ot">&lt;-</span>father2</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>panel_reg[[<span class="st">&#39;モデル3父&#39;</span>]]<span class="ot">&lt;-</span>father3</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>panel<span class="ot">&lt;-</span><span class="fu">msummary</span>(panel_reg,<span class="st">&#39;gt&#39;</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>        ,<span class="at">statistic =</span> <span class="st">&#39;std.error&#39;</span>,<span class="at">stars =</span> <span class="fu">c</span>(<span class="st">&quot;*&quot;</span> <span class="ot">=</span> <span class="fl">0.05</span>)</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_map =</span> <span class="st">&#39;all&#39;</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">gof_omit =</span> <span class="st">&#39;AIC|BIC|RMSE&#39;</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coef_map =</span> all_nam</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">title =</span> <span class="st">&#39;表5:分析1（パネルデータ）&#39;</span></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">3</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(<span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>),   <span class="co">#文字を太くする</span></span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">rows =</span> <span class="dv">7</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>  likeapa</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>panel</span></code></pre></div>
+<div id="gqxbfihxwo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+#gqxbfihxwo .gt_table {
+display: table;
+border-collapse: collapse;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 16px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: 30%;
+border-top-style: solid;
+border-top-width: 0px;
+border-top-color: #A8A8A8;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 0px;
+border-bottom-color: #A8A8A8;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}
+#gqxbfihxwo .gt_heading {
+background-color: #FFFFFF;
+text-align: center;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#gqxbfihxwo .gt_title {
+color: #333333;
+font-size: 16px;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}
+#gqxbfihxwo .gt_subtitle {
+color: #333333;
+font-size: 85%;
+font-weight: initial;
+padding-top: 0;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}
+#gqxbfihxwo .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#gqxbfihxwo .gt_col_headings {
+border-top-style: solid;
+border-top-width: 3px;
+border-top-color: #000000;
+border-bottom-style: solid;
+border-bottom-width: 3px;
+border-bottom-color: #000000;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#gqxbfihxwo .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}
+#gqxbfihxwo .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}
+#gqxbfihxwo .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}
+#gqxbfihxwo .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}
+#gqxbfihxwo .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 3px;
+border-bottom-color: #000000;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}
+#gqxbfihxwo .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-color: #000000;
+border-bottom-style: solid;
+border-bottom-width: 0px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+}
+#gqxbfihxwo .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-color: #000000;
+border-bottom-style: solid;
+border-bottom-width: 0px;
+border-bottom-color: #D3D3D3;
+vertical-align: middle;
+}
+#gqxbfihxwo .gt_from_md > :first-child {
+margin-top: 0;
+}
+#gqxbfihxwo .gt_from_md > :last-child {
+margin-bottom: 0;
+}
+#gqxbfihxwo .gt_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: solid;
+border-top-width: 0px;
+border-top-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}
+#gqxbfihxwo .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 0px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}
+#gqxbfihxwo .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}
+#gqxbfihxwo .gt_row_group_first td {
+border-top-width: 1px;
+}
+#gqxbfihxwo .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#gqxbfihxwo .gt_first_summary_row {
+border-top-style: solid;
+border-top-color: #D3D3D3;
+}
+#gqxbfihxwo .gt_first_summary_row.thick {
+border-top-width: 2px;
+}
+#gqxbfihxwo .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#gqxbfihxwo .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#gqxbfihxwo .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: double;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}
+#gqxbfihxwo .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}
+#gqxbfihxwo .gt_table_body {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #000000;
+}
+#gqxbfihxwo .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#gqxbfihxwo .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-left: 4px;
+padding-right: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#gqxbfihxwo .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#gqxbfihxwo .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#gqxbfihxwo .gt_left {
+text-align: left;
+}
+#gqxbfihxwo .gt_center {
+text-align: center;
+}
+#gqxbfihxwo .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}
+#gqxbfihxwo .gt_font_normal {
+font-weight: normal;
+}
+#gqxbfihxwo .gt_font_bold {
+font-weight: bold;
+}
+#gqxbfihxwo .gt_font_italic {
+font-style: italic;
+}
+#gqxbfihxwo .gt_super {
+font-size: 65%;
+}
+#gqxbfihxwo .gt_footnote_marks {
+font-style: italic;
+font-weight: normal;
+font-size: 75%;
+vertical-align: 0.4em;
+}
+#gqxbfihxwo .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}
+#gqxbfihxwo .gt_indent_1 {
+text-indent: 5px;
+}
+#gqxbfihxwo .gt_indent_2 {
+text-indent: 10px;
+}
+#gqxbfihxwo .gt_indent_3 {
+text-indent: 15px;
+}
+#gqxbfihxwo .gt_indent_4 {
+text-indent: 20px;
+}
+#gqxbfihxwo .gt_indent_5 {
+text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  <caption>表5:分析1（パネルデータ）</caption>
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"> </th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col">モデル1母</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col">モデル2母</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col">モデル3母</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col">モデル1父</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col">モデル2父</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col">モデル3父</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_center">母学歴</td>
+<td class="gt_row gt_center">0.093*</td>
+<td class="gt_row gt_center">0.028*</td>
+<td class="gt_row gt_center">-0.0008</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">(0.003)</td>
+<td class="gt_row gt_center">(0.003)</td>
+<td class="gt_row gt_center">(0.003)</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_center" style="font-weight: bold;">ニュース会話量（母）</td>
+<td class="gt_row gt_center" style="font-weight: bold;"></td>
+<td class="gt_row gt_center" style="font-weight: bold;"></td>
+<td class="gt_row gt_center" style="font-weight: bold;">0.382*</td>
+<td class="gt_row gt_center" style="font-weight: bold;"></td>
+<td class="gt_row gt_center" style="font-weight: bold;"></td>
+<td class="gt_row gt_center" style="font-weight: bold;"></td></tr>
+    <tr><td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">(0.003)</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_center">父学歴</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">0.057*</td>
+<td class="gt_row gt_center">0.018*</td>
+<td class="gt_row gt_center">-0.003</td></tr>
+    <tr><td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">(0.002)</td>
+<td class="gt_row gt_center">(0.002)</td>
+<td class="gt_row gt_center">(0.002)</td></tr>
+    <tr><td class="gt_row gt_center" style="font-weight: bold;">ニュース会話量（父）</td>
+<td class="gt_row gt_center" style="font-weight: bold;"></td>
+<td class="gt_row gt_center" style="font-weight: bold;"></td>
+<td class="gt_row gt_center" style="font-weight: bold;"></td>
+<td class="gt_row gt_center" style="font-weight: bold;"></td>
+<td class="gt_row gt_center" style="font-weight: bold;"></td>
+<td class="gt_row gt_center" style="font-weight: bold;">0.385*</td></tr>
+    <tr><td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">(0.003)</td></tr>
+    <tr><td class="gt_row gt_center">子どものメディア接触</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">0.161*</td>
+<td class="gt_row gt_center">0.119*</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">0.161*</td>
+<td class="gt_row gt_center">0.104*</td></tr>
+    <tr><td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">(0.003)</td>
+<td class="gt_row gt_center">(0.003)</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">(0.003)</td>
+<td class="gt_row gt_center">(0.003)</td></tr>
+    <tr><td class="gt_row gt_center">子どもの学力・学習意欲</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">-0.139*</td>
+<td class="gt_row gt_center">-0.099*</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">-0.143*</td>
+<td class="gt_row gt_center">-0.090*</td></tr>
+    <tr><td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">(0.003)</td>
+<td class="gt_row gt_center">(0.003)</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">(0.003)</td>
+<td class="gt_row gt_center">(0.002)</td></tr>
+    <tr><td class="gt_row gt_center">教育環境</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">-0.041*</td>
+<td class="gt_row gt_center">-0.028*</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">-0.043*</td>
+<td class="gt_row gt_center">-0.014*</td></tr>
+    <tr><td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">(0.002)</td>
+<td class="gt_row gt_center">(0.002)</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">(0.002)</td>
+<td class="gt_row gt_center">(0.002)</td></tr>
+    <tr><td class="gt_row gt_center">友達付き合い</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">-0.009*</td>
+<td class="gt_row gt_center">-0.001</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">-0.009*</td>
+<td class="gt_row gt_center">-0.007*</td></tr>
+    <tr><td class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;"></td>
+<td class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;"></td>
+<td class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;">(0.001)</td>
+<td class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;">(0.001)</td>
+<td class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;"></td>
+<td class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;">(0.001)</td>
+<td class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;">(0.001)</td></tr>
+    <tr><td class="gt_row gt_center">Num.Obs.</td>
+<td class="gt_row gt_center">66048</td>
+<td class="gt_row gt_center">66048</td>
+<td class="gt_row gt_center">66048</td>
+<td class="gt_row gt_center">66048</td>
+<td class="gt_row gt_center">66048</td>
+<td class="gt_row gt_center">66048</td></tr>
+    <tr><td class="gt_row gt_center">R2</td>
+<td class="gt_row gt_center">0.016</td>
+<td class="gt_row gt_center">0.111</td>
+<td class="gt_row gt_center">0.271</td>
+<td class="gt_row gt_center">0.009</td>
+<td class="gt_row gt_center">0.111</td>
+<td class="gt_row gt_center">0.293</td></tr>
+    <tr><td class="gt_row gt_center">R2 Adj.</td>
+<td class="gt_row gt_center">0.016</td>
+<td class="gt_row gt_center">0.111</td>
+<td class="gt_row gt_center">0.271</td>
+<td class="gt_row gt_center">0.009</td>
+<td class="gt_row gt_center">0.111</td>
+<td class="gt_row gt_center">0.292</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="7">* p &lt; 0.05</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#gtsave(panel,&#39;パネル.png&#39;)</span></span></code></pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
